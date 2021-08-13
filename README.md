@@ -143,7 +143,7 @@ A simple FIFO or LIFO Queue datastructure, using the SizedLinkedList prefab.
 ```typescript
 import { Queue } from '@zimmed/prefab';
 
-const queue = Queue.from([1, 2, 3], Queue.Type.FIFO);
+const queue = Queue.from([1, 2, 3]);
 const stack = Queue.from([1, 2, 3], Queue.Type.LIFO);
 
 queue.enqueue(4).add(3); // -> Queue { 1 2 3 4 3 }
@@ -169,7 +169,7 @@ common vocabulary one would expect for a Queue datastructure (unique elements on
 ```typescript
 import { UniQueue as Queue } from '@zimmed/prefab';
 
-const q = Queue.from([1, 2, 3, 4, 4, 3], Queue.Type.FIFO); // -> UniQueue { 1, 2, 3, 4 }
+const q = Queue.from([1, 2, 3, 4, 4, 3]); // -> UniQueue { 1, 2, 3, 4 }
 
 q.has(3); // -> Hashmap lookup time
 ```
