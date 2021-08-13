@@ -29,7 +29,7 @@ Constructor must take no arguments
 
 #### Defined in
 
-[ObjectPool.ts:26](https://github.com/zimmed/prefab/blob/26aef1e/src/ObjectPool.ts#L26)
+[ObjectPool.ts:26](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L26)
 
 ## Properties
 
@@ -39,7 +39,7 @@ Constructor must take no arguments
 
 #### Defined in
 
-[ObjectPool.ts:17](https://github.com/zimmed/prefab/blob/26aef1e/src/ObjectPool.ts#L17)
+[ObjectPool.ts:17](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L17)
 
 ## Methods
 
@@ -53,7 +53,7 @@ Constructor must take no arguments
 
 #### Defined in
 
-[ObjectPool.ts:30](https://github.com/zimmed/prefab/blob/26aef1e/src/ObjectPool.ts#L30)
+[ObjectPool.ts:30](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L30)
 
 ___
 
@@ -73,4 +73,4 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:28](https://github.com/zimmed/prefab/blob/26aef1e/src/ObjectPool.ts#L28)
+[ObjectPool.ts:28](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L28)

@@ -21,7 +21,7 @@ export class Queue<T> extends SizedLinkedList<T> {
 
   public constructor(
     iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>,
-    type: Type = Type.LIFO
+    type: Type = Type.FIFO
   ) {
     super(iterable);
     this._type = type;

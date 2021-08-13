@@ -101,7 +101,7 @@
 
 #### Defined in
 
-[PriorityQueue.ts:28](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L28)
+[PriorityQueue.ts:28](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L28)
 
 ## Properties
 
@@ -111,7 +111,7 @@
 
 #### Defined in
 
-[PriorityQueue.ts:26](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L26)
+[PriorityQueue.ts:26](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L26)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:20](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L20)
+[PriorityQueue.ts:20](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L20)
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:24](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L24)
+[LinkedList.ts:24](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L24)
 
 ___
 
@@ -149,7 +149,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:7](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L7)
+[LinkedSet.ts:7](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L7)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:23](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L23)
+[PriorityQueue.ts:23](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L23)
 
 ___
 
@@ -169,7 +169,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:17](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L17)
+[PriorityQueue.ts:17](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L17)
 
 ___
 
@@ -183,7 +183,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:27](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L27)
+[LinkedList.ts:27](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L27)
 
 ___
 
@@ -197,7 +197,7 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:26](https://github.com/zimmed/prefab/blob/26aef1e/src/SortedSet.ts#L26)
+[SortedSet.ts:26](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L26)
 
 ## Accessors
 
@@ -211,7 +211,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:29](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L29)
+[LinkedList.ts:29](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L29)
 
 ___
 
@@ -225,7 +225,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:9](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L9)
+[LinkedSet.ts:9](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L9)
 
 ___
 
@@ -239,7 +239,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:32](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L32)
+[LinkedList.ts:32](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L32)
 
 ## Methods
 
@@ -257,7 +257,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:210](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L210)
+[LinkedList.ts:210](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L210)
 
 ___
 
@@ -281,7 +281,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:32](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L32)
+[PriorityQueue.ts:32](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L32)
 
 ___
 
@@ -305,7 +305,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:44](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L44)
+[LinkedSet.ts:44](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L44)
 
 ___
 
@@ -330,7 +330,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:36](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L36)
+[PriorityQueue.ts:36](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L36)
 
 ___
 
@@ -348,7 +348,7 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:77](https://github.com/zimmed/prefab/blob/26aef1e/src/SortedSet.ts#L77)
+[SortedSet.ts:77](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L77)
 
 ___
 
@@ -366,7 +366,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:99](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L99)
+[LinkedList.ts:99](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L99)
 
 ___
 
@@ -390,7 +390,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:61](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L61)
+[PriorityQueue.ts:61](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L61)
 
 ___
 
@@ -414,7 +414,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:158](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L158)
+[LinkedList.ts:158](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L158)
 
 ___
 
@@ -428,7 +428,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:51](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L51)
+[PriorityQueue.ts:51](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L51)
 
 ___
 
@@ -450,7 +450,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:44](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L44)
+[PriorityQueue.ts:44](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L44)
 
 ___
 
@@ -468,7 +468,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:179](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L179)
+[LinkedList.ts:179](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L179)
 
 ___
 
@@ -499,7 +499,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:267](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L267)
+[LinkedList.ts:267](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L267)
 
 ___
 
@@ -530,7 +530,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:247](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L247)
+[LinkedList.ts:247](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L247)
 
 ___
 
@@ -561,7 +561,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:73](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L73)
+[LinkedSet.ts:73](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L73)
 
 ___
 
@@ -592,7 +592,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:214](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L214)
+[LinkedList.ts:214](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L214)
 
 ___
 
@@ -618,7 +618,7 @@ Careful -- O(n)
 
 #### Defined in
 
-[LinkedSet.ts:27](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L27)
+[LinkedSet.ts:27](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L27)
 
 ___
 
@@ -642,7 +642,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:107](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L107)
+[LinkedList.ts:107](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L107)
 
 ___
 
@@ -668,7 +668,7 @@ ___
 
 #### Defined in
 
-[PriorityQueue.ts:40](https://github.com/zimmed/prefab/blob/26aef1e/src/PriorityQueue.ts#L40)
+[PriorityQueue.ts:40](https://github.com/zimmed/prefab/blob/db84beb/src/PriorityQueue.ts#L40)
 
 ___
 
@@ -692,7 +692,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:39](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L39)
+[LinkedSet.ts:39](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L39)
 
 ___
 
@@ -716,7 +716,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:311](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L311)
+[LinkedList.ts:311](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L311)
 
 ___
 
@@ -734,7 +734,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:192](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L192)
+[LinkedList.ts:192](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L192)
 
 ___
 
@@ -766,7 +766,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:78](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L78)
+[LinkedSet.ts:78](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L78)
 
 ___
 
@@ -784,7 +784,7 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:57](https://github.com/zimmed/prefab/blob/26aef1e/src/SortedSet.ts#L57)
+[SortedSet.ts:57](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L57)
 
 ___
 
@@ -802,7 +802,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:103](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L103)
+[LinkedList.ts:103](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L103)
 
 ___
 
@@ -835,7 +835,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:229](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L229)
+[LinkedList.ts:229](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L229)
 
 ___
 
@@ -868,7 +868,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:64](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L64)
+[LinkedSet.ts:64](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L64)
 
 ___
 
@@ -886,7 +886,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:201](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L201)
+[LinkedList.ts:201](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L201)
 
 ___
 
@@ -918,7 +918,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:83](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedSet.ts#L83)
+[LinkedSet.ts:83](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L83)
 
 ___
 
@@ -943,7 +943,7 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:38](https://github.com/zimmed/prefab/blob/26aef1e/src/SortedSet.ts#L38)
+[SortedSet.ts:38](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L38)
 
 ___
 
@@ -961,7 +961,7 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:67](https://github.com/zimmed/prefab/blob/26aef1e/src/SortedSet.ts#L67)
+[SortedSet.ts:67](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L67)
 
 ___
 
@@ -985,7 +985,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:118](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L118)
+[LinkedList.ts:118](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L118)
 
 ___
 
@@ -1003,7 +1003,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:188](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L188)
+[LinkedList.ts:188](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L188)
 
 ___
 
@@ -1021,7 +1021,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:307](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L307)
+[LinkedList.ts:307](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L307)
 
 ___
 
@@ -1039,7 +1039,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:175](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L175)
+[LinkedList.ts:175](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L175)
 
 ___
 
@@ -1070,4 +1070,4 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:18](https://github.com/zimmed/prefab/blob/26aef1e/src/SortedSet.ts#L18)
+[SortedSet.ts:18](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L18)

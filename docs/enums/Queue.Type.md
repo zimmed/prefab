@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[Queue.ts:6](https://github.com/zimmed/prefab/blob/26aef1e/src/Queue.ts#L6)
+[Queue.ts:6](https://github.com/zimmed/prefab/blob/db84beb/src/Queue.ts#L6)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[Queue.ts:5](https://github.com/zimmed/prefab/blob/26aef1e/src/Queue.ts#L5)
+[Queue.ts:5](https://github.com/zimmed/prefab/blob/db84beb/src/Queue.ts#L5)
