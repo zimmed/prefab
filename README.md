@@ -28,15 +28,17 @@ Then you can use:
 ### Inheritance Tree
 
 ```code
- ╔═ LinkedList
- ║
- ╠═╦═ SizedLinkedList
- ║ ╚═══ Queue
- ║
- ╚═╦═ LinkedSet
-   ╠═══ UniQueue
-   ╚═╦═ SortedSet
-     ╚═══ PriorityQueue
+ LinkedList
+ ┃
+ ┣━ SizedLinkedList
+ ┃  ┻━ Queue
+ ┃
+ ┣━ LinkedSet
+ ┃  ┃
+ ┃  ╋━ UniQueue
+ ┃  ┃
+ ┃  ╋━ SortedSet
+ ╹  ╹  ┻━ PriorityQueue
 
  ObjectPool < LinkedList
 ```
