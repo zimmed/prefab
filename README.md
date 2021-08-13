@@ -143,16 +143,16 @@ A simple FIFO or LIFO Queue datastructure, using the SizedLinkedList prefab.
 ```typescript
 import { Queue } from '@zimmed/prefab';
 
-const fifo = Queue.from([1, 2, 3], Queue.Type.FIFO);
-const lifo = Queue.from([1, 2, 3], Queue.Type.LIFO);
+const queue = Queue.from([1, 2, 3], Queue.Type.FIFO);
+const stack = Queue.from([1, 2, 3], Queue.Type.LIFO);
 
-fifo.enqueue(4).enqueue(3); // -> Queue { 1 2 3 4 3 }
-lifo.enqueue(5).enqueue(5); // -> Queue { 1 2 3 5 5 }
+queue.enqueue(4).add(3); // -> Queue { 1 2 3 4 3 }
+stack.enqueue(5).add(5); // -> Queue { 1 2 3 5 5 }
 
-fifo.dequeue(); // -> 1
-fifo.dequeue(); // -> 2
-lifo.dequeue(); // -> 5
-lifo.dequeue(); // -> 5
+queue.dequeue(); // -> 1
+queue.shift(); // -> 2
+stack.dequeue(); // -> 5
+stack.pop(); // -> 5
 
 // fifo -> Queue { 3 4 3 }
 // lifo -> Queue { 1 2 3 }
