@@ -14,6 +14,33 @@ Then you can use:
 
 `$ npm i --save @zimmed/prefab`
 
+## iFAQ
+
+### **Do I have to use TypeScript to use this library?**
+
+Nope! You can import into any ES6 project using the same `import` syntax listed below, into Node.js using &nbsp; `const { LinkedList } = require('@zimmed/prefab')`, or directly into a modern browser environment using &nbsp;`<script src="prefab.umd.js" /><script>const list = new prefab.LinkedList();</script>`. If you want ES5 backward compatibility, you will need to bundle this library with your own transpilation process (see [babel](https://babeljs.io)).
+
+### **Why are you reinventing the wheel?**
+
+There are many JavaScript examples and libraries for various datastructures, but very few with full `typing` support, and even fewer that are optimized for raw performance. These prefabs take advantage of the highly-optimized ES5+ builtins, like Set and Map and extend their behavior to be
+a bit more versatile, as in the case of the [LinkedSet](#user-content-linkedset-docs-src), which sparked this library because I wanted the performance advantages of the JavaScript `Set` object, but needed to be able to `pop` elements from it (which the `Set` does not do natively).
+
+If you still need convincing, perhaps the performance benchmarks that will be published with the upcoming 0.2.0 release will help clarify. In preliminary tests on Node.js 16.4, the [LinkedSet](#user-content-linkedset-docs-src) maintained overall `Set` performance, while DRASTICALLY (to the tune of 60x) outperformed even the native `Array` on `unshift` and `shift` operations, thanks to the doubly-[LinkedList](#user-content-linkedlist-docs-src).
+
+### **What tool are you using to benchmark?**
+
+[@zimmed/bench](https://github.com/zimmed/bench)
+
+### **How can I help?**
+
+Report any bugs you come across on the issues page, or suggest enhancements.
+
+### **Classical inheritance sucks!**
+
+Not a question, but I completely agree. Object composition is a much better pattern. That said, because TypeScript is geared more towards the traditional (read: wrong) OOP opproach, it works much better for these kinds of libraries when you have a lot of generic types to use a hierarchical approach. It also makes the code very familiar for a larger set of developers.
+
+I considered adding parallel factory patterns instead of instance-based structures, but this library is really about performance, which is optimized very well on any modern JavaScript engine for class instantiation, and switching to a more robust and testable stateless factory pattern would hurt that peformance. I may still do this anyway at some point, but it's not a priority.
+
 ## Prefabs
 
 - [LinkedList](#user-content-linkedlist-docs-src)
