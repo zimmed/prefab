@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[UniQueue.ts:6](https://github.com/zimmed/prefab/blob/8710d36/src/UniQueue.ts#L6)
+[UniQueue.ts:6](https://github.com/zimmed/prefab/blob/26aef1e/src/UniQueue.ts#L6)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[UniQueue.ts:5](https://github.com/zimmed/prefab/blob/8710d36/src/UniQueue.ts#L5)
+[UniQueue.ts:5](https://github.com/zimmed/prefab/blob/26aef1e/src/UniQueue.ts#L5)

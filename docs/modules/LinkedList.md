@@ -41,7 +41,7 @@ Renames and exports: [LinkedList](../classes/LinkedList.LinkedList-1.md)
 
 #### Defined in
 
-[LinkedList.ts:3](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L3)
+[LinkedList.ts:3](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L3)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:16](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L16)
+[LinkedList.ts:16](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L16)
 
 ___
 
@@ -84,4 +84,4 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:9](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L9)
+[LinkedList.ts:9](https://github.com/zimmed/prefab/blob/26aef1e/src/LinkedList.ts#L9)

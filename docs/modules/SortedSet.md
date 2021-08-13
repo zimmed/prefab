@@ -37,4 +37,4 @@ Renames and exports: [SortedSet](../classes/SortedSet.SortedSet-1.md)
 
 #### Defined in
 
-[SortedSet.ts:11](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L11)
+[SortedSet.ts:11](https://github.com/zimmed/prefab/blob/26aef1e/src/SortedSet.ts#L11)

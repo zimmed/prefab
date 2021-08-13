@@ -43,7 +43,7 @@ Then you can use:
  ObjectPool < LinkedList
 ```
 
-### LinkedList
+### LinkedList ([docs](docs/classes/LinkedList.LinkedList-1.md))
 
 For all your linked-list needs!
 
@@ -66,7 +66,7 @@ for (const s of bar) {
 }
 ```
 
-### SizedLinkedList
+### SizedLinkedList ([docs](docs/classes/SizedLinkedList.SizedLinkedList-1.md))
 
 ##### (extends [LinkedList](#user-content-linkedlist))
 
@@ -78,7 +78,7 @@ import { SizedLinkedList as LinkedList } from '@zimmed/prefab';
 const baz = LinkedList.from('green eggs and spam'.split(' ')).size; // -> 4
 ```
 
-### LinkedSet
+### LinkedSet ([docs](docs/classes/LinkedSet.LinkedSet-1.md))
 
 ##### (extends [LinkedList](#user-content-linkedlist))
 
@@ -112,7 +112,7 @@ const five = set.pop(); // -> 'five'
 set.size; // -> 4
 ```
 
-### SortedSet
+### SortedSet ([docs](docs/classes/SortedSet.SortedSet-1.md))
 
 ##### (extends [LinkedSet](#user-content-linkedset))
 
@@ -134,7 +134,7 @@ collection
   .delete(collection.find((x) => x.name === 'bar')); // -> SortedSet { 'baz' 'foo' }
 ```
 
-### Queue
+### Queue ([docs](docs/classes/Queue.Queue-1.md))
 
 ##### (extends [SizedLinkedList](#user-content-sizedlinkedlist))
 
@@ -158,7 +158,7 @@ lifo.dequeue(); // -> 5
 // lifo -> Queue { 1 2 3 }
 ```
 
-### UniQueue
+### UniQueue ([docs](docs/classes/UniQueue.UniQueue-1.md))
 
 ##### (extends [LinkedSet](#user-content-linkedset))
 
@@ -174,7 +174,7 @@ const q = Queue.from([1, 2, 3, 4, 4, 3], Queue.Type.FIFO); // -> UniQueue { 1, 2
 q.has(3); // -> Hashmap lookup time
 ```
 
-### PriorityQueue
+### PriorityQueue ([docs](docs/classes/PriorityQueue.PriorityQueue-1.md))
 
 ##### (extends [SortedSet](#user-content-sortedset))
 
@@ -195,7 +195,7 @@ q.enqueue(5, 1)
   .dequeue(); // -> 200
 ```
 
-### Pool
+### ObjectPool ([docs](docs/classes/ObjectPool.ObjectPool-1.md))
 
 ##### (uses [LinkedList](#user-content-linkedlist))
 
