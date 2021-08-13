@@ -16,14 +16,14 @@ Then you can use:
 
 ## Prefabs
 
-- [LinkedList](#user-content-linkedlist)
-- [SizedLinkedList](#user-content-sizedlinkedlist)
-- [LinkedSet](#user-content-linkedset)
-- [SortedSet](#user-content-sortedset)
-- [Queue](#user-content-queue)
-- [UniQueue](#user-content-uniqueue)
-- [PriorityQueue](#user-content-priorityqueue)
-- [ObjectPool](#user-content-priorityqueue)
+- [LinkedList](#user-content-linkedlist-docs-src)
+- [SizedLinkedList](#user-content-sizedlinkedlist-docs-src)
+- [LinkedSet](#user-content-linkedset-docs-src)
+- [SortedSet](#user-content-sortedset-docs-src)
+- [Queue](#user-content-queue-docs-src)
+- [UniQueue](#user-content-uniqueue-docs-src)
+- [PriorityQueue](#user-content-priorityqueue-docs-src)
+- [ObjectPool](#user-content-priorityqueue-docs-src)
 
 ### Inheritance Tree
 
@@ -68,7 +68,7 @@ for (const s of bar) {
 
 ### SizedLinkedList ([docs](docs/classes/SizedLinkedList.SizedLinkedList-1.md)) ([src](src/SizedLinkedList.ts))
 
-##### (extends [LinkedList](#user-content-linkedlist))
+##### (extends [LinkedList](#user-content-linkedlist-docs-src))
 
 A very slight extension to the LinkedList prefab that tracks the size of the list.
 
@@ -80,7 +80,7 @@ const baz = LinkedList.from('green eggs and spam'.split(' ')).size; // -> 4
 
 ### LinkedSet ([docs](docs/classes/LinkedSet.LinkedSet-1.md)) ([src](src/LinkedSet.ts))
 
-##### (extends [LinkedList](#user-content-linkedlist))
+##### (extends [LinkedList](#user-content-linkedlist-docs-src))
 
 Combines the optimized functionality of the builtin Set, with the versatility of
 a linked list: Best of both worlds! Blazing fast unique list operations and lookups
@@ -114,7 +114,7 @@ set.size; // -> 4
 
 ### SortedSet ([docs](docs/classes/SortedSet.SortedSet-1.md)) ([src](src/SortedSet.ts))
 
-##### (extends [LinkedSet](#user-content-linkedset))
+##### (extends [LinkedSet](#user-content-linkedset-docs-src))
 
 Building upon the flexibility of the LinkedSet, the SortedSet prefab adds an additional
 datastructure under the covers (BST) for maintaining a list in a specified sort order.
@@ -136,7 +136,7 @@ collection
 
 ### Queue ([docs](docs/classes/Queue.Queue-1.md)) ([src](src/Queue.ts))
 
-##### (extends [SizedLinkedList](#user-content-sizedlinkedlist))
+##### (extends [SizedLinkedList](#user-content-sizedlinkedlist-docs-src))
 
 A simple FIFO or LIFO Queue datastructure, using the SizedLinkedList prefab.
 
@@ -160,7 +160,7 @@ lifo.dequeue(); // -> 5
 
 ### UniQueue ([docs](docs/classes/UniQueue.UniQueue-1.md)) ([src](src/UniQueue.ts))
 
-##### (extends [LinkedSet](#user-content-linkedset))
+##### (extends [LinkedSet](#user-content-linkedset-docs-src))
 
 Utilizing the uniform performance of head or tail pushing and popping of the LinkedList,
 and the extended methods of the LinkedSet, the UniQueue prefab just extends it with the
@@ -176,7 +176,7 @@ q.has(3); // -> Hashmap lookup time
 
 ### PriorityQueue ([docs](docs/classes/PriorityQueue.PriorityQueue-1.md)) ([src](src/PriorityQueue.ts))
 
-##### (extends [SortedSet](#user-content-sortedset))
+##### (extends [SortedSet](#user-content-sortedset-docs-src))
 
 Uses the BST-powered SortedSet prefab, the PriorityQueue prefab is an implicitly sorted
 FIFO Queue with the ability to specify/override the sorting priority.
@@ -197,7 +197,7 @@ q.enqueue(5, 1)
 
 ### ObjectPool ([docs](docs/classes/ObjectPool.ObjectPool-1.md)) ([src](src/ObjectPool.ts))
 
-##### (uses [LinkedList](#user-content-linkedlist))
+##### (uses [LinkedList](#user-content-linkedlist-docs-src))
 
 A pooled object manager for consistent memory signatures.
 
