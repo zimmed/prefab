@@ -26,29 +26,15 @@ Renames and exports: [SortedSet](../classes/SortedSet.SortedSet-1.md)
 
 ### Sort
 
-Ƭ **Sort**<`T`\>: (`a`: `T`, `b`: `T`) => `number`
+Ƭ **Sort**<`T`, `S`\>: (`a`: `T`, `b`: `T`) => `number` \| (`a`: `T`, `b`: `T`, `s`: `S`) => `number`
 
 #### Type parameters
 
-| Name |
-| :------ |
-| `T` |
-
-#### Type declaration
-
-▸ (`a`, `b`): `number`
-
-##### Parameters
-
 | Name | Type |
 | :------ | :------ |
-| `a` | `T` |
-| `b` | `T` |
-
-##### Returns
-
-`number`
+| `T` | `T` |
+| `S` | extends [`SortedSet`](../classes/SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\> |
 
 #### Defined in
 
-SortedSet.ts:9
+[SortedSet.ts:11](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L11)

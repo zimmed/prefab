@@ -47,4 +47,4 @@ Renames and exports: [ObjectPool](../classes/ObjectPool.ObjectPool-1.md)
 
 #### Defined in
 
-ObjectPool.ts:6
+[ObjectPool.ts:7](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L7)

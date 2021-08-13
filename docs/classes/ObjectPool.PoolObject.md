@@ -25,39 +25,41 @@
 
 • **new PoolObject**()
 
+Constructor must take no arguments
+
 #### Defined in
 
-ObjectPool.ts:23
+[ObjectPool.ts:26](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L26)
 
 ## Properties
 
 ### poolState
 
-• **poolState**: [`PoolState`](../modules/ObjectPool.md#poolstate)<[`PoolObject`](ObjectPool.PoolObject.md)\>
+• `Readonly` **poolState**: [`PoolState`](../modules/ObjectPool.md#poolstate)<[`PoolObject`](ObjectPool.PoolObject.md)\>
 
 #### Defined in
 
-ObjectPool.ts:15
+[ObjectPool.ts:17](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L17)
 
 ## Methods
 
 ### poolClean
 
-▸ **poolClean**(): [`PoolObject`](ObjectPool.PoolObject.md)
+▸ `Abstract` **poolClean**(): `void`
 
 #### Returns
 
-[`PoolObject`](ObjectPool.PoolObject.md)
+`void`
 
 #### Defined in
 
-ObjectPool.ts:30
+[ObjectPool.ts:30](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L30)
 
 ___
 
 ### poolInit
 
-▸ **poolInit**(...`args`): [`PoolObject`](ObjectPool.PoolObject.md)
+▸ `Abstract` **poolInit**(...`args`): `void`
 
 #### Parameters
 
@@ -67,8 +69,8 @@ ___
 
 #### Returns
 
-[`PoolObject`](ObjectPool.PoolObject.md)
+`void`
 
 #### Defined in
 
-ObjectPool.ts:25
+[ObjectPool.ts:28](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L28)

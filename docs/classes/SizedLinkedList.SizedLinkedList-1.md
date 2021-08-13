@@ -27,7 +27,6 @@
 
 ### Properties
 
-- [[toStringTag]](SizedLinkedList.SizedLinkedList-1.md#[tostringtag])
 - [\_head](SizedLinkedList.SizedLinkedList-1.md#_head)
 - [\_size](SizedLinkedList.SizedLinkedList-1.md#_size)
 - [\_tail](SizedLinkedList.SizedLinkedList-1.md#_tail)
@@ -41,7 +40,6 @@
 ### Methods
 
 - [[iterator]](SizedLinkedList.SizedLinkedList-1.md#[iterator])
-- [\_findNode](SizedLinkedList.SizedLinkedList-1.md#_findnode)
 - [add](SizedLinkedList.SizedLinkedList-1.md#add)
 - [addNode](SizedLinkedList.SizedLinkedList-1.md#addnode)
 - [append](SizedLinkedList.SizedLinkedList-1.md#append)
@@ -78,7 +76,7 @@
 
 ### constructor
 
-• **new SizedLinkedList**<`T`, `N`\>(`iterable?`)
+• **new SizedLinkedList**<`T`, `N`\>(`iterable?`, `init?`)
 
 #### Type parameters
 
@@ -92,6 +90,7 @@
 | Name | Type |
 | :------ | :------ |
 | `iterable?` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> |
+| `init?` | `object` |
 
 #### Inherited from
 
@@ -99,27 +98,13 @@
 
 #### Defined in
 
-LinkedList.ts:37
+[LinkedList.ts:48](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L48)
 
 ## Properties
 
-### [toStringTag]
-
-• **[toStringTag]**: `string` = `'SizedLinkedList'`
-
-#### Overrides
-
-LinkedList.\_\_@toStringTag@24
-
-#### Defined in
-
-SizedLinkedList.ts:10
-
-___
-
 ### \_head
 
-• `Optional` `Private` **\_head**: `N`
+• `Protected` `Optional` **\_head**: `N`
 
 #### Inherited from
 
@@ -127,23 +112,23 @@ ___
 
 #### Defined in
 
-LinkedList.ts:22
+[LinkedList.ts:24](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L24)
 
 ___
 
 ### \_size
 
-• **\_size**: `number` = `0`
+• `Private` **\_size**: `number` = `0`
 
 #### Defined in
 
-SizedLinkedList.ts:4
+[SizedLinkedList.ts:6](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L6)
 
 ___
 
 ### \_tail
 
-• `Optional` `Private` **\_tail**: `N`
+• `Protected` `Optional` **\_tail**: `N`
 
 #### Inherited from
 
@@ -151,7 +136,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:24
+[LinkedList.ts:27](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L27)
 
 ## Accessors
 
@@ -165,7 +150,7 @@ LinkedList.ts:24
 
 #### Defined in
 
-LinkedList.ts:26
+[LinkedList.ts:29](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L29)
 
 ___
 
@@ -179,7 +164,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:6
+[SizedLinkedList.ts:8](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L8)
 
 ___
 
@@ -193,7 +178,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:30
+[LinkedList.ts:32](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L32)
 
 ## Methods
 
@@ -211,31 +196,7 @@ LinkedList.ts:30
 
 #### Defined in
 
-LinkedList.ts:185
-
-___
-
-### \_findNode
-
-▸ `Private` **_findNode**(`item`): `undefined` \| `N`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `item` | `T` |
-
-#### Returns
-
-`undefined` \| `N`
-
-#### Inherited from
-
-[LinkedList](LinkedList.LinkedList-1.md).[_findNode](LinkedList.LinkedList-1.md#_findnode)
-
-#### Defined in
-
-LinkedList.ts:291
+[LinkedList.ts:210](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L210)
 
 ___
 
@@ -259,7 +220,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:124
+[LinkedList.ts:149](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L149)
 
 ___
 
@@ -283,7 +244,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:31
+[SizedLinkedList.ts:31](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L31)
 
 ___
 
@@ -307,7 +268,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:74
+[LinkedList.ts:95](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L95)
 
 ___
 
@@ -325,7 +286,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:36
+[SizedLinkedList.ts:36](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L36)
 
 ___
 
@@ -343,7 +304,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:78
+[LinkedList.ts:99](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L99)
 
 ___
 
@@ -367,7 +328,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:146
+[LinkedList.ts:171](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L171)
 
 ___
 
@@ -391,7 +352,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:41
+[SizedLinkedList.ts:41](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L41)
 
 ___
 
@@ -409,7 +370,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:154
+[LinkedList.ts:179](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L179)
 
 ___
 
@@ -440,7 +401,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:242
+[LinkedList.ts:267](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L267)
 
 ___
 
@@ -471,7 +432,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:222
+[LinkedList.ts:247](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L247)
 
 ___
 
@@ -498,7 +459,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:67
+[SizedLinkedList.ts:71](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L71)
 
 ___
 
@@ -529,7 +490,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:189
+[LinkedList.ts:214](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L214)
 
 ___
 
@@ -555,7 +516,7 @@ Careful -- O(n)
 
 #### Defined in
 
-LinkedList.ts:70
+[LinkedList.ts:91](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L91)
 
 ___
 
@@ -579,7 +540,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:86
+[LinkedList.ts:107](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L107)
 
 ___
 
@@ -603,7 +564,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:120
+[LinkedList.ts:145](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L145)
 
 ___
 
@@ -627,7 +588,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:26
+[SizedLinkedList.ts:26](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L26)
 
 ___
 
@@ -651,7 +612,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:286
+[LinkedList.ts:311](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L311)
 
 ___
 
@@ -669,7 +630,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:167
+[LinkedList.ts:192](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L192)
 
 ___
 
@@ -701,7 +662,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:87
+[SizedLinkedList.ts:94](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L94)
 
 ___
 
@@ -719,7 +680,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:12
+[SizedLinkedList.ts:12](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L12)
 
 ___
 
@@ -737,7 +698,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:82
+[LinkedList.ts:103](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L103)
 
 ___
 
@@ -770,7 +731,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:204
+[LinkedList.ts:229](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L229)
 
 ___
 
@@ -799,7 +760,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:49
+[SizedLinkedList.ts:49](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L49)
 
 ___
 
@@ -817,7 +778,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:176
+[LinkedList.ts:201](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L201)
 
 ___
 
@@ -845,7 +806,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:104
+[SizedLinkedList.ts:111](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L111)
 
 ___
 
@@ -863,7 +824,7 @@ ___
 
 #### Defined in
 
-SizedLinkedList.ts:19
+[SizedLinkedList.ts:19](https://github.com/zimmed/prefab/blob/8710d36/src/SizedLinkedList.ts#L19)
 
 ___
 
@@ -887,7 +848,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:95
+[LinkedList.ts:118](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L118)
 
 ___
 
@@ -905,7 +866,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:163
+[LinkedList.ts:188](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L188)
 
 ___
 
@@ -923,7 +884,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:282
+[LinkedList.ts:307](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L307)
 
 ___
 
@@ -941,7 +902,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:150
+[LinkedList.ts:175](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L175)
 
 ___
 
@@ -971,4 +932,4 @@ ___
 
 #### Defined in
 
-LinkedList.ts:17
+[LinkedList.ts:19](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L19)

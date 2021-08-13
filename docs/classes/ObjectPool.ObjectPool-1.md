@@ -23,14 +23,21 @@
 - [\_max](ObjectPool.ObjectPool-1.md#_max)
 - [Object](ObjectPool.ObjectPool-1.md#object)
 
+### Accessors
+
+- [size](ObjectPool.ObjectPool-1.md#size)
+
 ### Methods
 
+- [add](ObjectPool.ObjectPool-1.md#add)
 - [alloc](ObjectPool.ObjectPool-1.md#alloc)
+- [clear](ObjectPool.ObjectPool-1.md#clear)
 - [create](ObjectPool.ObjectPool-1.md#create)
 - [dealloc](ObjectPool.ObjectPool-1.md#dealloc)
 - [deallocateObject](ObjectPool.ObjectPool-1.md#deallocateobject)
 - [forceSpawn](ObjectPool.ObjectPool-1.md#forcespawn)
 - [free](ObjectPool.ObjectPool-1.md#free)
+- [insert](ObjectPool.ObjectPool-1.md#insert)
 - [realloc](ObjectPool.ObjectPool-1.md#realloc)
 - [reallocUnsafe](ObjectPool.ObjectPool-1.md#reallocunsafe)
 - [spawn](ObjectPool.ObjectPool-1.md#spawn)
@@ -57,13 +64,13 @@
 
 #### Defined in
 
-ObjectPool.ts:134
+[ObjectPool.ts:157](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L157)
 
 ## Properties
 
 ### \_Class
 
-• `Readonly` **\_Class**: () => `O`
+• `Protected` `Readonly` **\_Class**: () => `O`
 
 #### Type declaration
 
@@ -71,27 +78,27 @@ ObjectPool.ts:134
 
 #### Defined in
 
-ObjectPool.ts:44
+[ObjectPool.ts:44](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L44)
 
 ___
 
 ### \_list
 
-• `Readonly` **\_list**: [`LinkedList`](LinkedList.LinkedList-1.md)<`O`, [`PoolState`](../modules/ObjectPool.md#poolstate)<`O`\>\>
+• `Protected` `Readonly` **\_list**: [`LinkedList`](LinkedList.LinkedList-1.md)<`O`, [`PoolState`](../modules/ObjectPool.md#poolstate)<`O`\>\>
 
 #### Defined in
 
-ObjectPool.ts:43
+[ObjectPool.ts:41](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L41)
 
 ___
 
 ### \_max
 
-• **\_max**: `number` = `0`
+• `Private` **\_max**: `number` = `0`
 
 #### Defined in
 
-ObjectPool.ts:45
+[ObjectPool.ts:47](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L47)
 
 ___
 
@@ -101,9 +108,43 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:37
+[ObjectPool.ts:34](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L34)
+
+## Accessors
+
+### size
+
+• `get` **size**(): `number`
+
+#### Returns
+
+`number`
+
+#### Defined in
+
+[ObjectPool.ts:49](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L49)
 
 ## Methods
+
+### add
+
+▸ `Private` **add**(`obj`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `obj` | `O` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[ObjectPool.ts:163](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L163)
+
+___
 
 ### alloc
 
@@ -121,7 +162,21 @@ ObjectPool.ts:37
 
 #### Defined in
 
-ObjectPool.ts:97
+[ObjectPool.ts:116](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L116)
+
+___
+
+### clear
+
+▸ **clear**(): `void`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[ObjectPool.ts:146](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L146)
 
 ___
 
@@ -135,7 +190,7 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:47
+[ObjectPool.ts:58](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L58)
 
 ___
 
@@ -155,7 +210,7 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:127
+[ObjectPool.ts:150](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L150)
 
 ___
 
@@ -176,7 +231,7 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:86
+[ObjectPool.ts:104](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L104)
 
 ___
 
@@ -196,7 +251,7 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:54
+[ObjectPool.ts:65](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L65)
 
 ___
 
@@ -216,7 +271,27 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:81
+[ObjectPool.ts:98](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L98)
+
+___
+
+### insert
+
+▸ `Private` **insert**(`obj`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `obj` | `O` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[ObjectPool.ts:168](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L168)
 
 ___
 
@@ -236,7 +311,7 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:117
+[ObjectPool.ts:136](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L136)
 
 ___
 
@@ -256,7 +331,7 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:104
+[ObjectPool.ts:123](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L123)
 
 ___
 
@@ -276,7 +351,7 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:69
+[ObjectPool.ts:84](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L84)
 
 ___
 
@@ -303,4 +378,4 @@ ___
 
 #### Defined in
 
-ObjectPool.ts:39
+[ObjectPool.ts:36](https://github.com/zimmed/prefab/blob/8710d36/src/ObjectPool.ts#L36)

@@ -1,18 +1,19 @@
 [@zimmed/prefab](../README.md) / [Exports](../modules.md) / [SortedSet](../modules/SortedSet.md) / SortedSet
 
-# Class: SortedSet<T\>
+# Class: SortedSet<T, N\>
 
 [SortedSet](../modules/SortedSet.md).SortedSet
 
 ## Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | `T` |
+| `N` | extends `LNode`<`T`\>`LNode`<`T`\> |
 
 ## Hierarchy
 
-- [`LinkedSet`](LinkedSet.LinkedSet-1.md)<`T`, `LNode`<`T`\>\>
+- [`LinkedSet`](LinkedSet.LinkedSet-1.md)<`T`, `N`\>
 
   ↳ **`SortedSet`**
 
@@ -26,7 +27,6 @@
 
 ### Properties
 
-- [[toStringTag]](SortedSet.SortedSet-1.md#[tostringtag])
 - [\_cmp](SortedSet.SortedSet-1.md#_cmp)
 - [\_head](SortedSet.SortedSet-1.md#_head)
 - [\_map](SortedSet.SortedSet-1.md#_map)
@@ -42,7 +42,6 @@
 ### Methods
 
 - [[iterator]](SortedSet.SortedSet-1.md#[iterator])
-- [\_findNode](SortedSet.SortedSet-1.md#_findnode)
 - [add](SortedSet.SortedSet-1.md#add)
 - [addNode](SortedSet.SortedSet-1.md#addnode)
 - [append](SortedSet.SortedSet-1.md#append)
@@ -80,20 +79,21 @@
 
 ### constructor
 
-• **new SortedSet**<`T`\>(`iterable?`, `cmpFn?`)
+• **new SortedSet**<`T`, `N`\>(`iterable?`, `cmpFn?`)
 
 #### Type parameters
 
-| Name |
-| :------ |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `T` | `T` |
+| `N` | extends `LNode`<`T`\>`LNode`<`T`\> |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `iterable?` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> |
-| `cmpFn` | [`Sort`](../modules/SortedSet.md#sort)<`T`\> |
+| `cmpFn` | [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\> |
 
 #### Overrides
 
@@ -101,83 +101,69 @@
 
 #### Defined in
 
-SortedSet.ts:29
+[SortedSet.ts:31](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L31)
 
 ## Properties
 
-### [toStringTag]
-
-• **[toStringTag]**: `string` = `'SortedSet'`
-
-#### Overrides
-
-[LinkedSet](LinkedSet.LinkedSet-1.md).[[toStringTag]](LinkedSet.LinkedSet-1.md#[tostringtag])
-
-#### Defined in
-
-SortedSet.ts:27
-
-___
-
 ### \_cmp
 
-• **\_cmp**: [`Sort`](../modules/SortedSet.md#sort)<`T`\>
+• `Private` `Readonly` **\_cmp**: [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\>
 
 #### Defined in
 
-SortedSet.ts:22
+[SortedSet.ts:29](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L29)
 
 ___
 
 ### \_head
 
-• `Optional` **\_head**: `LNode`<`T`\>
+• `Protected` `Optional` **\_head**: `N`
 
-#### Overrides
+#### Inherited from
 
 [LinkedSet](LinkedSet.LinkedSet-1.md).[_head](LinkedSet.LinkedSet-1.md#_head)
 
 #### Defined in
 
-SortedSet.ts:23
+[LinkedList.ts:24](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L24)
 
 ___
 
 ### \_map
 
-• **\_map**: `Map`<`T`, `LNode`<`T`\>\>
+• `Protected` `Readonly` **\_map**: `Map`<`T`, `N`\>
 
-#### Overrides
+#### Inherited from
 
 [LinkedSet](LinkedSet.LinkedSet-1.md).[_map](LinkedSet.LinkedSet-1.md#_map)
 
 #### Defined in
 
-SortedSet.ts:25
+[LinkedSet.ts:7](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L7)
 
 ___
 
 ### \_tail
 
-• `Optional` **\_tail**: `LNode`<`T`\>
+• `Protected` `Optional` **\_tail**: `N`
 
-#### Overrides
+#### Inherited from
 
 [LinkedSet](LinkedSet.LinkedSet-1.md).[_tail](LinkedSet.LinkedSet-1.md#_tail)
 
 #### Defined in
 
-SortedSet.ts:24
+[LinkedList.ts:27](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L27)
 
 ___
 
 ### \_tree
 
-• `Optional` **\_tree**: `TNode`<`T`\>
+• `Protected` `Optional` **\_tree**: `TNode`<`T`\>
 
 #### Defined in
 
-SortedSet.ts:21
+[SortedSet.ts:26](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L26)
 
 ## Accessors
 
@@ -191,7 +177,7 @@ SortedSet.ts:21
 
 #### Defined in
 
-LinkedList.ts:26
+[LinkedList.ts:29](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L29)
 
 ___
 
@@ -205,7 +191,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:11
+[LinkedSet.ts:9](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L9)
 
 ___
 
@@ -219,7 +205,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:30
+[LinkedList.ts:32](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L32)
 
 ## Methods
 
@@ -237,37 +223,13 @@ LinkedList.ts:30
 
 #### Defined in
 
-LinkedList.ts:185
-
-___
-
-### \_findNode
-
-▸ `Private` **_findNode**(`item`): `undefined` \| `LNode`<`T`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `item` | `T` |
-
-#### Returns
-
-`undefined` \| `LNode`<`T`\>
-
-#### Inherited from
-
-[LinkedSet](LinkedSet.LinkedSet-1.md).[_findNode](LinkedSet.LinkedSet-1.md#_findnode)
-
-#### Defined in
-
-LinkedList.ts:291
+[LinkedList.ts:210](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L210)
 
 ___
 
 ### add
 
-▸ **add**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **add**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Parameters
 
@@ -277,7 +239,7 @@ ___
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Overrides
 
@@ -285,23 +247,23 @@ ___
 
 #### Defined in
 
-SortedSet.ts:84
+[SortedSet.ts:85](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L85)
 
 ___
 
 ### addNode
 
-▸ **addNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **addNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `LNode`<`T`\> |
+| `node` | `N` |
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Inherited from
 
@@ -309,13 +271,13 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:46
+[LinkedSet.ts:44](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L44)
 
 ___
 
 ### append
 
-▸ **append**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **append**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Parameters
 
@@ -325,7 +287,7 @@ ___
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Inherited from
 
@@ -333,7 +295,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:74
+[LinkedList.ts:95](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L95)
 
 ___
 
@@ -351,17 +313,17 @@ ___
 
 #### Defined in
 
-SortedSet.ts:76
+[SortedSet.ts:77](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L77)
 
 ___
 
 ### cycle
 
-▸ **cycle**(): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **cycle**(): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Inherited from
 
@@ -369,7 +331,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:78
+[LinkedList.ts:99](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L99)
 
 ___
 
@@ -393,7 +355,7 @@ ___
 
 #### Defined in
 
-SortedSet.ts:123
+[SortedSet.ts:126](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L126)
 
 ___
 
@@ -405,7 +367,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cur?` | `LNode`<`T`\> |
+| `cur?` | `N` |
 
 #### Returns
 
@@ -417,7 +379,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:133
+[LinkedList.ts:158](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L158)
 
 ___
 
@@ -435,7 +397,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:154
+[LinkedList.ts:179](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L179)
 
 ___
 
@@ -453,7 +415,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `boolean`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>\> |
+| `predicate` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `boolean`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -466,7 +428,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:242
+[LinkedList.ts:267](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L267)
 
 ___
 
@@ -484,7 +446,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `boolean`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>\> |
+| `predicate` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `boolean`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -497,7 +459,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:222
+[LinkedList.ts:247](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L247)
 
 ___
 
@@ -515,7 +477,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | [`Reducer`](../modules/LinkedList.md#reducer)<`T`, `This`, `boolean`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>\> |
+| `cb` | [`Reducer`](../modules/LinkedList.md#reducer)<`T`, `This`, `boolean`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -528,7 +490,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:71
+[LinkedSet.ts:73](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L73)
 
 ___
 
@@ -546,7 +508,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `ThisArg`, `void`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>\> |
+| `cb` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `ThisArg`, `void`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `thisArg` | `ThisArg` |
 
 #### Returns
@@ -559,7 +521,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:189
+[LinkedList.ts:214](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L214)
 
 ___
 
@@ -585,23 +547,23 @@ Careful -- O(n)
 
 #### Defined in
 
-LinkedSet.ts:29
+[LinkedSet.ts:27](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L27)
 
 ___
 
 ### headNode
 
-▸ **headNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **headNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `LNode`<`T`\> |
+| `node` | `N` |
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Inherited from
 
@@ -609,13 +571,13 @@ ___
 
 #### Defined in
 
-LinkedList.ts:86
+[LinkedList.ts:107](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L107)
 
 ___
 
 ### insert
 
-▸ **insert**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **insert**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Parameters
 
@@ -625,7 +587,7 @@ ___
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Overrides
 
@@ -633,23 +595,23 @@ ___
 
 #### Defined in
 
-SortedSet.ts:80
+[SortedSet.ts:81](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L81)
 
 ___
 
 ### insertNode
 
-▸ **insertNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **insertNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `LNode`<`T`\> |
+| `node` | `N` |
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Inherited from
 
@@ -657,7 +619,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:41
+[LinkedSet.ts:39](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L39)
 
 ___
 
@@ -681,7 +643,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:286
+[LinkedList.ts:311](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L311)
 
 ___
 
@@ -699,7 +661,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:167
+[LinkedList.ts:192](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L192)
 
 ___
 
@@ -718,7 +680,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `RT`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>\> |
+| `cb` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `RT`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -731,7 +693,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:76
+[LinkedSet.ts:78](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L78)
 
 ___
 
@@ -749,17 +711,17 @@ ___
 
 #### Defined in
 
-SortedSet.ts:56
+[SortedSet.ts:57](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L57)
 
 ___
 
 ### recycle
 
-▸ **recycle**(): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **recycle**(): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Inherited from
 
@@ -767,7 +729,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:82
+[LinkedList.ts:103](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L103)
 
 ___
 
@@ -786,7 +748,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | [`Reducer`](../modules/LinkedList.md#reducer)<`T`, `This`, `RT`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>\> |
+| `cb` | [`Reducer`](../modules/LinkedList.md#reducer)<`T`, `This`, `RT`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `initialValue` | `RT` |
 | `thisArg` | `This` |
 
@@ -800,7 +762,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:204
+[LinkedList.ts:229](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L229)
 
 ___
 
@@ -819,7 +781,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | [`Reducer`](../modules/LinkedList.md#reducer)<`T`, `This`, `RT`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>\> |
+| `cb` | [`Reducer`](../modules/LinkedList.md#reducer)<`T`, `This`, `RT`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `initialValue` | `RT` |
 | `thisArg` | `This` |
 
@@ -833,7 +795,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:66
+[LinkedSet.ts:64](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L64)
 
 ___
 
@@ -851,7 +813,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:176
+[LinkedList.ts:201](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L201)
 
 ___
 
@@ -870,7 +832,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `RT`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>\> |
+| `cb` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `RT`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -883,7 +845,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:81
+[LinkedSet.ts:83](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L83)
 
 ___
 
@@ -904,7 +866,7 @@ ___
 
 #### Defined in
 
-SortedSet.ts:37
+[SortedSet.ts:38](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L38)
 
 ___
 
@@ -922,23 +884,23 @@ ___
 
 #### Defined in
 
-SortedSet.ts:66
+[SortedSet.ts:67](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L67)
 
 ___
 
 ### tailNode
 
-▸ **tailNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ **tailNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `node` | `LNode`<`T`\> |
+| `node` | `N` |
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
 
 #### Inherited from
 
@@ -946,7 +908,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:95
+[LinkedList.ts:118](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L118)
 
 ___
 
@@ -964,7 +926,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:163
+[LinkedList.ts:188](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L188)
 
 ___
 
@@ -982,7 +944,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:86
+[LinkedList.ts:307](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L307)
 
 ___
 
@@ -1000,13 +962,13 @@ ___
 
 #### Defined in
 
-LinkedList.ts:150
+[LinkedList.ts:175](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L175)
 
 ___
 
 ### from
 
-▸ `Static` **from**<`T`\>(`iterable?`, `cmpFn?`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+▸ `Static` **from**<`T`\>(`iterable?`, `cmpFn?`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\>
 
 #### Type parameters
 
@@ -1019,11 +981,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `iterable?` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> |
-| `cmpFn?` | [`Sort`](../modules/SortedSet.md#sort)<`T`\> |
+| `cmpFn?` | [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\> |
 
 #### Returns
 
-[`SortedSet`](SortedSet.SortedSet-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\>
 
 #### Overrides
 
@@ -1031,4 +993,4 @@ ___
 
 #### Defined in
 
-SortedSet.ts:14
+[SortedSet.ts:18](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L18)

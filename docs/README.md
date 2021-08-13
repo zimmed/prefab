@@ -18,6 +18,31 @@ Then you can use:
 
 ## Prefabs
 
+- [LinkedList](#user-content-linkedlist)
+- [SizedLinkedList](#user-content-sizedlinkedlist)
+- [LinkedSet](#user-content-linkedset)
+- [SortedSet](#user-content-sortedset)
+- [Queue](#user-content-queue)
+- [UniQueue](#user-content-uniqueue)
+- [PriorityQueue](#user-content-priorityqueue)
+- [ObjectPool](#user-content-priorityqueue)
+
+### Inheritance Tree
+
+```code
+ ╔═ LinkedList
+ ║
+ ╠═╦═ SizedLinkedList
+ ║ ╚═══ Queue
+ ║
+ ╚═╦═ LinkedSet
+   ╠═══ UniQueue
+   ╚═╦═ SortedSet
+     ╚═══ PriorityQueue
+
+ ObjectPool < LinkedList
+```
+
 ### LinkedList
 
 For all your linked-list needs!
@@ -43,6 +68,8 @@ for (const s of bar) {
 
 ### SizedLinkedList
 
+##### (extends [LinkedList](#user-content-linkedlist))
+
 A very slight extension to the LinkedList prefab that tracks the size of the list.
 
 ```typescript
@@ -52,6 +79,8 @@ const baz = LinkedList.from('green eggs and spam'.split(' ')).size; // -> 4
 ```
 
 ### LinkedSet
+
+##### (extends [LinkedList](#user-content-linkedlist))
 
 Combines the optimized functionality of the builtin Set, with the versatility of
 a linked list: Best of both worlds! Blazing fast unique list operations and lookups
@@ -85,6 +114,8 @@ set.size; // -> 4
 
 ### SortedSet
 
+##### (extends [LinkedSet](#user-content-linkedset))
+
 Building upon the flexibility of the LinkedSet, the SortedSet prefab adds an additional
 datastructure under the covers (BST) for maintaining a list in a specified sort order.
 
@@ -104,6 +135,8 @@ collection
 ```
 
 ### Queue
+
+##### (extends [SizedLinkedList](#user-content-sizedlinkedlist))
 
 A simple FIFO or LIFO Queue datastructure, using the SizedLinkedList prefab.
 
@@ -127,6 +160,8 @@ lifo.dequeue(); // -> 5
 
 ### UniQueue
 
+##### (extends [LinkedSet](#user-content-linkedset))
+
 Utilizing the uniform performance of head or tail pushing and popping of the LinkedList,
 and the extended methods of the LinkedSet, the UniQueue prefab just extends it with the
 common vocabulary one would expect for a Queue datastructure (unique elements only).
@@ -140,6 +175,8 @@ q.has(3); // -> Hashmap lookup time
 ```
 
 ### PriorityQueue
+
+##### (extends [SortedSet](#user-content-sortedset))
 
 Uses the BST-powered SortedSet prefab, the PriorityQueue prefab is an implicitly sorted
 FIFO Queue with the ability to specify/override the sorting priority.
@@ -160,6 +197,79 @@ q.enqueue(5, 1)
 
 ### Pool
 
+##### (uses [LinkedList](#user-content-linkedlist))
+
 A pooled object manager for consistent memory signatures.
 
-(Example coming soon...)
+```typescript
+import { ObjectPool } from '@zimmed/prefab';
+
+let counter = 0;
+
+export class MyEntity extends ObjectPool.Object {
+  id = 'entity:my';
+  uid = ++counter;
+  location = [-1, -1];
+  health = 0;
+  name = 'unnamed';
+
+  get alive() {
+    return this.health > 0;
+  }
+
+  distance([x, y]: [number, number]) {
+    return Math.sqrt((x - this.location[0]) ** 2 + (y - this.location[1]) ** 2);
+  }
+
+  poolInit(name: string, x: number, y: number, health = 100) {
+    this.name = name;
+    this.health = health;
+    this.location[0] = x;
+    this.location[1] = y;
+  }
+
+  // Be sure to free up any references that are no longer needed so they can be garbage collected.
+  poolClean() {
+    this.health = 0;
+    this.location[0] = -1;
+    this.location[1] = -1;
+  }
+}
+
+const entityPool = ObjectPool.create(MyEntity, 1000); // pre-allocates 1000 entities
+
+entityPool.alloc(1000); // allocates 1000 more entities
+entityPool.size; // -> 2000
+
+// Take and initialize objects for use from pool
+const dude = entityPool.spawn('Dude', 4, 5);
+const body = entityPool.spawn('Dead Guy', 3, 3, 0);
+
+Array(1998)
+  .fill(0)
+  .map(() => entityPool.spawn('Used Entity', 100, 100)); // Use up entire pool
+
+let newEntity = entityPool.spawn('Another entity', 1, 1); // No entity created! Returns undefined when all objects used up.
+newEntity = entityPool.forceSpawn('Another entity', 1, 1); // Entity created! Forces a creation when no objects available and increases the max size of the pool.
+
+entityPool.size; // -> 2001
+
+entityPool.realloc(1000); // No change to pool
+// entityPool.reallocUnsafe(1000);
+// This will release all entities over the new maximum, keeping the most recently allocated first.
+// This would break the game loop, as `dude` and `body` would all be cleaned and orphaned objects.
+// The same can also be achieved with `entityPool.dealloc(1001);`
+// Alternatively, `entityPool.clear()` will free all pooled objects.
+entityPool.realloc(1e6); // Set pool size to 1,000,000 (keeps existing entities)
+
+function gameLoop(player) {
+  if (body.distance(player.location) === 0) {
+    entityPool.free(body); // Frees object back into pool for re-use later
+    console.log(body.location); // -> [-1, -1];
+  }
+}
+```
+
+## Performance Benchmarks
+
+(coming soon...)

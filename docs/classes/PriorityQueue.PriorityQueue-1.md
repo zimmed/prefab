@@ -24,9 +24,7 @@
 
 ### Properties
 
-- [[toStringTag]](PriorityQueue.PriorityQueue-1.md#[tostringtag])
 - [\_cMap](PriorityQueue.PriorityQueue-1.md#_cmap)
-- [\_cmp](PriorityQueue.PriorityQueue-1.md#_cmp)
 - [\_count](PriorityQueue.PriorityQueue-1.md#_count)
 - [\_head](PriorityQueue.PriorityQueue-1.md#_head)
 - [\_map](PriorityQueue.PriorityQueue-1.md#_map)
@@ -44,7 +42,6 @@
 ### Methods
 
 - [[iterator]](PriorityQueue.PriorityQueue-1.md#[iterator])
-- [\_findNode](PriorityQueue.PriorityQueue-1.md#_findnode)
 - [add](PriorityQueue.PriorityQueue-1.md#add)
 - [addNode](PriorityQueue.PriorityQueue-1.md#addnode)
 - [append](PriorityQueue.PriorityQueue-1.md#append)
@@ -104,61 +101,33 @@
 
 #### Defined in
 
-PriorityQueue.ts:15
+[PriorityQueue.ts:28](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L28)
 
 ## Properties
 
-### [toStringTag]
-
-• **[toStringTag]**: `string` = `'PriorityQueue'`
-
-#### Overrides
-
-[SortedSet](SortedSet.SortedSet-1.md).[[toStringTag]](SortedSet.SortedSet-1.md#[tostringtag])
-
-#### Defined in
-
-PriorityQueue.ts:13
-
-___
-
 ### \_cMap
 
-• **\_cMap**: `Map`<`T`, `number`\>
+• `Protected` `Readonly` **\_cMap**: `Map`<`T`, `number`\>
 
 #### Defined in
 
-PriorityQueue.ts:11
-
-___
-
-### \_cmp
-
-• **\_cmp**: [`Sort`](../modules/SortedSet.md#sort)<`T`\>
-
-#### Inherited from
-
-[SortedSet](SortedSet.SortedSet-1.md).[_cmp](SortedSet.SortedSet-1.md#_cmp)
-
-#### Defined in
-
-SortedSet.ts:22
+[PriorityQueue.ts:26](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L26)
 
 ___
 
 ### \_count
 
-• **\_count**: `number` = `0`
+• `Private` **\_count**: `number` = `0`
 
 #### Defined in
 
-PriorityQueue.ts:9
+[PriorityQueue.ts:20](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L20)
 
 ___
 
 ### \_head
 
-• `Optional` **\_head**: `LNode`<`T`\>
+• `Protected` `Optional` **\_head**: `LNode`<`T`\>
 
 #### Inherited from
 
@@ -166,13 +135,13 @@ ___
 
 #### Defined in
 
-SortedSet.ts:23
+[LinkedList.ts:24](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L24)
 
 ___
 
 ### \_map
 
-• **\_map**: `Map`<`T`, `LNode`<`T`\>\>
+• `Protected` `Readonly` **\_map**: `Map`<`T`, `LNode`<`T`\>\>
 
 #### Inherited from
 
@@ -180,33 +149,33 @@ ___
 
 #### Defined in
 
-SortedSet.ts:25
+[LinkedSet.ts:7](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L7)
 
 ___
 
 ### \_pMap
 
-• **\_pMap**: `Map`<`T`, `number`\>
+• `Protected` `Readonly` **\_pMap**: `Map`<`T`, `number`\>
 
 #### Defined in
 
-PriorityQueue.ts:10
+[PriorityQueue.ts:23](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L23)
 
 ___
 
 ### \_rCount
 
-• **\_rCount**: `number` = `0`
+• `Private` **\_rCount**: `number` = `0`
 
 #### Defined in
 
-PriorityQueue.ts:8
+[PriorityQueue.ts:17](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L17)
 
 ___
 
 ### \_tail
 
-• `Optional` **\_tail**: `LNode`<`T`\>
+• `Protected` `Optional` **\_tail**: `LNode`<`T`\>
 
 #### Inherited from
 
@@ -214,13 +183,13 @@ ___
 
 #### Defined in
 
-SortedSet.ts:24
+[LinkedList.ts:27](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L27)
 
 ___
 
 ### \_tree
 
-• `Optional` **\_tree**: `TNode`<`T`\>
+• `Protected` `Optional` **\_tree**: `TNode`<`T`\>
 
 #### Inherited from
 
@@ -228,7 +197,7 @@ ___
 
 #### Defined in
 
-SortedSet.ts:21
+[SortedSet.ts:26](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L26)
 
 ## Accessors
 
@@ -242,7 +211,7 @@ SortedSet.ts:21
 
 #### Defined in
 
-LinkedList.ts:26
+[LinkedList.ts:29](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L29)
 
 ___
 
@@ -256,7 +225,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:11
+[LinkedSet.ts:9](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L9)
 
 ___
 
@@ -270,7 +239,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:30
+[LinkedList.ts:32](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L32)
 
 ## Methods
 
@@ -288,44 +257,19 @@ LinkedList.ts:30
 
 #### Defined in
 
-LinkedList.ts:185
+[LinkedList.ts:210](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L210)
 
 ___
 
-### \_findNode
+### add
 
-▸ `Private` **_findNode**(`item`): `undefined` \| `LNode`<`T`\>
+▸ **add**(`item`): [`PriorityQueue`](PriorityQueue.PriorityQueue-1.md)<`T`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `item` | `T` |
-
-#### Returns
-
-`undefined` \| `LNode`<`T`\>
-
-#### Inherited from
-
-[SortedSet](SortedSet.SortedSet-1.md).[_findNode](SortedSet.SortedSet-1.md#_findnode)
-
-#### Defined in
-
-LinkedList.ts:291
-
-___
-
-### add
-
-▸ **add**(`item`, `priority?`): [`PriorityQueue`](PriorityQueue.PriorityQueue-1.md)<`T`\>
-
-#### Parameters
-
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `item` | `T` | `undefined` |
-| `priority` | `number` | `10` |
 
 #### Returns
 
@@ -337,7 +281,7 @@ ___
 
 #### Defined in
 
-PriorityQueue.ts:25
+[PriorityQueue.ts:32](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L32)
 
 ___
 
@@ -361,7 +305,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:46
+[LinkedSet.ts:44](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L44)
 
 ___
 
@@ -386,7 +330,7 @@ ___
 
 #### Defined in
 
-PriorityQueue.ts:29
+[PriorityQueue.ts:36](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L36)
 
 ___
 
@@ -404,7 +348,7 @@ ___
 
 #### Defined in
 
-SortedSet.ts:76
+[SortedSet.ts:77](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L77)
 
 ___
 
@@ -422,7 +366,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:78
+[LinkedList.ts:99](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L99)
 
 ___
 
@@ -446,7 +390,7 @@ ___
 
 #### Defined in
 
-PriorityQueue.ts:54
+[PriorityQueue.ts:61](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L61)
 
 ___
 
@@ -470,7 +414,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:133
+[LinkedList.ts:158](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L158)
 
 ___
 
@@ -484,7 +428,7 @@ ___
 
 #### Defined in
 
-PriorityQueue.ts:44
+[PriorityQueue.ts:51](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L51)
 
 ___
 
@@ -506,7 +450,7 @@ ___
 
 #### Defined in
 
-PriorityQueue.ts:37
+[PriorityQueue.ts:44](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L44)
 
 ___
 
@@ -524,7 +468,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:154
+[LinkedList.ts:179](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L179)
 
 ___
 
@@ -555,7 +499,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:242
+[LinkedList.ts:267](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L267)
 
 ___
 
@@ -586,7 +530,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:222
+[LinkedList.ts:247](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L247)
 
 ___
 
@@ -617,7 +561,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:71
+[LinkedSet.ts:73](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L73)
 
 ___
 
@@ -648,7 +592,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:189
+[LinkedList.ts:214](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L214)
 
 ___
 
@@ -674,7 +618,7 @@ Careful -- O(n)
 
 #### Defined in
 
-LinkedSet.ts:29
+[LinkedSet.ts:27](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L27)
 
 ___
 
@@ -698,7 +642,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:86
+[LinkedList.ts:107](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L107)
 
 ___
 
@@ -724,7 +668,7 @@ ___
 
 #### Defined in
 
-PriorityQueue.ts:33
+[PriorityQueue.ts:40](https://github.com/zimmed/prefab/blob/8710d36/src/PriorityQueue.ts#L40)
 
 ___
 
@@ -748,7 +692,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:41
+[LinkedSet.ts:39](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L39)
 
 ___
 
@@ -772,7 +716,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:286
+[LinkedList.ts:311](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L311)
 
 ___
 
@@ -790,7 +734,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:167
+[LinkedList.ts:192](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L192)
 
 ___
 
@@ -822,7 +766,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:76
+[LinkedSet.ts:78](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L78)
 
 ___
 
@@ -840,7 +784,7 @@ ___
 
 #### Defined in
 
-SortedSet.ts:56
+[SortedSet.ts:57](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L57)
 
 ___
 
@@ -858,7 +802,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:82
+[LinkedList.ts:103](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L103)
 
 ___
 
@@ -891,7 +835,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:204
+[LinkedList.ts:229](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L229)
 
 ___
 
@@ -924,7 +868,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:66
+[LinkedSet.ts:64](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L64)
 
 ___
 
@@ -942,7 +886,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:176
+[LinkedList.ts:201](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L201)
 
 ___
 
@@ -974,7 +918,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:81
+[LinkedSet.ts:83](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedSet.ts#L83)
 
 ___
 
@@ -999,7 +943,7 @@ ___
 
 #### Defined in
 
-SortedSet.ts:37
+[SortedSet.ts:38](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L38)
 
 ___
 
@@ -1017,7 +961,7 @@ ___
 
 #### Defined in
 
-SortedSet.ts:66
+[SortedSet.ts:67](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L67)
 
 ___
 
@@ -1041,7 +985,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:95
+[LinkedList.ts:118](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L118)
 
 ___
 
@@ -1059,7 +1003,7 @@ ___
 
 #### Defined in
 
-LinkedList.ts:163
+[LinkedList.ts:188](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L188)
 
 ___
 
@@ -1077,7 +1021,7 @@ ___
 
 #### Defined in
 
-LinkedSet.ts:86
+[LinkedList.ts:307](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L307)
 
 ___
 
@@ -1095,13 +1039,13 @@ ___
 
 #### Defined in
 
-LinkedList.ts:150
+[LinkedList.ts:175](https://github.com/zimmed/prefab/blob/8710d36/src/LinkedList.ts#L175)
 
 ___
 
 ### from
 
-▸ `Static` **from**<`T`\>(`iterable?`): [`PriorityQueue`](PriorityQueue.PriorityQueue-1.md)<`T`\>
+▸ `Static` **from**<`T`\>(`iterable?`, `cmpFn?`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\>
 
 #### Type parameters
 
@@ -1114,15 +1058,16 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `iterable?` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> |
+| `cmpFn?` | [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\> |
 
 #### Returns
 
-[`PriorityQueue`](PriorityQueue.PriorityQueue-1.md)<`T`\>
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\>
 
-#### Overrides
+#### Inherited from
 
 [SortedSet](SortedSet.SortedSet-1.md).[from](SortedSet.SortedSet-1.md#from)
 
 #### Defined in
 
-PriorityQueue.ts:4
+[SortedSet.ts:18](https://github.com/zimmed/prefab/blob/8710d36/src/SortedSet.ts#L18)

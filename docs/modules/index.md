@@ -14,6 +14,7 @@
 - [SizedLinkedList](index.md#sizedlinkedlist)
 - [SortedSet](index.md#sortedset)
 - [UniQueue](index.md#uniqueue)
+- [decorators](index.md#decorators)
 
 ## References
 
@@ -62,3 +63,9 @@ ___
 ### UniQueue
 
 Re-exports: [UniQueue](../classes/UniQueue.UniQueue-1.md)
+
+___
+
+### decorators
+
+Re-exports: [decorators](decorators.md)

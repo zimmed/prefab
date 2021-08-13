@@ -14,4 +14,5 @@
 - [SizedLinkedList](modules/SizedLinkedList.md)
 - [SortedSet](modules/SortedSet.md)
 - [UniQueue](modules/UniQueue.md)
+- [decorators](modules/decorators.md)
 - [index](modules/index.md)

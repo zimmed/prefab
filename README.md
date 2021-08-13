@@ -16,6 +16,31 @@ Then you can use:
 
 ## Prefabs
 
+- [LinkedList](#user-content-linkedlist)
+- [SizedLinkedList](#user-content-sizedlinkedlist)
+- [LinkedSet](#user-content-linkedset)
+- [SortedSet](#user-content-sortedset)
+- [Queue](#user-content-queue)
+- [UniQueue](#user-content-uniqueue)
+- [PriorityQueue](#user-content-priorityqueue)
+- [ObjectPool](#user-content-priorityqueue)
+
+### Inheritance Tree
+
+```code
+ ╔═ LinkedList
+ ║
+ ╠═╦═ SizedLinkedList
+ ║ ╚═══ Queue
+ ║
+ ╚═╦═ LinkedSet
+   ╠═══ UniQueue
+   ╚═╦═ SortedSet
+     ╚═══ PriorityQueue
+
+ ObjectPool < LinkedList
+```
+
 ### LinkedList
 
 For all your linked-list needs!
@@ -41,6 +66,8 @@ for (const s of bar) {
 
 ### SizedLinkedList
 
+##### (extends [LinkedList](#user-content-linkedlist))
+
 A very slight extension to the LinkedList prefab that tracks the size of the list.
 
 ```typescript
@@ -50,6 +77,8 @@ const baz = LinkedList.from('green eggs and spam'.split(' ')).size; // -> 4
 ```
 
 ### LinkedSet
+
+##### (extends [LinkedList](#user-content-linkedlist))
 
 Combines the optimized functionality of the builtin Set, with the versatility of
 a linked list: Best of both worlds! Blazing fast unique list operations and lookups
@@ -83,6 +112,8 @@ set.size; // -> 4
 
 ### SortedSet
 
+##### (extends [LinkedSet](#user-content-linkedset))
+
 Building upon the flexibility of the LinkedSet, the SortedSet prefab adds an additional
 datastructure under the covers (BST) for maintaining a list in a specified sort order.
 
@@ -102,6 +133,8 @@ collection
 ```
 
 ### Queue
+
+##### (extends [SizedLinkedList](#user-content-sizedlinkedlist))
 
 A simple FIFO or LIFO Queue datastructure, using the SizedLinkedList prefab.
 
@@ -125,6 +158,8 @@ lifo.dequeue(); // -> 5
 
 ### UniQueue
 
+##### (extends [LinkedSet](#user-content-linkedset))
+
 Utilizing the uniform performance of head or tail pushing and popping of the LinkedList,
 and the extended methods of the LinkedSet, the UniQueue prefab just extends it with the
 common vocabulary one would expect for a Queue datastructure (unique elements only).
@@ -138,6 +173,8 @@ q.has(3); // -> Hashmap lookup time
 ```
 
 ### PriorityQueue
+
+##### (extends [SortedSet](#user-content-sortedset))
 
 Uses the BST-powered SortedSet prefab, the PriorityQueue prefab is an implicitly sorted
 FIFO Queue with the ability to specify/override the sorting priority.
@@ -157,6 +194,8 @@ q.enqueue(5, 1)
 ```
 
 ### Pool
+
+##### (uses [LinkedList](#user-content-linkedlist))
 
 A pooled object manager for consistent memory signatures.
 
@@ -228,3 +267,7 @@ function gameLoop(player) {
   }
 }
 ```
+
+## Performance Benchmarks
+
+(coming soon...)
