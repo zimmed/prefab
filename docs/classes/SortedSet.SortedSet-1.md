@@ -73,13 +73,14 @@
 - [toArray](SortedSet.SortedSet-1.md#toarray)
 - [toJSON](SortedSet.SortedSet-1.md#tojson)
 - [values](SortedSet.SortedSet-1.md#values)
+- [create](SortedSet.SortedSet-1.md#create)
 - [from](SortedSet.SortedSet-1.md#from)
 
 ## Constructors
 
 ### constructor
 
-• **new SortedSet**<`T`, `N`\>(`iterable?`, `cmpFn?`)
+• **new SortedSet**<`T`, `N`\>(`iterable?`, `compareFunction?`)
 
 #### Type parameters
 
@@ -93,7 +94,7 @@
 | Name | Type |
 | :------ | :------ |
 | `iterable?` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> |
-| `cmpFn` | [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\> |
+| `compareFunction` | [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\> |
 
 #### Overrides
 
@@ -101,7 +102,7 @@
 
 #### Defined in
 
-[SortedSet.ts:31](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L31)
+[SortedSet.ts:40](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L40)
 
 ## Properties
 
@@ -111,7 +112,7 @@
 
 #### Defined in
 
-[SortedSet.ts:29](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L29)
+[SortedSet.ts:38](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L38)
 
 ___
 
@@ -125,7 +126,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:24](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L24)
+[LinkedList.ts:30](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L30)
 
 ___
 
@@ -139,7 +140,7 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:7](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L7)
+[LinkedSet.ts:7](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L7)
 
 ___
 
@@ -153,7 +154,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:27](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L27)
+[LinkedList.ts:33](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L33)
 
 ___
 
@@ -163,7 +164,7 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:26](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L26)
+[SortedSet.ts:35](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L35)
 
 ## Accessors
 
@@ -171,13 +172,15 @@ ___
 
 • `get` **head**(): `undefined` \| `N`
 
+Head of the list
+
 #### Returns
 
 `undefined` \| `N`
 
 #### Defined in
 
-[LinkedList.ts:29](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L29)
+[LinkedList.ts:36](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L36)
 
 ___
 
@@ -185,13 +188,15 @@ ___
 
 • `get` **size**(): `number`
 
+Current size of set
+
 #### Returns
 
 `number`
 
 #### Defined in
 
-[LinkedSet.ts:9](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L9)
+[LinkedSet.ts:10](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L10)
 
 ___
 
@@ -199,13 +204,15 @@ ___
 
 • `get` **tail**(): `undefined` \| `N`
 
+Tail of the list
+
 #### Returns
 
 `undefined` \| `N`
 
 #### Defined in
 
-[LinkedList.ts:32](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L32)
+[LinkedList.ts:40](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L40)
 
 ## Methods
 
@@ -223,13 +230,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:210](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L210)
+[LinkedList.ts:360](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L360)
 
 ___
 
 ### add
 
 ▸ **add**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Appends item onto the end of the set
 
 #### Parameters
 
@@ -247,13 +256,15 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:85](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L85)
+[SortedSet.ts:105](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L105)
 
 ___
 
 ### addNode
 
 ▸ **addNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Appends LinkedList Node onto the end of the set
 
 #### Parameters
 
@@ -271,13 +282,15 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:44](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L44)
+[LinkedSet.ts:52](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L52)
 
 ___
 
 ### append
 
 ▸ **append**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Adds item to end of the list
 
 #### Parameters
 
@@ -295,13 +308,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:95](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L95)
+[LinkedList.ts:110](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L110)
 
 ___
 
 ### clear
 
 ▸ **clear**(): `void`
+
+Clears the set
 
 #### Returns
 
@@ -313,13 +328,15 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:77](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L77)
+[SortedSet.ts:94](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L94)
 
 ___
 
 ### cycle
 
 ▸ **cycle**(): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Moves element from end of list to the front
 
 #### Returns
 
@@ -331,13 +348,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:99](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L99)
+[LinkedList.ts:125](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L125)
 
 ___
 
 ### delete
 
 ▸ **delete**(`item`): `boolean`
+
+Deletes specified item from the set
 
 #### Parameters
 
@@ -355,13 +374,15 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:126](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L126)
+[SortedSet.ts:147](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L147)
 
 ___
 
 ### deleteNode
 
 ▸ **deleteNode**(`cur?`): `boolean`
+
+Removes specified node from the list
 
 #### Parameters
 
@@ -379,13 +400,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:158](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L158)
+[LinkedList.ts:343](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L343)
 
 ___
 
 ### entries
 
 ▸ **entries**(): `Generator`<[`T`, `T`], `any`, `unknown`\>
+
+Kind of pointless, but needed for parity with builtin Set object
 
 #### Returns
 
@@ -397,13 +420,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:179](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L179)
+[LinkedList.ts:186](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L186)
 
 ___
 
 ### filter
 
 ▸ **filter**<`This`\>(`predicate`, `thisArg`): `T`[]
+
+Uses predicate to return a new array of all matching items (same signature is Array.protoype.filter)
 
 #### Type parameters
 
@@ -428,13 +453,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:267](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L267)
+[LinkedList.ts:272](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L272)
 
 ___
 
 ### find
 
 ▸ **find**<`This`\>(`predicate`, `thisArg`): `undefined` \| `T`
+
+Uses predicate to return first matching item or undefined if no matches (same signature as Array.prototype.find)
 
 #### Type parameters
 
@@ -459,13 +486,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:247](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L247)
+[LinkedList.ts:251](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L251)
 
 ___
 
 ### findRight
 
-▸ **findRight**<`This`\>(`cb`, `thisArg`): `undefined` \| `T`
+▸ **findRight**<`This`\>(`predicate`, `thisArg`): `undefined` \| `T`
+
+Finds predicate-matching item, with iteration beginning at the end of the set
 
 #### Type parameters
 
@@ -477,7 +506,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | [`Reducer`](../modules/LinkedList.md#reducer)<`T`, `This`, `boolean`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
+| `predicate` | [`Callback`](../modules/LinkedList.md#callback)<`T`, `This`, `boolean`, [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -490,13 +519,15 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:73](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L73)
+[LinkedSet.ts:85](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L85)
 
 ___
 
 ### forEach
 
 ▸ **forEach**<`ThisArg`\>(`cb`, `thisArg`): `void`
+
+Operates on each element of the list in a callback method (same signature as Array.prototype.forEach)
 
 #### Type parameters
 
@@ -521,7 +552,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:214](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L214)
+[LinkedList.ts:216](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L216)
 
 ___
 
@@ -529,7 +560,7 @@ ___
 
 ▸ **has**(`item`): `boolean`
 
-Careful -- O(n)
+Determines if set contains specified item
 
 #### Parameters
 
@@ -547,13 +578,16 @@ Careful -- O(n)
 
 #### Defined in
 
-[LinkedSet.ts:27](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L27)
+[LinkedSet.ts:31](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L31)
 
 ___
 
 ### headNode
 
 ▸ **headNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Caution: Assumes node is already part of linked list
+Moves node to the front of the list
 
 #### Parameters
 
@@ -571,13 +605,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:107](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L107)
+[LinkedList.ts:138](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L138)
 
 ___
 
 ### insert
 
 ▸ **insert**(`item`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Inserts item into the front the set
 
 #### Parameters
 
@@ -595,13 +631,15 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:81](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L81)
+[SortedSet.ts:100](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L100)
 
 ___
 
 ### insertNode
 
 ▸ **insertNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Inserts LinkedList Node into the front of the set
 
 #### Parameters
 
@@ -619,13 +657,15 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:39](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L39)
+[LinkedSet.ts:46](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L46)
 
 ___
 
 ### join
 
 ▸ **join**(`separator?`): `string`
+
+Joins list elements into one string (same signature as Array.prototype.join)
 
 #### Parameters
 
@@ -643,13 +683,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:311](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L311)
+[LinkedList.ts:314](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L314)
 
 ___
 
 ### keys
 
 ▸ **keys**(): `Generator`<`T`, `void`, `unknown`\>
+
+Iterates through list items
 
 #### Returns
 
@@ -661,13 +703,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:192](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L192)
+[LinkedList.ts:196](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L196)
 
 ___
 
 ### map
 
 ▸ **map**<`RT`, `This`\>(`cb`, `thisArg`): `RT`[]
+
+Maps set items into a new array
 
 #### Type parameters
 
@@ -693,13 +737,15 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:78](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L78)
+[LinkedSet.ts:94](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L94)
 
 ___
 
 ### pop
 
 ▸ **pop**(): `undefined` \| `T`
+
+Pops item from end of the set
 
 #### Returns
 
@@ -711,13 +757,15 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:57](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L57)
+[SortedSet.ts:72](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L72)
 
 ___
 
 ### recycle
 
 ▸ **recycle**(): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Moves element from front of list to the end
 
 #### Returns
 
@@ -729,13 +777,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:103](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L103)
+[LinkedList.ts:130](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L130)
 
 ___
 
 ### reduce
 
 ▸ **reduce**<`RT`, `This`\>(`cb`, `initialValue`, `thisArg`): `RT`
+
+Reduces list into specified value (same signature as Array.prototype.reduce)
 
 #### Type parameters
 
@@ -762,13 +812,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:229](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L229)
+[LinkedList.ts:232](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L232)
 
 ___
 
 ### reduceRight
 
 ▸ **reduceRight**<`RT`, `This`\>(`cb`, `initialValue`, `thisArg`): `RT`
+
+Reduces items from the end of the set to the front
 
 #### Type parameters
 
@@ -795,13 +847,15 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:64](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L64)
+[LinkedSet.ts:75](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L75)
 
 ___
 
 ### reverse
 
 ▸ **reverse**(): `Generator`<`T`, `void`, `unknown`\>
+
+Iterates through list items in reverse
 
 #### Returns
 
@@ -813,13 +867,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:201](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L201)
+[LinkedList.ts:206](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L206)
 
 ___
 
 ### reverseMap
 
 ▸ **reverseMap**<`RT`, `This`\>(`cb`, `thisArg`): `RT`[]
+
+Maps set items from the end of the set to the front into a new array
 
 #### Type parameters
 
@@ -845,20 +901,22 @@ ___
 
 #### Defined in
 
-[LinkedSet.ts:83](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedSet.ts#L83)
+[LinkedSet.ts:100](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedSet.ts#L100)
 
 ___
 
 ### search
 
-▸ **search**(`compareFn`, `node?`): `undefined` \| `T`
+▸ **search**(`compareFunction`, `node?`): `undefined` \| `T`
+
+Searches set using compare function to find first match
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `compareFn` | (`a`: `T`) => `number` |
-| `node` | `undefined` \| `TNode`<`T`\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `compareFunction` | (`a`: `T`) => `number` | Takes an item from the set and returns 0 if a match, -1 (<0) if the desired match is lower in the sort order (closer to the front of the list), or 1 (>0) if the desired match is higher (towards the end of the list) |
+| `node` | `undefined` \| `TNode`<`T`\> | - |
 
 #### Returns
 
@@ -866,13 +924,15 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:38](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L38)
+[SortedSet.ts:52](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L52)
 
 ___
 
 ### shift
 
 ▸ **shift**(): `undefined` \| `T`
+
+Shifts item from the front of the set
 
 #### Returns
 
@@ -884,13 +944,16 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:67](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L67)
+[SortedSet.ts:83](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L83)
 
 ___
 
 ### tailNode
 
 ▸ **tailNode**(`node`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `N`\>
+
+Caution: Assumes node is already part of linked list
+Moves node to the end of the list
 
 #### Parameters
 
@@ -908,13 +971,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:118](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L118)
+[LinkedList.ts:153](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L153)
 
 ___
 
 ### toArray
 
 ▸ **toArray**(): `T`[]
+
+Converts list to native Array
 
 #### Returns
 
@@ -926,7 +991,7 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:188](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L188)
+[LinkedList.ts:176](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L176)
 
 ___
 
@@ -944,13 +1009,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:307](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L307)
+[LinkedList.ts:356](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L356)
 
 ___
 
 ### values
 
 ▸ **values**(): `Generator`<`T`, `void`, `unknown`\>
+
+Alias for keys() method
 
 #### Returns
 
@@ -962,13 +1029,15 @@ ___
 
 #### Defined in
 
-[LinkedList.ts:175](https://github.com/zimmed/prefab/blob/db84beb/src/LinkedList.ts#L175)
+[LinkedList.ts:181](https://github.com/zimmed/prefab/blob/5b06828/src/LinkedList.ts#L181)
 
 ___
 
-### from
+### create
 
-▸ `Static` **from**<`T`\>(`iterable?`, `cmpFn?`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\>
+▸ `Static` **create**<`T`\>(`iterable?`, `compareFunction?`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\>
+
+Static factory method as alias for class constructor
 
 #### Type parameters
 
@@ -981,7 +1050,40 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `iterable?` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> |
-| `cmpFn?` | [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\> |
+| `compareFunction?` | [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\> |
+
+#### Returns
+
+[`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\>
+
+#### Overrides
+
+[LinkedSet](LinkedSet.LinkedSet-1.md).[create](LinkedSet.LinkedSet-1.md#create)
+
+#### Defined in
+
+[SortedSet.ts:19](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L19)
+
+___
+
+### from
+
+▸ `Static` **from**<`T`\>(`iterable`, `compareFunction?`): [`SortedSet`](SortedSet.SortedSet-1.md)<`T`, `LNode`<`T`\>\>
+
+Same as LinkedList.create() but requires constructor arg
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `iterable` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> |
+| `compareFunction?` | [`Sort`](../modules/SortedSet.md#sort)<`T`, `any`\> |
 
 #### Returns
 
@@ -993,4 +1095,4 @@ ___
 
 #### Defined in
 
-[SortedSet.ts:18](https://github.com/zimmed/prefab/blob/db84beb/src/SortedSet.ts#L18)
+[SortedSet.ts:27](https://github.com/zimmed/prefab/blob/5b06828/src/SortedSet.ts#L27)

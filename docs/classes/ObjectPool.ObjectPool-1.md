@@ -47,7 +47,7 @@
 
 ### constructor
 
-• **new ObjectPool**<`O`\>(`Class`, `allocSize?`)
+• **new ObjectPool**<`O`\>(`PoolObjectClass`, `allocSize?`)
 
 #### Type parameters
 
@@ -59,12 +59,12 @@
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `Class` | () => `O` | `undefined` |
+| `PoolObjectClass` | () => `O` | `undefined` |
 | `allocSize` | `number` | `0` |
 
 #### Defined in
 
-[ObjectPool.ts:157](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L157)
+[ObjectPool.ts:63](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L63)
 
 ## Properties
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[ObjectPool.ts:44](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L44)
+[ObjectPool.ts:48](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L48)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:41](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L41)
+[ObjectPool.ts:45](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L45)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:47](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L47)
+[ObjectPool.ts:51](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L51)
 
 ___
 
@@ -106,9 +106,11 @@ ___
 
 ▪ `Static` **Object**: typeof [`PoolObject`](ObjectPool.PoolObject.md)
 
+Objects within the pool must inherit from ObjectPool.Object
+
 #### Defined in
 
-[ObjectPool.ts:34](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L34)
+[ObjectPool.ts:37](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L37)
 
 ## Accessors
 
@@ -116,19 +118,23 @@ ___
 
 • `get` **size**(): `number`
 
+The current (max) size of the object pool
+
 #### Returns
 
 `number`
 
 #### Defined in
 
-[ObjectPool.ts:49](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L49)
+[ObjectPool.ts:54](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L54)
 
 ## Methods
 
 ### add
 
-▸ `Private` **add**(`obj`): `void`
+▸ `Protected` **add**(`obj`): `void`
+
+Append new object to end of the pool queue
 
 #### Parameters
 
@@ -142,7 +148,7 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:163](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L163)
+[ObjectPool.ts:179](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L179)
 
 ___
 
@@ -150,6 +156,8 @@ ___
 
 ▸ **alloc**(`size?`): `void`
 
+Increases pool size and allocates new objects to fill it
+
 #### Parameters
 
 | Name | Type | Default value |
@@ -162,7 +170,7 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:116](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L116)
+[ObjectPool.ts:125](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L125)
 
 ___
 
@@ -170,19 +178,23 @@ ___
 
 ▸ **clear**(): `void`
 
+Completely clear the pool, freeing all objects from memory
+
 #### Returns
 
 `void`
 
 #### Defined in
 
-[ObjectPool.ts:146](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L146)
+[ObjectPool.ts:158](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L158)
 
 ___
 
 ### create
 
-▸ **create**(): `O`
+▸ `Protected` **create**(): `O`
+
+Create and return new PoolObject
 
 #### Returns
 
@@ -190,13 +202,15 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:58](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L58)
+[ObjectPool.ts:171](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L171)
 
 ___
 
 ### dealloc
 
 ▸ **dealloc**(`size?`): `void`
+
+Downsize pool by specified amount, deallocating overflowing objects
 
 #### Parameters
 
@@ -210,13 +224,15 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:150](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L150)
+[ObjectPool.ts:163](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L163)
 
 ___
 
 ### deallocateObject
 
 ▸ **deallocateObject**(`obj?`, `del?`): `boolean`
+
+Cleans and removes object from pool entirely
 
 #### Parameters
 
@@ -231,7 +247,7 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:104](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L104)
+[ObjectPool.ts:112](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L112)
 
 ___
 
@@ -239,11 +255,13 @@ ___
 
 ▸ **forceSpawn**(...`args`): `O`
 
+Spawns and initializes object from pool, or create new object and increase pool size if full
+
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `...args` | `InitArgs`<`O`, `O`[``"poolInit"``]\> |
+| `...args` | `InitArgs`<`O`, `O`[``"onInit"``]\> |
 
 #### Returns
 
@@ -251,13 +269,15 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:65](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L65)
+[ObjectPool.ts:70](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L70)
 
 ___
 
 ### free
 
 ▸ **free**(`item`): `void`
+
+Returns object back to pool to be re-used later
 
 #### Parameters
 
@@ -271,13 +291,15 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:98](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L98)
+[ObjectPool.ts:105](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L105)
 
 ___
 
 ### insert
 
-▸ `Private` **insert**(`obj`): `void`
+▸ `Protected` **insert**(`obj`): `void`
+
+Insert new object into front of the pool queue
 
 #### Parameters
 
@@ -291,7 +313,7 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:168](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L168)
+[ObjectPool.ts:185](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L185)
 
 ___
 
@@ -299,6 +321,8 @@ ___
 
 ▸ **realloc**(`size?`): `void`
 
+Sets max pool size, but ignores call if provided size is smaller than current max
+
 #### Parameters
 
 | Name | Type |
@@ -311,7 +335,7 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:136](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L136)
+[ObjectPool.ts:147](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L147)
 
 ___
 
@@ -319,6 +343,8 @@ ___
 
 ▸ **reallocUnsafe**(`size?`): `void`
 
+Overrides max pool size, deallocating any overflowing objects
+
 #### Parameters
 
 | Name | Type |
@@ -331,7 +357,7 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:123](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L123)
+[ObjectPool.ts:133](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L133)
 
 ___
 
@@ -339,11 +365,13 @@ ___
 
 ▸ **spawn**(...`args`): `undefined` \| `O`
 
+Spawns and initializes object from pool (if any are free)
+
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `...args` | `InitArgs`<`O`, `O`[``"poolInit"``]\> |
+| `...args` | `InitArgs`<`O`, `O`[``"onInit"``]\> |
 
 #### Returns
 
@@ -351,13 +379,15 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:84](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L84)
+[ObjectPool.ts:90](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L90)
 
 ___
 
 ### create
 
-▸ `Static` **create**<`O`\>(`Class`, `allocSize?`): [`ObjectPool`](ObjectPool.ObjectPool-1.md)<`O`\>
+▸ `Static` **create**<`O`\>(`PoolObjectClass`, `allocSize?`): [`ObjectPool`](ObjectPool.ObjectPool-1.md)<`O`\>
+
+Static factory method as alias for class constructor
 
 #### Type parameters
 
@@ -369,7 +399,7 @@ ___
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `Class` | () => `O` | `undefined` |
+| `PoolObjectClass` | () => `O` | `undefined` |
 | `allocSize` | `number` | `0` |
 
 #### Returns
@@ -378,4 +408,4 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:36](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L36)
+[ObjectPool.ts:40](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L40)

@@ -16,8 +16,8 @@
 
 ### Methods
 
-- [poolClean](ObjectPool.PoolObject.md#poolclean)
-- [poolInit](ObjectPool.PoolObject.md#poolinit)
+- [onClean](ObjectPool.PoolObject.md#onclean)
+- [onInit](ObjectPool.PoolObject.md#oninit)
 
 ## Constructors
 
@@ -29,7 +29,7 @@ Constructor must take no arguments
 
 #### Defined in
 
-[ObjectPool.ts:26](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L26)
+[ObjectPool.ts:26](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L26)
 
 ## Properties
 
@@ -39,13 +39,15 @@ Constructor must take no arguments
 
 #### Defined in
 
-[ObjectPool.ts:17](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L17)
+[ObjectPool.ts:17](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L17)
 
 ## Methods
 
-### poolClean
+### onClean
 
-▸ `Abstract` **poolClean**(): `void`
+▸ `Abstract` **onClean**(): `void`
+
+Deinitializer called when object is put back into the pool or freed from memory
 
 #### Returns
 
@@ -53,13 +55,15 @@ Constructor must take no arguments
 
 #### Defined in
 
-[ObjectPool.ts:30](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L30)
+[ObjectPool.ts:32](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L32)
 
 ___
 
-### poolInit
+### onInit
 
-▸ `Abstract` **poolInit**(...`args`): `void`
+▸ `Abstract` **onInit**(...`args`): `void`
+
+Initializer for when object is spawned by the pool
 
 #### Parameters
 
@@ -73,4 +77,4 @@ ___
 
 #### Defined in
 
-[ObjectPool.ts:28](https://github.com/zimmed/prefab/blob/db84beb/src/ObjectPool.ts#L28)
+[ObjectPool.ts:29](https://github.com/zimmed/prefab/blob/5b06828/src/ObjectPool.ts#L29)

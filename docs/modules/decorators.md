@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[decorators.ts:3](https://github.com/zimmed/prefab/blob/db84beb/src/decorators.ts#L3)
+[decorators.ts:3](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L3)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[decorators.ts:39](https://github.com/zimmed/prefab/blob/db84beb/src/decorators.ts#L39)
+[decorators.ts:39](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L39)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[decorators.ts:63](https://github.com/zimmed/prefab/blob/db84beb/src/decorators.ts#L63)
+[decorators.ts:63](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L63)
 
 ▸ `Const` **hidden**(`a`): `PropertyDecorator`
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[decorators.ts:63](https://github.com/zimmed/prefab/blob/db84beb/src/decorators.ts#L63)
+[decorators.ts:63](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L63)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[decorators.ts:65](https://github.com/zimmed/prefab/blob/db84beb/src/decorators.ts#L65)
+[decorators.ts:65](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L65)
 
 ▸ `Const` **readonly**(`a`): `PropertyDecorator`
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[decorators.ts:65](https://github.com/zimmed/prefab/blob/db84beb/src/decorators.ts#L65)
+[decorators.ts:65](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L65)
 
 ___
 
@@ -159,7 +159,7 @@ ___
 
 #### Defined in
 
-[decorators.ts:67](https://github.com/zimmed/prefab/blob/db84beb/src/decorators.ts#L67)
+[decorators.ts:67](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L67)
 
 ▸ `Const` **visible**(`a`): `PropertyDecorator`
 
@@ -178,4 +178,4 @@ ___
 
 #### Defined in
 
-[decorators.ts:67](https://github.com/zimmed/prefab/blob/db84beb/src/decorators.ts#L67)
+[decorators.ts:67](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L67)
