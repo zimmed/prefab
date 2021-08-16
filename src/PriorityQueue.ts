@@ -13,6 +13,16 @@ function compare<T, S extends PriorityQueue<T>>(a: T, b: T, q: S) {
 }
 
 export class PriorityQueue<T> extends SortedSet<T> {
+  /** Static factory method as alias for class constructor */
+  static create<T>(iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>) {
+    return new this(iterable);
+  }
+
+  /** Same as LinkedList.create() but requires constructor arg */
+  static from<T>(iterable: IterableIterator<T> | Array<T> | Generator<T, void, unknown>) {
+    return new this(iterable);
+  }
+
   @hidden
   private _rCount = 0;
 
@@ -29,18 +39,22 @@ export class PriorityQueue<T> extends SortedSet<T> {
     super(iterable, compare);
   }
 
+  /** Adds item into the Queue with priority=5  */
   public add(item: T) {
     return this.enqueue(item);
   }
 
+  /** Appends item onto the Queue with priority=10 */
   public append(item: T, priority = 10) {
     return this.enqueue(item, priority);
   }
 
+  /** Inserts item into the front of the specified priority order */
   public insert(item: T, priority = -1, c = --this._rCount) {
     return this.enqueue(item, priority, c);
   }
 
+  /** Appends item onto the Queue at the specified priority */
   public enqueue(item: T, priority = 5, c = ++this._count) {
     if (this._pMap.has(item)) return this;
     this._pMap.set(item, priority);
@@ -48,6 +62,7 @@ export class PriorityQueue<T> extends SortedSet<T> {
     return super.add(item);
   }
 
+  /** Takes item from the front of the Queue */
   public dequeue() {
     const item = this.shift();
 
@@ -58,6 +73,7 @@ export class PriorityQueue<T> extends SortedSet<T> {
     return item;
   }
 
+  /** Deletes specified item from the Queue */
   public delete(item: T) {
     const r = super.delete(item);
 

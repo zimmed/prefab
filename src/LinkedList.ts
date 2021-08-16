@@ -16,6 +16,12 @@ export type Reducer<T, This, RT, Self> =
 export type LNode<T> = { head?: LNode<T>; body: T; tail?: LNode<T> };
 
 export class LinkedList<T, N extends LNode<T> = LNode<T>> {
+  /** Static factory method as alias for class constructor */
+  static create<T>(iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>) {
+    return new this(iterable);
+  }
+
+  /** Same as LinkedList.create() but requires constructor arg */
   static from<T>(iterable: IterableIterator<T> | Array<T> | Generator<T, void, unknown>) {
     return new this(iterable);
   }
@@ -26,9 +32,11 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   @hidden
   protected _tail?: N;
 
+  /** Head of the list */
   public get head() {
     return this._head;
   }
+  /** Tail of the list */
   public get tail() {
     return this._tail;
   }
@@ -45,9 +53,12 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return `${type}${this._head ? `(${size})` : ''}`;
   }
 
+  /**
+   * @param iterable Optional iterable with which to initialize the list
+   */
   public constructor(
     iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>,
-    init?: object
+    /** @hidden **/ init?: object
   ) {
     if (init) Object.assign(this, init);
     if (iterable) {
@@ -55,6 +66,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     }
   }
 
+  /** Removes and returns the last element of the list (or undefined if list is empty) */
   public pop() {
     let item;
 
@@ -70,6 +82,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return item;
   }
 
+  /** Removes and returns the first element of the list (or undefined if list is empty) */
   public shift() {
     let item;
 
@@ -86,24 +99,42 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   }
 
   /**
-   * Careful -- O(n)
+   * Careful! O(n)
+   * Checks to see if item exists in list
    */
   public has(item: T) {
     return !!this._findNode(item);
   }
 
+  /** Adds item to end of the list */
   public append(item: T) {
     return this.add(item);
   }
 
+  /** Adds item to front of the list */
+  public insert(item: T) {
+    return this.insertNode({ body: item, tail: this._head } as N);
+  }
+
+  /** Adds item to end of the list */
+  public add(item: T) {
+    return this.addNode({ head: this._tail, body: item } as N);
+  }
+
+  /** Moves element from end of list to the front */
   public cycle() {
     return this._tail ? this.headNode(this._tail) : this;
   }
 
+  /** Moves element from front of list to the end */
   public recycle() {
     return this._head ? this.tailNode(this._head) : this;
   }
 
+  /**
+   * Caution: Assumes node is already part of linked list
+   * Moves node to the front of the list
+   */
   public headNode(node: N) {
     if (node === this._head) return this;
     if (node === this._tail) this._tail = node.head as N;
@@ -115,6 +146,10 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return this;
   }
 
+  /**
+   * Caution: Assumes node is already part of linked list
+   * Moves node to the end of the list
+   */
   public tailNode(node: N) {
     if (node === this._tail) return this;
     if (node === this._head) this._head = node.tail as N;
@@ -126,56 +161,28 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return this;
   }
 
-  public insertNode(node: N) {
-    const h = (this._head = node as N);
-
-    if (h.tail) h.tail.head = h;
-    this._tail ??= h;
-    return this;
-  }
-
-  public addNode(node: N) {
-    const t = (this._tail = node as N);
-
-    if (t.head) t.head.tail = t;
-    this._head ??= t;
-    return this;
-  }
-
-  public insert(item: T) {
-    return this.insertNode({ body: item, tail: this._head } as N);
-  }
-
-  public add(item: T) {
-    return this.addNode({ head: this._tail, body: item } as N);
-  }
-
+  /** Clears the list */
   public clear() {
     this._head = undefined;
     this._tail = undefined;
   }
 
-  public deleteNode(cur?: N) {
-    if (cur) {
-      if (this._head === cur) this._head = cur.tail as N | undefined;
-      else if (this._tail === cur) this._tail = cur.head as N | undefined;
-      else {
-        if (cur.head) cur.head.tail = cur.tail;
-        if (cur.tail) cur.tail.head = cur.head;
-      }
-      return true;
-    }
-    return false;
-  }
-
+  /** Removes item from the list */
   public delete(item: T) {
     return this.deleteNode(this._findNode(item));
   }
 
+  /** Converts list to native Array */
+  public toArray(): T[] {
+    return Array.from(this.keys());
+  }
+
+  /** Alias for keys() method */
   public values() {
     return this.keys();
   }
 
+  /** Kind of pointless, but needed for parity with builtin Set object */
   public *entries(): Generator<[T, T]> {
     let cur = this._head;
 
@@ -185,10 +192,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     }
   }
 
-  public toArray(): T[] {
-    return Array.from(this.keys());
-  }
-
+  /** Iterates through list items */
   public *keys() {
     let cur = this._head;
 
@@ -198,6 +202,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     }
   }
 
+  /** Iterates through list items in reverse */
   public *reverse() {
     let cur = this._tail;
 
@@ -207,10 +212,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     }
   }
 
-  public [Symbol.iterator]() {
-    return this.keys();
-  }
-
+  /** Operates on each element of the list in a callback method (same signature as Array.prototype.forEach) */
   public forEach<ThisArg>(cb: Callback<T, ThisArg, void, this>, thisArg: ThisArg) {
     let cur = this._head;
     let i = -1;
@@ -226,6 +228,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     }
   }
 
+  /** Reduces list into specified value (same signature as Array.prototype.reduce) */
   public reduce<RT, This>(cb: Reducer<T, This, RT, this>, initialValue: RT, thisArg: This): RT {
     let cur = this._head;
     let i = -1;
@@ -244,6 +247,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return next;
   }
 
+  /** Uses predicate to return first matching item or undefined if no matches (same signature as Array.prototype.find) */
   public find<This>(predicate: Callback<T, This, boolean, this>, thisArg: This): T | undefined {
     let cur = this._head;
     let i = -1;
@@ -264,6 +268,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return undefined;
   }
 
+  /** Uses predicate to return a new array of all matching items (same signature is Array.protoype.filter) */
   public filter<This>(predicate: Callback<T, This, boolean, this>, thisArg: This): T[] {
     let cur = this._head;
     let i = -1;
@@ -285,6 +290,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return arr;
   }
 
+  /** Maps list items into new array (same signature as Array.prototype.map) */
   public map<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[] {
     let cur = this._head;
     let i = -1;
@@ -304,12 +310,55 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return arr;
   }
 
+  /** Joins list elements into one string (same signature as Array.prototype.join) */
+  public join(separator?: string) {
+    return this.toArray().join(separator);
+  }
+
+  /**
+   * Caution: Assumes node already has correct head and tail set
+   * Adds node to the front of the list
+   */
+  public insertNode(node: N) {
+    const h = (this._head = node as N);
+
+    if (h.tail) h.tail.head = h;
+    this._tail ??= h;
+    return this;
+  }
+
+  /**
+   * Caution: Assumes node already has correct head and tail set
+   * Adds node to the end of the list
+   */
+  public addNode(node: N) {
+    const t = (this._tail = node as N);
+
+    if (t.head) t.head.tail = t;
+    this._head ??= t;
+    return this;
+  }
+
+  /** Removes specified node from the list */
+  public deleteNode(cur?: N) {
+    if (cur) {
+      if (this._head === cur) this._head = cur.tail as N | undefined;
+      else if (this._tail === cur) this._tail = cur.head as N | undefined;
+      else {
+        if (cur.head) cur.head.tail = cur.tail;
+        if (cur.tail) cur.tail.head = cur.head;
+      }
+      return true;
+    }
+    return false;
+  }
+
   public toJSON() {
     return this.toArray();
   }
 
-  public join(separator?: string) {
-    return this.toArray().join(separator);
+  public [Symbol.iterator]() {
+    return this.keys();
   }
 
   private _findNode(item: T) {

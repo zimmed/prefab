@@ -248,7 +248,7 @@ export class MyEntity extends ObjectPool.Object {
     return Math.sqrt((x - this.location[0]) ** 2 + (y - this.location[1]) ** 2);
   }
 
-  poolInit(name: string, x: number, y: number, health = 100) {
+  onInit(name: string, x: number, y: number, health = 100) {
     this.name = name;
     this.health = health;
     this.location[0] = x;
@@ -256,7 +256,7 @@ export class MyEntity extends ObjectPool.Object {
   }
 
   // Be sure to free up any references that are no longer needed so they can be garbage collected.
-  poolClean() {
+  onClean() {
     this.health = 0;
     this.location[0] = -1;
     this.location[1] = -1;

@@ -5,10 +5,12 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
   @hidden
   private _size = 0;
 
+  /** Current size of list */
   public get size() {
     return this._size;
   }
 
+  /** Pops item from end of the list */
   public pop() {
     const item = super.pop();
 
@@ -16,6 +18,7 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
     return item;
   }
 
+  /** Shifts item from the front of the list  */
   public shift() {
     const item = super.shift();
 
@@ -23,21 +26,25 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
     return item;
   }
 
+  /** Inserts Node into the front the list */
   public insertNode(node: N) {
     ++this._size;
     return super.insertNode(node);
   }
 
+  /** Appends Node onto the end of the list */
   public addNode(node: N) {
     ++this._size;
     return super.addNode(node);
   }
 
+  /** Clears the list  */
   public clear() {
     super.clear();
     this._size = 0;
   }
 
+  /** Deletes specified node from the list */
   public deleteNode(cur?: N) {
     if (super.deleteNode(cur)) {
       --this._size;
@@ -46,6 +53,7 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
     return false;
   }
 
+  /** Reduces items from the end of the list to the front */
   public reduceRight<RT, This>(
     cb: Reducer<T, This, RT, this>,
     initialValue: RT,
@@ -68,6 +76,7 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
     return next;
   }
 
+  /** Finds predicate-matching item, with iteration beginning at the end of the list */
   public findRight<This>(
     predicate: Callback<T, This, boolean, this>,
     thisArg: This
@@ -91,6 +100,7 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
     return undefined;
   }
 
+  /** Maps list items into a new array */
   public map<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[] {
     let cur = this._head;
     let i = -1;
@@ -108,6 +118,7 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
     return arr;
   }
 
+  /** Maps list items from the end of the set to the front into a new array */
   public reverseMap<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[] {
     let cur = this._tail;
     let i = this.size;

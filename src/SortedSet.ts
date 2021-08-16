@@ -15,11 +15,20 @@ export type Sort<T, S extends SortedSet<T, LNode<T>>> =
 const DEFAULT_SORT: Sort<any, any> = <T>(a: T, b: T) => (a < b ? -1 : 1);
 
 export class SortedSet<T, N extends LNode<T> = LNode<T>> extends LinkedSet<T, N> {
-  public static from<T>(
+  /** Static factory method as alias for class constructor */
+  static create<T>(
     iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>,
-    cmpFn?: Sort<T, any>
+    compareFunction?: Sort<T, any>
   ) {
-    return new this(iterable, cmpFn);
+    return new this(iterable, compareFunction);
+  }
+
+  /** Same as LinkedList.create() but requires constructor arg */
+  static from<T>(
+    iterable: IterableIterator<T> | Array<T> | Generator<T, void, unknown>,
+    compareFunction?: Sort<T, any>
+  ) {
+    return new this(iterable, compareFunction);
   }
 
   @hidden
@@ -30,30 +39,36 @@ export class SortedSet<T, N extends LNode<T> = LNode<T>> extends LinkedSet<T, N>
 
   public constructor(
     iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>,
-    cmpFn: Sort<T, any> = DEFAULT_SORT
+    compareFunction: Sort<T, any> = DEFAULT_SORT
   ) {
-    super(iterable, { _cmp: cmpFn });
+    super(iterable, { _cmp: compareFunction });
   }
 
-  public search(compareFn: (a: T) => number, node = this._tree): T | undefined {
+  /** Searches set using compare function to find first match
+   * @param compareFunction Takes an item from the set and returns 0 if a match, -1 (<0)
+   * if the desired match is lower in the sort order (closer to the front of the list),
+   * or 1 (>0) if the desired match is higher (towards the end of the list)
+   */
+  public search(compareFunction: (a: T) => number, node = this._tree): T | undefined {
     if (!node) return undefined;
-    let cmp = compareFn(node.leaf.body);
+    let cmp = compareFunction(node.leaf.body);
 
     while (cmp < 0) {
       node = (node as TNode<T>).left;
-      cmp = node ? compareFn(node.leaf.body) : 0;
+      cmp = node ? compareFunction(node.leaf.body) : 0;
     }
     while (cmp > 0) {
       node = (node as TNode<T>).right;
-      cmp = node ? compareFn(node.leaf.body) : 0;
+      cmp = node ? compareFunction(node.leaf.body) : 0;
     }
     if (cmp === 0) {
       if (node) return node.leaf.body;
       else return undefined;
     }
-    return this.search(compareFn, node);
+    return this.search(compareFunction, node);
   }
 
+  /** Pops item from end of the set */
   public pop() {
     if (this._tail) {
       const tnode = this._tail.tree;
@@ -64,6 +79,7 @@ export class SortedSet<T, N extends LNode<T> = LNode<T>> extends LinkedSet<T, N>
     return super.pop();
   }
 
+  /** Shifts item from the front of the set */
   public shift() {
     if (this._head) {
       const tnode = this._head.tree;
@@ -74,14 +90,18 @@ export class SortedSet<T, N extends LNode<T> = LNode<T>> extends LinkedSet<T, N>
     return super.shift();
   }
 
+  /** Clears the set */
   public clear() {
-    this._tree;
+    this._tree = undefined;
+    super.clear();
   }
 
+  /** Inserts item into the front the set */
   public insert(item: T) {
     return this.add(item);
   }
 
+  /** Appends item onto the end of the set */
   public add(item: T) {
     const map = this._map;
 
@@ -123,6 +143,7 @@ export class SortedSet<T, N extends LNode<T> = LNode<T>> extends LinkedSet<T, N>
     return this;
   }
 
+  /** Deletes specified item from the set */
   public delete(item: T) {
     const map = this._map;
     let cur = map.get(item);

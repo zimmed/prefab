@@ -1,7 +1,7 @@
 import LinkedList, { LNode } from './LinkedList';
 import { hidden } from './decorators';
 
-type InitArgs<T extends PoolObject, K = T['poolInit']> = K extends (...args: infer A) => T
+type InitArgs<T extends PoolObject, K = T['onInit']> = K extends (...args: infer A) => T
   ? A
   : never;
 export type PoolState<T extends PoolObject> = {
@@ -25,16 +25,20 @@ export abstract class PoolObject {
   /** Constructor must take no arguments */
   public constructor() {}
 
-  public abstract poolInit(...args: any[]): void;
+  /** Initializer for when object is spawned by the pool */
+  public abstract onInit(...args: any[]): void;
 
-  public abstract poolClean(): void;
+  /** Deinitializer called when object is put back into the pool or freed from memory */
+  public abstract onClean(): void;
 }
 
 export class ObjectPool<O extends PoolObject> {
+  /** Objects within the pool must inherit from ObjectPool.Object */
   public static Object = PoolObject;
 
-  public static create<O extends PoolObject>(Class: new () => O, allocSize = 0) {
-    return new this(Class, allocSize);
+  /** Static factory method as alias for class constructor */
+  public static create<O extends PoolObject>(PoolObjectClass: new () => O, allocSize = 0) {
+    return new this(PoolObjectClass, allocSize);
   }
 
   @hidden({ writable: false })
@@ -46,6 +50,7 @@ export class ObjectPool<O extends PoolObject> {
   @hidden
   private _max = 0;
 
+  /** The current (max) size of the object pool */
   public get size() {
     return this._max;
   }
@@ -55,32 +60,33 @@ export class ObjectPool<O extends PoolObject> {
     return `${this.constructor.name}<${this._Class.name}>(${this._max})`;
   }
 
-  public create() {
-    const obj = new this._Class() as O;
+  public constructor(PoolObjectClass: new () => O, allocSize = 0) {
+    this._Class = PoolObjectClass;
 
-    obj.poolState.pool = this;
-    return obj;
+    if (allocSize) this.alloc(allocSize);
   }
 
+  /** Spawns and initializes object from pool, or create new object and increase pool size if full */
   public forceSpawn(...args: InitArgs<O>): O {
     let node = this._list.tail;
     let item: O;
 
     if (node?.inUse || !node) {
       item = this.create();
-      item.poolInit(...args);
+      item.onInit(...args);
       item.poolState.inUse = true;
       ++this._max;
       this.insert(item);
     } else {
       item = node.body;
-      item.poolInit(...args);
+      item.onInit(...args);
       item.poolState.inUse = true;
       this._list.headNode(node);
     }
     return item;
   }
 
+  /** Spawns and initializes object from pool (if any are free) */
   public spawn(...args: InitArgs<O>): O | undefined {
     const node = this._list.tail;
 
@@ -89,21 +95,23 @@ export class ObjectPool<O extends PoolObject> {
 
       this._list.headNode(node);
       item.poolState.inUse = true;
-      item.poolInit(...args);
+      item.onInit(...args);
       return item;
     }
     return undefined;
   }
 
+  /** Returns object back to pool to be re-used later */
   public free(item: O) {
-    item.poolClean();
+    item.onClean();
     item.poolState.inUse = false;
     this._list.tailNode(item.poolState);
   }
 
+  /** Cleans and removes object from pool entirely */
   public deallocateObject(obj?: O, del = true) {
     if (obj && (!del || this._list.deleteNode(obj.poolState))) {
-      obj.poolClean();
+      obj.onClean();
       obj.poolState.inUse = false;
       obj.poolState.pool = undefined;
       obj.poolState.tail = undefined;
@@ -113,6 +121,7 @@ export class ObjectPool<O extends PoolObject> {
     return false;
   }
 
+  /** Increases pool size and allocates new objects to fill it */
   public alloc(size = 1) {
     let i = -1;
 
@@ -120,6 +129,7 @@ export class ObjectPool<O extends PoolObject> {
     while (++i < size) this.add(this.create());
   }
 
+  /** Overrides max pool size, deallocating any overflowing objects */
   public reallocUnsafe(size = this._max || 1) {
     if (size > this._max) {
       let i = this._max - 1;
@@ -133,6 +143,7 @@ export class ObjectPool<O extends PoolObject> {
     this._max = size;
   }
 
+  /** Sets max pool size, but ignores call if provided size is smaller than current max */
   public realloc(size = this._max || 1) {
     if (size > this._max) {
       let i = this._max - 1;
@@ -143,10 +154,12 @@ export class ObjectPool<O extends PoolObject> {
     }
   }
 
+  /** Completely clear the pool, freeing all objects from memory */
   public clear() {
     this.dealloc(this.size);
   }
 
+  /** Downsize pool by specified amount, deallocating overflowing objects */
   public dealloc(size = 1) {
     let i = -1;
 
@@ -154,18 +167,22 @@ export class ObjectPool<O extends PoolObject> {
     this._max -= size;
   }
 
-  public constructor(Class: new () => O, allocSize = 0) {
-    this._Class = Class;
+  /** Create and return new PoolObject */
+  protected create() {
+    const obj = new this._Class() as O;
 
-    if (allocSize) this.alloc(allocSize);
+    obj.poolState.pool = this;
+    return obj;
   }
 
-  private add(obj: O) {
+  /** Append new object to end of the pool queue */
+  protected add(obj: O) {
     obj.poolState.head = this._list.tail;
     this._list.addNode(obj.poolState);
   }
 
-  private insert(obj: O) {
+  /** Insert new object into front of the pool queue */
+  protected insert(obj: O) {
     obj.poolState.tail = this._list.head;
     this._list.insertNode(obj.poolState);
   }
