@@ -16,16 +16,6 @@ export type Reducer<T, This, RT, Self> =
 export type LNode<T> = { head?: LNode<T>; body: T; tail?: LNode<T> };
 
 export class LinkedList<T, N extends LNode<T> = LNode<T>> {
-  /** Static factory method as alias for class constructor */
-  static create<T>(iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>) {
-    return new this(iterable);
-  }
-
-  /** Same as LinkedList.create() but requires constructor arg */
-  static from<T>(iterable: IterableIterator<T> | Array<T> | Generator<T, void, unknown>) {
-    return new this(iterable);
-  }
-
   @hidden
   protected _head?: N;
 
@@ -144,6 +134,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     if (node.tail) node.tail.head = node.head;
     node.head = undefined;
     node.tail = this._head;
+    if (node.tail) node.tail.head = node;
     this._head = node;
     return this;
   }
@@ -159,7 +150,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     if (node.tail) node.tail.head = node.head;
     node.tail = undefined;
     node.head = this._tail;
-    if (this._tail) this._tail.tail = node;
+    if (node.head) node.head.tail = node;
     this._tail = node;
     return this;
   }

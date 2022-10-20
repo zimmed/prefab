@@ -51,11 +51,7 @@ I considered adding parallel factory patterns instead of instance-based structur
 - [LinkedList](#user-content-linkedlist-docs-src)
 - [SizedLinkedList](#user-content-sizedlinkedlist-docs-src)
 - [LinkedSet](#user-content-linkedset-docs-src)
-- [SortedSet](#user-content-sortedset-docs-src)
 - [LinkedCollection](#user-content-linkedcollection-docs-src)
-- [Queue](#user-content-queue-docs-src)
-- [UniQueue](#user-content-uniqueue-docs-src)
-- [PriorityQueue](#user-content-priorityqueue-docs-src)
 - [ObjectPool](#user-content-priorityqueue-docs-src)
 
 ### Inheritance Tree
@@ -64,18 +60,18 @@ I considered adding parallel factory patterns instead of instance-based structur
  LinkedList
  ┃
  ┣━ SizedLinkedList
- ┃  ┻━ Queue
+ ┃  ┻━ Queue [Future]
  ┃
  ┣━ LinkedSet
  ┃  ┃
- ┃  ╋━ UniQueue
+ ┃  ╋━ UniQueue [Future]
  ┃  ┃
- ┃  ╋━ SortedSet
- ┃  ╹  ┻━ PriorityQueue
+ ┃  ╋━ SortedSet [Future]
+ ┃  ╹  ┻━ PriorityQueue [Future]
  ┃
  ┣━ LinkedCollection
  ┃  ┃
- ╹  ┻━ SortedCollection [Coming soon]
+ ╹  ┻━ SortedCollection [Future]
 
  ObjectPool < LinkedList
 ```
@@ -149,7 +145,7 @@ const five = set.pop(); // -> 'five'
 set.size; // -> 4
 ```
 
-### SortedSet ([docs](docs/classes/SortedSet.md)) ([src](src/SortedSet.ts))
+<!-- ### SortedSet ([docs](docs/classes/SortedSet.md)) ([src](src/SortedSet.ts))
 
 ##### (extends [LinkedSet](#user-content-linkedset-docs-src))
 
@@ -169,9 +165,9 @@ collection
   .add({ name: 'bar' }) // -> SortedSet { 'bar' 'foo' }
   .add({ name: 'baz' }) // -> SortedSet { 'bar' 'baz' 'foo' }
   .delete(collection.find((x) => x.name === 'bar')); // -> SortedSet { 'baz' 'foo' }
-```
+``` -->
 
-### Queue ([docs](docs/classes/Queue.md)) ([src](src/Queue.ts))
+<!-- ### Queue ([docs](docs/classes/Queue.md)) ([src](src/Queue.ts))
 
 ##### (extends [SizedLinkedList](#user-content-sizedlinkedlist-docs-src))
 
@@ -193,9 +189,9 @@ stack.pop(); // -> 5
 
 // fifo -> Queue { 3 4 3 }
 // lifo -> Queue { 1 2 3 }
-```
+``` -->
 
-### UniQueue ([docs](docs/classes/UniQueue.md)) ([src](src/UniQueue.ts))
+<!-- ### UniQueue ([docs](docs/classes/UniQueue.md)) ([src](src/UniQueue.ts))
 
 ##### (extends [LinkedSet](#user-content-linkedset-docs-src))
 
@@ -209,9 +205,9 @@ import { UniQueue as Queue } from '@zimmed/prefab';
 const q = Queue.from([1, 2, 3, 4, 4, 3]); // -> UniQueue { 1, 2, 3, 4 }
 
 q.has(3); // -> Hashmap lookup time
-```
+``` -->
 
-### PriorityQueue ([docs](docs/classes/PriorityQueue.md)) ([src](src/PriorityQueue.ts))
+<!-- ### PriorityQueue ([docs](docs/classes/PriorityQueue.md)) ([src](src/PriorityQueue.ts))
 
 ##### (extends [SortedSet](#user-content-sortedset-docs-src))
 
@@ -230,7 +226,7 @@ q.enqueue(5, 1)
   .insert(200) // -> PriorityQueue { 200, 100 10, 5, 6, 1, 2, 3, 4 }
   .enqueue(31) // -> PriorityQueue { 200, 100 10, 5, 6, 1, 2, 3, 4, 31 }
   .dequeue(); // -> 200
-```
+``` -->
 
 ### LinkedCollection ([docs](docs/classes/LinkedCollection.md)) ([src](src/LinkedCollection.ts))
 
@@ -277,7 +273,7 @@ const four = collection.pop(); // -> Item('four')
 collection.size; // -> 4
 
 // Introduces expected Map method and changes signatures to be key lookups instead of item lookups
-collection.get('two'); // -> Item('two')
+collection.select('two'); // -> Item('two')
 collection.has('one'); // -> true
 collection.delete('three'); // -> true
 
@@ -299,9 +295,10 @@ new LinkedCollection('id', [
 new LinkedCollection('id', [new Item('one'), new Item('two')]).groupBy('id'); // -> { one: Item('one'), two: Item('two') }
 ```
 
+<!--
 ### SortedCollection (Coming Soon...)
 
-##### (extends [LinkedCollection](#user-content-linkedcollection-docs-src))
+##### (extends [LinkedCollection](#user-content-linkedcollection-docs-src)) -->
 
 ### ObjectPool ([docs](docs/classes/ObjectPool.md)) ([src](src/ObjectPool.ts))
 

@@ -7,10 +7,9 @@ export function describe({
 }: Partial<PropertyDescriptor> = {}): PropertyDecorator &
   ((a: { configurable?: boolean; writable?: boolean; enumerable?: boolean }) => PropertyDecorator) {
   return ((target: any, key: string) => {
-    if (
-      typeof target === 'object' &&
-      Object.keys(target).reduce((f, k, i) => (!i || f) && K.includes(k), false)
-    ) {
+    const keys = Object.keys(target);
+
+    if (keys.length && keys.reduce((f, k) => f && K.includes(k), true)) {
       return describe({ configurable, writable, enumerable, ...target });
     }
     const desc = Object.getOwnPropertyDescriptor(target, key) || {};

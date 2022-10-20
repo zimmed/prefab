@@ -1,30 +1,5 @@
 import { LinkedList } from '../src';
 
-describe('LinkedList.create', () => {
-  it('should create a new empty instance of LinkedList without args', () => {
-    const list = new LinkedList();
-
-    expect(list).toBeInstanceOf(LinkedList);
-    expect(list.head).toBeUndefined();
-    expect(list.tail).toBeUndefined();
-  });
-  it('should create a new instance of LinkedList with args', () => {
-    const list = LinkedList.create(['foo', 'bar', 'baz']);
-
-    expect(list).toBeInstanceOf(LinkedList);
-    expect(list.head).toEqual('foo');
-    expect(list.tail).toEqual('baz');
-  });
-});
-describe('LinkedList.from', () => {
-  it('should create a new instance of LinkedList with args', () => {
-    const list = LinkedList.from(['foo', 'bar', 'baz']);
-
-    expect(list).toBeInstanceOf(LinkedList);
-    expect(list.head).toEqual('foo');
-    expect(list.tail).toEqual('baz');
-  });
-});
 describe('new LinkedList()', () => {
   it('should create a new empty instance of LinkedList without args', () => {
     const list = new LinkedList();
@@ -267,6 +242,16 @@ describe('LinkedList instance', () => {
     beforeEach(() => {
       list = new LinkedList([3, 5, 7, 9]);
     });
+    it('should tail the node', () => {
+      // @ts-expect-error
+      expect(list.tailNode(list._head)).toBe(list);
+      expect(list.toArray()).toEqual([5, 7, 9, 3]);
+      // @ts-expect-error
+      list.tailNode(list._head.tail);
+      expect(list.toArray()).toEqual([5, 9, 3, 7]);
+      expect([...list.reverse()]).toEqual([7, 3, 9, 5]);
+    });
+
     it('should move the specified node to the tail of the list', () => {
       // @ts-expect-error
       const node = list._tail?.head;

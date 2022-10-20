@@ -6,7 +6,7 @@ class Obj {
   constructor(readonly id = count++) {}
 }
 
-describe('LinkedCollection', () => {
+describe('new LinkedCollection()', () => {
   it('should only allow elements with unique keys', () => {
     const a = new Obj(0);
 
@@ -39,18 +39,18 @@ describe('LinkedCollection instance', () => {
     });
   });
 
-  // describe.skip('get()', () => {
-  //   const list = new LinkedCollection('id', [{ id: 3 }, { id: 5 }, { id: 7 }, { id: 9 }]);
+  describe('select()', () => {
+    const list = new LinkedCollection('id', [{ id: 3 }, { id: 5 }, { id: 7 }, { id: 9 }]);
 
-  //   it('should retrieve a collection item by key', () => {
-  //     expect(list.get(7)).toEqual({ id: 7 });
-  //     expect(list.get(3)).toEqual({ id: 3 });
-  //   });
-  //   it('should return undefined when collection does not contain key', () => {
-  //     expect(list.get(-1)).toBeUndefined();
-  //     expect(list.get(17)).toBeUndefined();
-  //   });
-  // });
+    it('should retrieve a collection item by key', () => {
+      expect(list.select(7)).toEqual({ id: 7 });
+      expect(list.select(3)).toEqual({ id: 3 });
+    });
+    it('should return undefined when collection does not contain key', () => {
+      expect(list.select(-1)).toBeUndefined();
+      expect(list.select(17)).toBeUndefined();
+    });
+  });
 
   describe('keys()', () => {
     const list = new LinkedCollection('id', [{ id: 3 }, { id: 5 }, { id: 7 }, { id: 9 }]);
@@ -282,7 +282,7 @@ describe('LinkedCollection instance', () => {
       expect(list.tail).toEqual({ id: a.id, data: 'bar' });
       expect(list.uppend({ id: 5, data: 'foo' })).toBe(list);
       expect(addNode).not.toHaveBeenCalled();
-      // expect(list.get(5)).toHaveProperty('data', 'foo');
+      expect(list.select(5)).toHaveProperty('data', 'foo');
       expect(list.size).toBe(5);
     });
   });

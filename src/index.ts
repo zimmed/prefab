@@ -1,10 +1,10 @@
 export { LinkedList } from './LinkedList';
 export { SizedLinkedList } from './SizedLinkedList';
 export { LinkedSet } from './LinkedSet';
-export { ObjectPool } from './ObjectPool';
-export { PriorityQueue } from './PriorityQueue';
-export { UniQueue } from './UniQueue';
-export { Queue } from './Queue';
-export { SortedSet } from './SortedSet';
+export { ObjectPool, PoolObject } from './ObjectPool';
+// export { PriorityQueue } from './PriorityQueue';
+// export { UniQueue } from './UniQueue';
+// export { Queue } from './Queue';
+// export { SortedSet } from './SortedSet';
 export { LinkedCollection } from './LinkedCollection';
 export * as decorators from './decorators';

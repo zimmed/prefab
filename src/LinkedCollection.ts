@@ -66,10 +66,10 @@ export class LinkedCollection<
     return this._map.has(key);
   }
 
-  // public get(key: T[K]) {
-  //   console.log('get key', key);
-  //   return this._map.get(key)?.body;
-  // }
+  /** Get an item in the collection by its key */
+  public select(key: T[K]) {
+    return this._map.get(key)?.body;
+  }
 
   /** Append unique item to the end of the collection or update exiting item */
   public uppend(item: T) {

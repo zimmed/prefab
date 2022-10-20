@@ -1,6 +1,6 @@
 {
   "name": "@zimmed/prefab",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "TypeScript library for optimized data structures.",
   "keywords": [],
   "main": "dist/prefab.umd.js",
