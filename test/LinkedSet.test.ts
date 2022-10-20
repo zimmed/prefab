@@ -89,53 +89,57 @@ describe('LinkedSet instance', () => {
   describe('add()', () => {
     const a = { foo: 'bar' };
     let list: LinkedSet<number | typeof a>;
-    let add: jest.SpyInstance;
+    let addNode: jest.SpyInstance;
 
     beforeEach(() => {
-      add = jest.spyOn(LinkedList.prototype, 'add');
       list = new LinkedSet([3, 5, 7, 9, a]);
-      add.mockClear();
-      add.mockReturnThis();
+      addNode = jest.spyOn(list, 'addNode');
     });
 
     it('should call the super class add method when set does not contain item', () => {
-      expect(add).not.toHaveBeenCalled();
+      expect(list.size).toBe(5);
+      expect(addNode).not.toHaveBeenCalled();
       expect(list.add(0)).toBe(list);
-      expect(add).toHaveBeenCalledTimes(1);
-      expect(add).toHaveBeenCalledWith(0);
+      expect(list.tail).toEqual(0);
+      expect(addNode).toHaveBeenCalledTimes(1);
+      expect(addNode).toHaveBeenCalledWith(expect.objectContaining({ body: 0 }));
       expect(list.add({ foo: 'bar' })).toBe(list);
-      expect(add).toHaveBeenCalledTimes(2);
-      expect(add).toHaveBeenCalledWith({ foo: 'bar' });
+      expect(list.tail).toEqual({ foo: 'bar' });
+      expect(addNode).toHaveBeenCalledTimes(2);
+      expect(addNode).toHaveBeenCalledWith(expect.objectContaining({ body: { foo: 'bar' } }));
+      expect(list.size).toBe(7);
     });
     it('should not do anything if the set already contains the element', () => {
-      expect(add).not.toHaveBeenCalled();
+      expect(list.size).toBe(5);
+      expect(addNode).not.toHaveBeenCalled();
       expect(list.add(3)).toBe(list);
-      expect(add).not.toHaveBeenCalled();
+      expect(addNode).not.toHaveBeenCalled();
       expect(list.add(a)).toBe(list);
-      expect(add).not.toHaveBeenCalled();
+      expect(addNode).not.toHaveBeenCalled();
+      expect(list.size).toBe(5);
     });
   });
 
   describe('insert()', () => {
     const a = { foo: 'bar' };
     let list: LinkedSet<number | typeof a>;
-    let insert: jest.SpyInstance;
+    let insertNode: jest.SpyInstance;
 
     beforeEach(() => {
-      insert = jest.spyOn(LinkedList.prototype, 'insert');
       list = new LinkedSet([3, 5, 7, 9, a]);
+      insertNode = jest.spyOn(list, 'insertNode');
     });
 
     it('should call the super class insert method when set does not contain item', () => {
       expect(list.size).toBe(5);
       expect(list.head).toBe(3);
       expect(list.insert(0)).toBe(list);
-      expect(insert).toHaveBeenCalledTimes(1);
-      expect(insert).toHaveBeenCalledWith(0);
+      expect(insertNode).toHaveBeenCalledTimes(1);
+      expect(insertNode).toHaveBeenCalledWith(expect.objectContaining({ body: 0 }));
       expect(list.head).toBe(0);
       expect(list.insert({ foo: 'bar' })).toBe(list);
-      expect(insert).toHaveBeenCalledTimes(2);
-      expect(insert).toHaveBeenCalledWith({ foo: 'bar' });
+      expect(insertNode).toHaveBeenCalledTimes(2);
+      expect(insertNode).toHaveBeenCalledWith(expect.objectContaining({ body: { foo: 'bar' } }));
       expect(list.head).not.toBe(a);
       expect(list.head).toEqual({ foo: 'bar' });
       expect(list.size).toBe(7);
@@ -144,10 +148,10 @@ describe('LinkedSet instance', () => {
       expect(list.size).toBe(5);
       expect(list.head).toBe(3);
       expect(list.insert(3)).toBe(list);
-      expect(insert).not.toHaveBeenCalled();
+      expect(insertNode).not.toHaveBeenCalled();
       expect(list.head).toBe(3);
       expect(list.insert(a)).toBe(list);
-      expect(insert).not.toHaveBeenCalled();
+      expect(insertNode).not.toHaveBeenCalled();
       expect(list.head).toBe(3);
       expect(list.size).toBe(5);
     });
@@ -186,48 +190,6 @@ describe('LinkedSet instance', () => {
       expect(deleteNode).toHaveBeenCalledTimes(2);
       expect(deleteNode).toHaveBeenCalledWith(undefined);
       expect(list.size).toBe(5);
-    });
-  });
-
-  describe('insertNode()', () => {
-    let list: LinkedSet<number>;
-    let insertNode: jest.SpyInstance;
-
-    beforeEach(() => {
-      insertNode = jest.spyOn(LinkedList.prototype, 'insertNode').mockReturnThis();
-      list = new LinkedSet([3, 5, 7, 9]);
-    });
-
-    it('should call the super class insertNode and update the size', () => {
-      // @ts-expect-error
-      const node = { body: 17, tail: list._head };
-
-      expect(list.size).toBe(4);
-      expect(list.insertNode(node)).toBe(list);
-      expect(list.size).toBe(5);
-      expect(insertNode).toHaveBeenCalledTimes(1);
-      expect(insertNode).toHaveBeenCalledWith(node);
-    });
-  });
-
-  describe('addNode()', () => {
-    let list: LinkedSet<number>;
-    let addNode: jest.SpyInstance;
-
-    beforeEach(() => {
-      addNode = jest.spyOn(LinkedList.prototype, 'addNode').mockReturnThis();
-      list = new LinkedSet([3, 5, 7, 9]);
-    });
-
-    it('should call the super class addNode and update the size', () => {
-      // @ts-expect-error
-      const node = { body: 17, head: list._tail };
-
-      expect(list.size).toBe(4);
-      expect(list.addNode(node)).toBe(list);
-      expect(list.size).toBe(5);
-      expect(addNode).toHaveBeenCalledTimes(5); // 1 + 4 from constructor
-      expect(addNode).toHaveBeenCalledWith(node);
     });
   });
 

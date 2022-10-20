@@ -37,32 +37,24 @@ export class LinkedSet<T, N extends LNode<T> = LNode<T>> extends LinkedList<T, N
     return this._map.has(item);
   }
 
-  /** Appends unique item to end of the set */
+  /** Appends unique item to end of the collection */
   public add(item: T) {
-    return this._map.has(item) ? this : super.add(item);
+    if (this._map.has(item)) return this;
+
+    const node = { body: item, head: this._tail } as N;
+
+    this._map.set(item, node);
+    return this.addNode(node);
   }
 
-  /** Inserts unique item into the front of the set */
+  /** Inserts unique item into the front of the collection */
   public insert(item: T) {
-    return this._map.has(item) ? this : super.insert(item);
-  }
+    if (this._map.has(item)) return this;
 
-  /** Inserts LinkedList Node into the front of the set */
-  public insertNode(node: N) {
-    this._map.set(node.body, node);
-    return super.insertNode(node);
-  }
+    const node = { body: item, tail: this._head } as N;
 
-  /** Appends LinkedList Node onto the end of the set */
-  public addNode(node: N) {
-    this._map.set(node.body, node);
-    return super.addNode(node);
-  }
-
-  /** Clears set */
-  public clear() {
-    super.clear();
-    this._map.clear();
+    this._map.set(item, node);
+    return this.insertNode(node);
   }
 
   /** Removes specified item from the set */
@@ -72,6 +64,12 @@ export class LinkedSet<T, N extends LNode<T> = LNode<T>> extends LinkedList<T, N
       return true;
     }
     return false;
+  }
+
+  /** Clears set */
+  public clear() {
+    super.clear();
+    this._map.clear();
   }
 
   /** Reduces items from the end of the set to the front */

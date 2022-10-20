@@ -10,6 +10,7 @@
 
 ### Classes
 
+- [LinkedCollection](classes/LinkedCollection.md)
 - [LinkedList](classes/LinkedList.md)
 - [LinkedSet](classes/LinkedSet.md)
 - [ObjectPool](classes/ObjectPool.md)

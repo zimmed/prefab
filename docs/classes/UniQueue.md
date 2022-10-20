@@ -98,7 +98,7 @@
 
 #### Defined in
 
-[src/UniQueue.ts:31](https://github.com/zimmed/prefab/blob/c08eef0/src/UniQueue.ts#L31)
+[src/UniQueue.ts:31](https://github.com/zimmed/prefab/blob/a5ffdd1/src/UniQueue.ts#L31)
 
 ## Properties
 
@@ -112,7 +112,7 @@
 
 #### Defined in
 
-[src/LinkedList.ts:30](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L30)
+[src/LinkedList.ts:30](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L30)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 #### Defined in
 
-[src/LinkedSet.ts:7](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L7)
+[src/LinkedSet.ts:7](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L7)
 
 ___
 
@@ -140,7 +140,7 @@ ___
 
 #### Defined in
 
-[src/LinkedList.ts:33](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L33)
+[src/LinkedList.ts:33](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L33)
 
 ___
 
@@ -150,7 +150,7 @@ ___
 
 #### Defined in
 
-[src/UniQueue.ts:29](https://github.com/zimmed/prefab/blob/c08eef0/src/UniQueue.ts#L29)
+[src/UniQueue.ts:29](https://github.com/zimmed/prefab/blob/a5ffdd1/src/UniQueue.ts#L29)
 
 ___
 
@@ -160,7 +160,7 @@ ___
 
 #### Defined in
 
-[src/UniQueue.ts:10](https://github.com/zimmed/prefab/blob/c08eef0/src/UniQueue.ts#L10)
+[src/UniQueue.ts:10](https://github.com/zimmed/prefab/blob/a5ffdd1/src/UniQueue.ts#L10)
 
 ## Accessors
 
@@ -180,7 +180,7 @@ LinkedSet.head
 
 #### Defined in
 
-[src/LinkedList.ts:36](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L36)
+[src/LinkedList.ts:36](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L36)
 
 ___
 
@@ -200,7 +200,7 @@ LinkedSet.size
 
 #### Defined in
 
-[src/LinkedSet.ts:10](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L10)
+[src/LinkedSet.ts:10](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L10)
 
 ___
 
@@ -220,17 +220,17 @@ LinkedSet.tail
 
 #### Defined in
 
-[src/LinkedList.ts:40](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L40)
+[src/LinkedList.ts:40](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L40)
 
 ## Methods
 
 ### [iterator]
 
-▸ **[iterator]**(): `Generator`<`T`, `void`, `unknown`\>
+▸ **[iterator]**(): `IterableIterator`<`T`\>
 
 #### Returns
 
-`Generator`<`T`, `void`, `unknown`\>
+`IterableIterator`<`T`\>
 
 #### Inherited from
 
@@ -238,7 +238,7 @@ LinkedSet.tail
 
 #### Defined in
 
-[src/LinkedList.ts:393](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L393)
+[src/LinkedList.ts:391](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L391)
 
 ___
 
@@ -246,7 +246,7 @@ ___
 
 ▸ **add**(`item`): [`UniQueue`](UniQueue.md)<`T`\>
 
-Appends unique item to end of the set
+Appends unique item to end of the collection
 
 #### Parameters
 
@@ -264,7 +264,7 @@ Appends unique item to end of the set
 
 #### Defined in
 
-[src/LinkedSet.ts:41](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L41)
+[src/LinkedSet.ts:41](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L41)
 
 ___
 
@@ -272,7 +272,8 @@ ___
 
 ▸ **addNode**(`node`): [`UniQueue`](UniQueue.md)<`T`\>
 
-Appends LinkedList Node onto the end of the set
+Caution: Assumes node already has correct head and tail set
+Adds node to the end of the list
 
 #### Parameters
 
@@ -290,7 +291,7 @@ Appends LinkedList Node onto the end of the set
 
 #### Defined in
 
-[src/LinkedSet.ts:57](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L57)
+[src/LinkedList.ts:367](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L367)
 
 ___
 
@@ -316,7 +317,7 @@ Adds item to end of the list
 
 #### Defined in
 
-[src/LinkedList.ts:110](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L110)
+[src/LinkedList.ts:107](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L107)
 
 ___
 
@@ -336,7 +337,7 @@ Clears set
 
 #### Defined in
 
-[src/LinkedSet.ts:63](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L63)
+[src/LinkedSet.ts:70](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L70)
 
 ___
 
@@ -356,7 +357,7 @@ Moves element from end of list to the front
 
 #### Defined in
 
-[src/LinkedList.ts:130](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L130)
+[src/LinkedList.ts:127](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L127)
 
 ___
 
@@ -382,7 +383,7 @@ Removes specified item from the set
 
 #### Defined in
 
-[src/LinkedSet.ts:69](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L69)
+[src/LinkedSet.ts:61](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L61)
 
 ___
 
@@ -408,7 +409,7 @@ Removes specified node from the list
 
 #### Defined in
 
-[src/LinkedList.ts:378](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L378)
+[src/LinkedList.ts:376](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L376)
 
 ___
 
@@ -424,7 +425,7 @@ Shift item from front of front of Queue if type is FIFO, otherwise pop from end 
 
 #### Defined in
 
-[src/UniQueue.ts:45](https://github.com/zimmed/prefab/blob/c08eef0/src/UniQueue.ts#L45)
+[src/UniQueue.ts:45](https://github.com/zimmed/prefab/blob/a5ffdd1/src/UniQueue.ts#L45)
 
 ___
 
@@ -446,19 +447,19 @@ Append item to Queue
 
 #### Defined in
 
-[src/UniQueue.ts:40](https://github.com/zimmed/prefab/blob/c08eef0/src/UniQueue.ts#L40)
+[src/UniQueue.ts:40](https://github.com/zimmed/prefab/blob/a5ffdd1/src/UniQueue.ts#L40)
 
 ___
 
 ### entries
 
-▸ **entries**(): `Generator`<[`T`, `T`], `any`, `unknown`\>
+▸ **entries**(): `IterableIterator`<[`T`, `T`]\>
 
 Kind of pointless, but needed for parity with builtin Set object
 
 #### Returns
 
-`Generator`<[`T`, `T`], `any`, `unknown`\>
+`IterableIterator`<[`T`, `T`]\>
 
 #### Inherited from
 
@@ -466,7 +467,7 @@ Kind of pointless, but needed for parity with builtin Set object
 
 #### Defined in
 
-[src/LinkedList.ts:199](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L199)
+[src/LinkedList.ts:196](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L196)
 
 ___
 
@@ -492,7 +493,7 @@ Uses predicate to return a new array of all matching items (same signature is Ar
 
 #### Defined in
 
-[src/LinkedList.ts:297](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L297)
+[src/LinkedList.ts:295](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L295)
 
 ▸ **filter**<`This`\>(`predicate`, `thisArg`): `T`[]
 
@@ -519,7 +520,7 @@ Uses predicate to return a new array of all matching items (same signature is Ar
 
 #### Defined in
 
-[src/LinkedList.ts:298](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L298)
+[src/LinkedList.ts:296](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L296)
 
 ___
 
@@ -545,7 +546,7 @@ Uses predicate to return first matching item or undefined if no matches (same si
 
 #### Defined in
 
-[src/LinkedList.ts:271](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L271)
+[src/LinkedList.ts:269](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L269)
 
 ▸ **find**<`This`\>(`predicate`, `thisArg`): `undefined` \| `T`
 
@@ -572,7 +573,7 @@ Uses predicate to return first matching item or undefined if no matches (same si
 
 #### Defined in
 
-[src/LinkedList.ts:272](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L272)
+[src/LinkedList.ts:270](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L270)
 
 ___
 
@@ -598,7 +599,7 @@ Finds predicate-matching item, with iteration beginning at the end of the set
 
 #### Defined in
 
-[src/LinkedSet.ts:94](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L94)
+[src/LinkedSet.ts:92](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L92)
 
 ▸ **findRight**<`This`\>(`predicate`, `thisArg`): `undefined` \| `T`
 
@@ -625,7 +626,7 @@ Finds predicate-matching item, with iteration beginning at the end of the set
 
 #### Defined in
 
-[src/LinkedSet.ts:95](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L95)
+[src/LinkedSet.ts:93](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L93)
 
 ___
 
@@ -651,7 +652,7 @@ Operates on each element of the list in a callback method (same signature as Arr
 
 #### Defined in
 
-[src/LinkedList.ts:229](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L229)
+[src/LinkedList.ts:227](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L227)
 
 ▸ **forEach**<`ThisArg`\>(`cb`, `thisArg?`): `void`
 
@@ -678,7 +679,7 @@ Operates on each element of the list in a callback method (same signature as Arr
 
 #### Defined in
 
-[src/LinkedList.ts:230](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L230)
+[src/LinkedList.ts:228](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L228)
 
 ___
 
@@ -704,7 +705,7 @@ Determines if set contains specified item
 
 #### Defined in
 
-[src/LinkedSet.ts:36](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L36)
+[src/LinkedSet.ts:36](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L36)
 
 ___
 
@@ -731,7 +732,7 @@ Moves node to the front of the list
 
 #### Defined in
 
-[src/LinkedList.ts:143](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L143)
+[src/LinkedList.ts:140](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L140)
 
 ___
 
@@ -739,7 +740,7 @@ ___
 
 ▸ **insert**(`item`): [`UniQueue`](UniQueue.md)<`T`\>
 
-Inserts unique item into the front of the set
+Inserts unique item into the front of the collection
 
 #### Parameters
 
@@ -757,7 +758,7 @@ Inserts unique item into the front of the set
 
 #### Defined in
 
-[src/LinkedSet.ts:46](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L46)
+[src/LinkedSet.ts:51](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L51)
 
 ___
 
@@ -765,7 +766,8 @@ ___
 
 ▸ **insertNode**(`node`): [`UniQueue`](UniQueue.md)<`T`\>
 
-Inserts LinkedList Node into the front of the set
+Caution: Assumes node already has correct head and tail set
+Adds node to the front of the list
 
 #### Parameters
 
@@ -783,7 +785,7 @@ Inserts LinkedList Node into the front of the set
 
 #### Defined in
 
-[src/LinkedSet.ts:51](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L51)
+[src/LinkedList.ts:355](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L355)
 
 ___
 
@@ -809,19 +811,19 @@ Joins list elements into one string (same signature as Array.prototype.join)
 
 #### Defined in
 
-[src/LinkedList.ts:349](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L349)
+[src/LinkedList.ts:347](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L347)
 
 ___
 
 ### keys
 
-▸ **keys**(): `Generator`<`T`, `void`, `unknown`\>
+▸ **keys**(): `IterableIterator`<`T`\>
 
-Iterates through list items
+Alias for values() method
 
 #### Returns
 
-`Generator`<`T`, `void`, `unknown`\>
+`IterableIterator`<`T`\>
 
 #### Inherited from
 
@@ -829,7 +831,7 @@ Iterates through list items
 
 #### Defined in
 
-[src/LinkedList.ts:209](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L209)
+[src/LinkedList.ts:191](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L191)
 
 ___
 
@@ -861,7 +863,7 @@ Maps set items into a new array
 
 #### Defined in
 
-[src/LinkedSet.ts:105](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L105)
+[src/LinkedSet.ts:103](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L103)
 
 ▸ **map**<`RT`, `This`\>(`cb`, `thisArg`): `RT`[]
 
@@ -889,7 +891,7 @@ Maps set items into a new array
 
 #### Defined in
 
-[src/LinkedSet.ts:106](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L106)
+[src/LinkedSet.ts:104](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L104)
 
 ___
 
@@ -909,7 +911,7 @@ Pops item from the end of the set
 
 #### Defined in
 
-[src/LinkedSet.ts:15](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L15)
+[src/LinkedSet.ts:15](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L15)
 
 ___
 
@@ -929,7 +931,7 @@ Moves element from front of list to the end
 
 #### Defined in
 
-[src/LinkedList.ts:135](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L135)
+[src/LinkedList.ts:132](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L132)
 
 ___
 
@@ -962,7 +964,7 @@ Reduces list into specified value (same signature as Array.prototype.reduce)
 
 #### Defined in
 
-[src/LinkedList.ts:250](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L250)
+[src/LinkedList.ts:248](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L248)
 
 ▸ **reduce**<`RT`, `This`\>(`cb`, `initialValue`, `thisArg?`): `RT`
 
@@ -991,7 +993,7 @@ Reduces list into specified value (same signature as Array.prototype.reduce)
 
 #### Defined in
 
-[src/LinkedList.ts:251](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L251)
+[src/LinkedList.ts:249](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L249)
 
 ___
 
@@ -1024,7 +1026,7 @@ Reduces items from the end of the set to the front
 
 #### Defined in
 
-[src/LinkedSet.ts:78](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L78)
+[src/LinkedSet.ts:76](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L76)
 
 ▸ **reduceRight**<`RT`, `This`\>(`cb`, `initialValue`, `thisArg?`): `RT`
 
@@ -1053,19 +1055,19 @@ Reduces items from the end of the set to the front
 
 #### Defined in
 
-[src/LinkedSet.ts:79](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L79)
+[src/LinkedSet.ts:77](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L77)
 
 ___
 
 ### reverse
 
-▸ **reverse**(): `Generator`<`T`, `void`, `unknown`\>
+▸ **reverse**(): `IterableIterator`<`T`\>
 
 Iterates through list items in reverse
 
 #### Returns
 
-`Generator`<`T`, `void`, `unknown`\>
+`IterableIterator`<`T`\>
 
 #### Inherited from
 
@@ -1073,7 +1075,7 @@ Iterates through list items in reverse
 
 #### Defined in
 
-[src/LinkedList.ts:219](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L219)
+[src/LinkedList.ts:217](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L217)
 
 ___
 
@@ -1105,7 +1107,7 @@ Maps set items from the end of the set to the front into a new array
 
 #### Defined in
 
-[src/LinkedSet.ts:113](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L113)
+[src/LinkedSet.ts:111](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L111)
 
 ▸ **reverseMap**<`RT`, `This`\>(`cb`, `thisArg`): `RT`[]
 
@@ -1133,7 +1135,7 @@ Maps set items from the end of the set to the front into a new array
 
 #### Defined in
 
-[src/LinkedSet.ts:114](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L114)
+[src/LinkedSet.ts:112](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L112)
 
 ___
 
@@ -1153,7 +1155,7 @@ Shifts item off of the front of the set
 
 #### Defined in
 
-[src/LinkedSet.ts:26](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedSet.ts#L26)
+[src/LinkedSet.ts:26](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedSet.ts#L26)
 
 ___
 
@@ -1180,7 +1182,7 @@ Moves node to the end of the list
 
 #### Defined in
 
-[src/LinkedList.ts:158](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L158)
+[src/LinkedList.ts:155](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L155)
 
 ___
 
@@ -1200,7 +1202,7 @@ Converts list to native Array
 
 #### Defined in
 
-[src/LinkedList.ts:182](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L182)
+[src/LinkedList.ts:179](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L179)
 
 ___
 
@@ -1218,7 +1220,7 @@ ___
 
 #### Defined in
 
-[src/LinkedList.ts:389](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L389)
+[src/LinkedList.ts:387](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L387)
 
 ___
 
@@ -1244,19 +1246,19 @@ Alias for insert
 
 #### Defined in
 
-[src/LinkedList.ts:120](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L120)
+[src/LinkedList.ts:117](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L117)
 
 ___
 
 ### values
 
-▸ **values**(): `Generator`<`T`, `void`, `unknown`\>
+▸ **values**(): `IterableIterator`<`T`\>
 
-Alias for keys() method
+Iterates through list items
 
 #### Returns
 
-`Generator`<`T`, `void`, `unknown`\>
+`IterableIterator`<`T`\>
 
 #### Inherited from
 
@@ -1264,7 +1266,7 @@ Alias for keys() method
 
 #### Defined in
 
-[src/LinkedList.ts:194](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L194)
+[src/LinkedList.ts:207](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L207)
 
 ___
 
@@ -1297,7 +1299,7 @@ Static factory method as alias for class constructor
 
 #### Defined in
 
-[src/UniQueue.ts:13](https://github.com/zimmed/prefab/blob/c08eef0/src/UniQueue.ts#L13)
+[src/UniQueue.ts:13](https://github.com/zimmed/prefab/blob/a5ffdd1/src/UniQueue.ts#L13)
 
 ___
 
@@ -1330,4 +1332,4 @@ Same as LinkedList.create() but requires constructor arg
 
 #### Defined in
 
-[src/UniQueue.ts:21](https://github.com/zimmed/prefab/blob/c08eef0/src/UniQueue.ts#L21)
+[src/UniQueue.ts:21](https://github.com/zimmed/prefab/blob/a5ffdd1/src/UniQueue.ts#L21)

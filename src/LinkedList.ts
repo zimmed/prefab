@@ -56,10 +56,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   /**
    * @param iterable Optional iterable with which to initialize the list
    */
-  public constructor(
-    iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>,
-    /** @hidden **/ init?: object
-  ) {
+  public constructor(iterable?: IterableIterator<T> | Array<T>, /** @hidden **/ init?: object) {
     if (init) Object.assign(this, init);
     if (iterable) {
       for (const item of iterable) this.add(item);
@@ -190,13 +187,14 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return arr;
   }
 
-  /** Alias for keys() method */
-  public values() {
-    return this.keys();
+  /** Alias for values() method */
+  public keys() {
+    return this.values();
   }
 
   /** Kind of pointless, but needed for parity with builtin Set object */
-  public *entries(): Generator<[T, T]> {
+  public entries(): IterableIterator<[T, T]>;
+  public *entries(): IterableIterator<[any, T]> {
     let cur = this._head;
 
     while (cur) {
@@ -206,7 +204,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   }
 
   /** Iterates through list items */
-  public *keys() {
+  public *values(): IterableIterator<T> {
     let cur = this._head;
 
     while (cur) {
@@ -216,7 +214,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   }
 
   /** Iterates through list items in reverse */
-  public *reverse() {
+  public *reverse(): IterableIterator<T> {
     let cur = this._tail;
 
     while (cur) {
@@ -391,7 +389,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   }
 
   public [Symbol.iterator]() {
-    return this.keys();
+    return this.values();
   }
 
   private _findNode(item: T) {

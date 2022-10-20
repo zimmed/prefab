@@ -6,6 +6,11 @@ TypeScript library for optimized data structures (prefabs).
 
 > [Typedocs](docs/modules.md)
 
+![Jest Branch Coverage](coverage/badge-branches.svg)
+![Jest Function Coverage](coverage/badge-functions.svg)
+![Jest Line Coverage](coverage/badge-lines.svg)
+![Jest Statement Coverage](coverage/badge-statements.svg)
+
 ## Installation
 
 First, edit existing or create new .npmrc file in your project root, and add:
@@ -49,6 +54,7 @@ I considered adding parallel factory patterns instead of instance-based structur
 - [SizedLinkedList](#user-content-sizedlinkedlist-docs-src)
 - [LinkedSet](#user-content-linkedset-docs-src)
 - [SortedSet](#user-content-sortedset-docs-src)
+- [LinkedCollection](#user-content-linkedcollection-docs-src)
 - [Queue](#user-content-queue-docs-src)
 - [UniQueue](#user-content-uniqueue-docs-src)
 - [PriorityQueue](#user-content-priorityqueue-docs-src)
@@ -67,12 +73,16 @@ I considered adding parallel factory patterns instead of instance-based structur
  ┃  ╋━ UniQueue
  ┃  ┃
  ┃  ╋━ SortedSet
- ╹  ╹  ┻━ PriorityQueue
+ ┃  ╹  ┻━ PriorityQueue
+ ┃
+ ┣━ LinkedCollection
+ ┃  ┃
+ ╹  ┻━ SortedCollection [Coming soon]
 
  ObjectPool < LinkedList
 ```
 
-### LinkedList ([docs](docs/classes/LinkedList.LinkedList-1.md)) ([src](src/LinkedList.ts))
+### LinkedList ([docs](docs/classes/LinkedList.md)) ([src](src/LinkedList.ts))
 
 For all your linked-list needs!
 
@@ -95,7 +105,7 @@ for (const s of bar) {
 }
 ```
 
-### SizedLinkedList ([docs](docs/classes/SizedLinkedList.SizedLinkedList-1.md)) ([src](src/SizedLinkedList.ts))
+### SizedLinkedList ([docs](docs/classes/SizedLinkedList.md)) ([src](src/SizedLinkedList.ts))
 
 ##### (extends [LinkedList](#user-content-linkedlist-docs-src))
 
@@ -107,7 +117,7 @@ import { SizedLinkedList as LinkedList } from '@zimmed/prefab';
 const baz = LinkedList.from('green eggs and spam'.split(' ')).size; // -> 4
 ```
 
-### LinkedSet ([docs](docs/classes/LinkedSet.LinkedSet-1.md)) ([src](src/LinkedSet.ts))
+### LinkedSet ([docs](docs/classes/LinkedSet.md)) ([src](src/LinkedSet.ts))
 
 ##### (extends [LinkedList](#user-content-linkedlist-docs-src))
 
@@ -117,7 +127,7 @@ while supporting additional functionality that the native Set does not support, 
 as insert, pop, shift, and more.
 
 ```typescript
-import { SortedSet } from '@zimmed/prefab';
+import { LinkedSet } from '@zimmed/prefab';
 
 const set = new LinkedSet(['one', 'two', 'three', 'two', 'four', 'one']); // -> LinkedSet { 'one' 'two' 'three' 'four' }
 
@@ -141,7 +151,7 @@ const five = set.pop(); // -> 'five'
 set.size; // -> 4
 ```
 
-### SortedSet ([docs](docs/classes/SortedSet.SortedSet-1.md)) ([src](src/SortedSet.ts))
+### SortedSet ([docs](docs/classes/SortedSet.md)) ([src](src/SortedSet.ts))
 
 ##### (extends [LinkedSet](#user-content-linkedset-docs-src))
 
@@ -163,7 +173,7 @@ collection
   .delete(collection.find((x) => x.name === 'bar')); // -> SortedSet { 'baz' 'foo' }
 ```
 
-### Queue ([docs](docs/classes/Queue.Queue-1.md)) ([src](src/Queue.ts))
+### Queue ([docs](docs/classes/Queue.md)) ([src](src/Queue.ts))
 
 ##### (extends [SizedLinkedList](#user-content-sizedlinkedlist-docs-src))
 
@@ -187,7 +197,7 @@ stack.pop(); // -> 5
 // lifo -> Queue { 1 2 3 }
 ```
 
-### UniQueue ([docs](docs/classes/UniQueue.UniQueue-1.md)) ([src](src/UniQueue.ts))
+### UniQueue ([docs](docs/classes/UniQueue.md)) ([src](src/UniQueue.ts))
 
 ##### (extends [LinkedSet](#user-content-linkedset-docs-src))
 
@@ -203,7 +213,7 @@ const q = Queue.from([1, 2, 3, 4, 4, 3]); // -> UniQueue { 1, 2, 3, 4 }
 q.has(3); // -> Hashmap lookup time
 ```
 
-### PriorityQueue ([docs](docs/classes/PriorityQueue.PriorityQueue-1.md)) ([src](src/PriorityQueue.ts))
+### PriorityQueue ([docs](docs/classes/PriorityQueue.md)) ([src](src/PriorityQueue.ts))
 
 ##### (extends [SortedSet](#user-content-sortedset-docs-src))
 
@@ -224,7 +234,78 @@ q.enqueue(5, 1)
   .dequeue(); // -> 200
 ```
 
-### ObjectPool ([docs](docs/classes/ObjectPool.ObjectPool-1.md)) ([src](src/ObjectPool.ts))
+### LinkedCollection ([docs](docs/classes/LinkedCollection.md)) ([src](src/LinkedCollection.ts))
+
+##### (extends [LinkedList](#user-content-linkedlist-docs-src))
+
+Similar to the LinkedSet, but uses primary key lookups and identifiers, and requires items to be objects. Useful for keeping key -> value records with constant lookups, as well as linked list iterations.
+
+```typescript
+import { LinkedCollection } from '@zimmed/prefab';
+
+class Item {
+  constructor(
+    public readonly id: string,
+    public data?: any,
+    public readonly cat: string = 'default'
+  ) {}
+}
+
+const collection = new LinkedCollection('id', [
+  new Item('one'),
+  new Item('two'),
+  new Item('three'),
+  new Item('two'),
+]); // -> LinkedCollection { Item('one'), Item('two'), Item('three') }
+
+collection.add(new Item('four'));
+collection.size; // -> 4
+
+for (const item of collection) {
+  // same as collection.values()
+  // -> Item('one'), Item('two'), Item('three'), ...
+}
+
+for (const key of collection.keys()) {
+  // -> 'one', 'two', 'three', ...
+}
+
+for (const [key, item] of collection.entries()) {
+  // -> ['one', Item('one')], ...
+}
+
+// Respects same Set methods
+const four = collection.pop(); // -> Item('four')
+collection.size; // -> 4
+
+// Introduces expected Map method and changes signatures to be key lookups instead of item lookups
+collection.get('two'); // -> Item('two')
+collection.has('one'); // -> true
+collection.delete('three'); // -> true
+
+// Upserting / Uppending
+// Safely update existing item or add/insert new one
+collection.uppend(new Item('seven')); // -> same as collection.add or collection.append
+collection.uppend(new Item('seven', { foo: 'bar' })); // -> replaces existing Item('seven') with new Item('seven', { foo: 'bar' }) maintaining link position
+collection.upsert(new Item('zero')); // -> same as collection.insert or collection.unshift
+collection.upsert(new Item('zero', 14)); // -> updates existing Item('zero') with new Item('zero', 14) maintaining link position
+
+// Additional groupBy Helper
+// Groups items into arrays based on provided key
+new LinkedCollection('id', [
+  new Item('one'),
+  new Item('two'),
+  new Item('three', undefined, 'special'),
+]).groupBy('cat'); // -> { default: [Item('one'), Item('two')], special: [Item('three')] }
+// if key is the collection identifier key, returns a key->value object
+new LinkedCollection('id', [new Item('one'), new Item('two')]).groupBy('id'); // -> { one: Item('one'), two: Item('two') }
+```
+
+### SortedCollection (Coming Soon...)
+
+##### (extends [LinkedCollection](#user-content-linkedcollection-docs-src))
+
+### ObjectPool ([docs](docs/classes/ObjectPool.md)) ([src](src/ObjectPool.ts))
 
 ##### (uses [LinkedList](#user-content-linkedlist-docs-src))
 

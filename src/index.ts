@@ -6,4 +6,5 @@ export { PriorityQueue } from './PriorityQueue';
 export { UniQueue } from './UniQueue';
 export { Queue } from './Queue';
 export { SortedSet } from './SortedSet';
+export { LinkedCollection } from './LinkedCollection';
 export * as decorators from './decorators';

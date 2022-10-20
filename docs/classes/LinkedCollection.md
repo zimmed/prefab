@@ -1,104 +1,108 @@
-[@zimmed/prefab](../README.md) / [Exports](../modules.md) / SizedLinkedList
+[@zimmed/prefab](../README.md) / [Exports](../modules.md) / LinkedCollection
 
-# Class: SizedLinkedList<T, N\>
+# Class: LinkedCollection<K, T, N\>
 
 ## Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `T` |
+| `K` | extends `string` \| `number` \| `symbol` |
+| `T` | extends { readonly [k in K]: any } |
 | `N` | extends `LNode`<`T`\> = `LNode`<`T`\> |
 
 ## Hierarchy
 
 - [`LinkedList`](LinkedList.md)<`T`, `N`\>
 
-  ↳ **`SizedLinkedList`**
-
-  ↳↳ [`Queue`](Queue.md)
+  ↳ **`LinkedCollection`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](SizedLinkedList.md#constructor)
+- [constructor](LinkedCollection.md#constructor)
 
 ### Properties
 
-- [\_head](SizedLinkedList.md#_head)
-- [\_size](SizedLinkedList.md#_size)
-- [\_tail](SizedLinkedList.md#_tail)
+- [\_head](LinkedCollection.md#_head)
+- [\_map](LinkedCollection.md#_map)
+- [\_tail](LinkedCollection.md#_tail)
+- [keyBy](LinkedCollection.md#keyby)
 
 ### Accessors
 
-- [head](SizedLinkedList.md#head)
-- [size](SizedLinkedList.md#size)
-- [tail](SizedLinkedList.md#tail)
+- [head](LinkedCollection.md#head)
+- [size](LinkedCollection.md#size)
+- [tail](LinkedCollection.md#tail)
 
 ### Methods
 
-- [[iterator]](SizedLinkedList.md#[iterator])
-- [add](SizedLinkedList.md#add)
-- [addNode](SizedLinkedList.md#addnode)
-- [append](SizedLinkedList.md#append)
-- [clear](SizedLinkedList.md#clear)
-- [cycle](SizedLinkedList.md#cycle)
-- [delete](SizedLinkedList.md#delete)
-- [deleteNode](SizedLinkedList.md#deletenode)
-- [entries](SizedLinkedList.md#entries)
-- [filter](SizedLinkedList.md#filter)
-- [find](SizedLinkedList.md#find)
-- [findRight](SizedLinkedList.md#findright)
-- [forEach](SizedLinkedList.md#foreach)
-- [has](SizedLinkedList.md#has)
-- [headNode](SizedLinkedList.md#headnode)
-- [insert](SizedLinkedList.md#insert)
-- [insertNode](SizedLinkedList.md#insertnode)
-- [join](SizedLinkedList.md#join)
-- [keys](SizedLinkedList.md#keys)
-- [map](SizedLinkedList.md#map)
-- [pop](SizedLinkedList.md#pop)
-- [recycle](SizedLinkedList.md#recycle)
-- [reduce](SizedLinkedList.md#reduce)
-- [reduceRight](SizedLinkedList.md#reduceright)
-- [reverse](SizedLinkedList.md#reverse)
-- [reverseMap](SizedLinkedList.md#reversemap)
-- [shift](SizedLinkedList.md#shift)
-- [tailNode](SizedLinkedList.md#tailnode)
-- [toArray](SizedLinkedList.md#toarray)
-- [toJSON](SizedLinkedList.md#tojson)
-- [unshift](SizedLinkedList.md#unshift)
-- [values](SizedLinkedList.md#values)
-- [create](SizedLinkedList.md#create)
-- [from](SizedLinkedList.md#from)
+- [[iterator]](LinkedCollection.md#[iterator])
+- [add](LinkedCollection.md#add)
+- [addNode](LinkedCollection.md#addnode)
+- [append](LinkedCollection.md#append)
+- [clear](LinkedCollection.md#clear)
+- [cycle](LinkedCollection.md#cycle)
+- [delete](LinkedCollection.md#delete)
+- [deleteNode](LinkedCollection.md#deletenode)
+- [entries](LinkedCollection.md#entries)
+- [filter](LinkedCollection.md#filter)
+- [find](LinkedCollection.md#find)
+- [findRight](LinkedCollection.md#findright)
+- [forEach](LinkedCollection.md#foreach)
+- [groupBy](LinkedCollection.md#groupby)
+- [has](LinkedCollection.md#has)
+- [headNode](LinkedCollection.md#headnode)
+- [insert](LinkedCollection.md#insert)
+- [insertNode](LinkedCollection.md#insertnode)
+- [join](LinkedCollection.md#join)
+- [keys](LinkedCollection.md#keys)
+- [map](LinkedCollection.md#map)
+- [pop](LinkedCollection.md#pop)
+- [recycle](LinkedCollection.md#recycle)
+- [reduce](LinkedCollection.md#reduce)
+- [reduceRight](LinkedCollection.md#reduceright)
+- [reverse](LinkedCollection.md#reverse)
+- [reverseMap](LinkedCollection.md#reversemap)
+- [shift](LinkedCollection.md#shift)
+- [tailNode](LinkedCollection.md#tailnode)
+- [toArray](LinkedCollection.md#toarray)
+- [toJSON](LinkedCollection.md#tojson)
+- [unshift](LinkedCollection.md#unshift)
+- [uppend](LinkedCollection.md#uppend)
+- [upsert](LinkedCollection.md#upsert)
+- [values](LinkedCollection.md#values)
+- [create](LinkedCollection.md#create)
+- [from](LinkedCollection.md#from)
 
 ## Constructors
 
 ### constructor
 
-• **new SizedLinkedList**<`T`, `N`\>(`iterable?`, `init?`)
+• **new LinkedCollection**<`K`, `T`, `N`\>(`keyBy`, `iterable?`)
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `T` | `T` |
+| `K` | extends `string` \| `number` \| `symbol` |
+| `T` | extends { readonly [k in string \| number \| symbol]: any } |
 | `N` | extends `LNode`<`T`\> = `LNode`<`T`\> |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `iterable?` | `IterableIterator`<`T`\> \| `T`[] | Optional iterable with which to initialize the list |
-| `init?` | `object` | - |
+| Name | Type |
+| :------ | :------ |
+| `keyBy` | `K` |
+| `iterable?` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> |
 
-#### Inherited from
+#### Overrides
 
 [LinkedList](LinkedList.md).[constructor](LinkedList.md#constructor)
 
 #### Defined in
 
-[src/LinkedList.ts:59](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L59)
+[src/LinkedCollection.ts:19](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L19)
 
 ## Properties
 
@@ -116,13 +120,13 @@
 
 ___
 
-### \_size
+### \_map
 
-• `Protected` **\_size**: `number`
+• `Protected` `Readonly` **\_map**: `Map`<`T`[`K`], `N`\>
 
 #### Defined in
 
-[src/SizedLinkedList.ts:6](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L6)
+[src/LinkedCollection.ts:11](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L11)
 
 ___
 
@@ -137,6 +141,16 @@ ___
 #### Defined in
 
 [src/LinkedList.ts:33](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L33)
+
+___
+
+### keyBy
+
+• `Protected` `Readonly` **keyBy**: `K`
+
+#### Defined in
+
+[src/LinkedCollection.ts:12](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L12)
 
 ## Accessors
 
@@ -164,7 +178,7 @@ ___
 
 • `get` **size**(): `number`
 
-Current size of list
+Current size of collection
 
 #### Returns
 
@@ -172,7 +186,7 @@ Current size of list
 
 #### Defined in
 
-[src/SizedLinkedList.ts:9](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L9)
+[src/LinkedCollection.ts:15](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L15)
 
 ___
 
@@ -216,9 +230,9 @@ ___
 
 ### add
 
-▸ **add**(`item`): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **add**(`item`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
-Adds item to end of the list
+Appends unique item to end of the collection
 
 #### Parameters
 
@@ -228,23 +242,24 @@ Adds item to end of the list
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
-#### Inherited from
+#### Overrides
 
 [LinkedList](LinkedList.md).[add](LinkedList.md#add)
 
 #### Defined in
 
-[src/LinkedList.ts:122](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L122)
+[src/LinkedCollection.ts:101](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L101)
 
 ___
 
 ### addNode
 
-▸ **addNode**(`node`): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **addNode**(`node`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
-Appends Node onto the end of the list
+Caution: Assumes node already has correct head and tail set
+Adds node to the end of the list
 
 #### Parameters
 
@@ -254,21 +269,21 @@ Appends Node onto the end of the list
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
-#### Overrides
+#### Inherited from
 
 [LinkedList](LinkedList.md).[addNode](LinkedList.md#addnode)
 
 #### Defined in
 
-[src/SizedLinkedList.ts:42](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L42)
+[src/LinkedList.ts:367](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L367)
 
 ___
 
 ### append
 
-▸ **append**(`item`): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **append**(`item`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 Adds item to end of the list
 
@@ -280,7 +295,7 @@ Adds item to end of the list
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 #### Inherited from
 
@@ -296,7 +311,7 @@ ___
 
 ▸ **clear**(): `void`
 
-Clears the list
+Clears collection
 
 #### Returns
 
@@ -308,19 +323,19 @@ Clears the list
 
 #### Defined in
 
-[src/SizedLinkedList.ts:48](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L48)
+[src/LinkedCollection.ts:130](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L130)
 
 ___
 
 ### cycle
 
-▸ **cycle**(): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **cycle**(): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 Moves element from end of list to the front
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 #### Inherited from
 
@@ -334,27 +349,27 @@ ___
 
 ### delete
 
-▸ **delete**(`item`): `boolean`
+▸ **delete**(`key`): `boolean`
 
-Removes item from the list
+Removes specified item by key from the collection
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `item` | `T` |
+| `key` | `T`[`K`] |
 
 #### Returns
 
 `boolean`
 
-#### Inherited from
+#### Overrides
 
 [LinkedList](LinkedList.md).[delete](LinkedList.md#delete)
 
 #### Defined in
 
-[src/LinkedList.ts:174](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L174)
+[src/LinkedCollection.ts:121](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L121)
 
 ___
 
@@ -362,7 +377,7 @@ ___
 
 ▸ **deleteNode**(`cur?`): `boolean`
 
-Deletes specified node from the list
+Removes specified node from the list
 
 #### Parameters
 
@@ -374,33 +389,33 @@ Deletes specified node from the list
 
 `boolean`
 
-#### Overrides
+#### Inherited from
 
 [LinkedList](LinkedList.md).[deleteNode](LinkedList.md#deletenode)
 
 #### Defined in
 
-[src/SizedLinkedList.ts:54](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L54)
+[src/LinkedList.ts:376](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L376)
 
 ___
 
 ### entries
 
-▸ **entries**(): `IterableIterator`<[`T`, `T`]\>
+▸ **entries**(): `Generator`<[`T`[`K`], `T`], `any`, `unknown`\>
 
-Kind of pointless, but needed for parity with builtin Set object
+Iterates through collection key-value pairs
 
 #### Returns
 
-`IterableIterator`<[`T`, `T`]\>
+`Generator`<[`T`[`K`], `T`], `any`, `unknown`\>
 
-#### Inherited from
+#### Overrides
 
 [LinkedList](LinkedList.md).[entries](LinkedList.md#entries)
 
 #### Defined in
 
-[src/LinkedList.ts:196](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L196)
+[src/LinkedCollection.ts:54](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L54)
 
 ___
 
@@ -414,7 +429,7 @@ Uses predicate to return a new array of all matching items (same signature is Ar
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `Callback`<`T`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>, `boolean`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `predicate` | `Callback`<`T`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>, `boolean`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 
 #### Returns
 
@@ -440,7 +455,7 @@ Uses predicate to return a new array of all matching items (same signature is Ar
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `Callback`<`T`, `This`, `boolean`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `predicate` | `Callback`<`T`, `This`, `boolean`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -467,7 +482,7 @@ Uses predicate to return first matching item or undefined if no matches (same si
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `Callback`<`T`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>, `boolean`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `predicate` | `Callback`<`T`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>, `boolean`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 
 #### Returns
 
@@ -493,7 +508,7 @@ Uses predicate to return first matching item or undefined if no matches (same si
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `Callback`<`T`, `This`, `boolean`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `predicate` | `Callback`<`T`, `This`, `boolean`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -514,13 +529,13 @@ ___
 
 ▸ **findRight**(`predicate`): `undefined` \| `T`
 
-Finds predicate-matching item, with iteration beginning at the end of the list
+Finds predicate-matching item, with iteration beginning at the end of the collection
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `Callback`<`T`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>, `boolean`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `predicate` | `Callback`<`T`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>, `boolean`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 
 #### Returns
 
@@ -528,7 +543,7 @@ Finds predicate-matching item, with iteration beginning at the end of the list
 
 #### Defined in
 
-[src/SizedLinkedList.ts:84](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L84)
+[src/LinkedCollection.ts:152](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L152)
 
 ▸ **findRight**<`This`\>(`predicate`, `thisArg`): `undefined` \| `T`
 
@@ -542,7 +557,7 @@ Finds predicate-matching item, with iteration beginning at the end of the list
 
 | Name | Type |
 | :------ | :------ |
-| `predicate` | `Callback`<`T`, `This`, `boolean`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `predicate` | `Callback`<`T`, `This`, `boolean`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -551,7 +566,7 @@ Finds predicate-matching item, with iteration beginning at the end of the list
 
 #### Defined in
 
-[src/SizedLinkedList.ts:85](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L85)
+[src/LinkedCollection.ts:153](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L153)
 
 ___
 
@@ -565,7 +580,7 @@ Operates on each element of the list in a callback method (same signature as Arr
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Callback`<`T`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>, `void`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Callback`<`T`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>, `void`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 
 #### Returns
 
@@ -591,7 +606,7 @@ Operates on each element of the list in a callback method (same signature as Arr
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Callback`<`T`, `ThisArg`, `void`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Callback`<`T`, `ThisArg`, `void`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `thisArg?` | `ThisArg` |
 
 #### Returns
@@ -608,36 +623,79 @@ Operates on each element of the list in a callback method (same signature as Arr
 
 ___
 
-### has
+### groupBy
 
-▸ **has**(`item`): `boolean`
+▸ **groupBy**(`key`): `Record`<`K`, `T`\>
 
-Careful! O(n)
-Checks to see if item exists in list
+Group collection by specified key
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `item` | `T` |
+| `key` | `K` |
+
+#### Returns
+
+`Record`<`K`, `T`\>
+
+#### Defined in
+
+[src/LinkedCollection.ts:182](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L182)
+
+▸ **groupBy**<`X`\>(`key`): `Record`<`X`, `T`[]\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `X` | extends `string` \| `number` \| `symbol` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `key` | `X` |
+
+#### Returns
+
+`Record`<`X`, `T`[]\>
+
+#### Defined in
+
+[src/LinkedCollection.ts:183](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L183)
+
+___
+
+### has
+
+▸ **has**(`key`): `boolean`
+
+Determines if collection contains specified key
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `key` | `T`[`K`] |
 
 #### Returns
 
 `boolean`
 
-#### Inherited from
+#### Overrides
 
 [LinkedList](LinkedList.md).[has](LinkedList.md#has)
 
 #### Defined in
 
-[src/LinkedList.ts:102](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L102)
+[src/LinkedCollection.ts:65](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L65)
 
 ___
 
 ### headNode
 
-▸ **headNode**(`node`): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **headNode**(`node`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 Caution: Assumes node is already part of linked list
 Moves node to the front of the list
@@ -650,7 +708,7 @@ Moves node to the front of the list
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 #### Inherited from
 
@@ -664,9 +722,9 @@ ___
 
 ### insert
 
-▸ **insert**(`item`): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **insert**(`item`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
-Adds item to front of the list
+Inserts unique item into the front of the collection
 
 #### Parameters
 
@@ -676,23 +734,24 @@ Adds item to front of the list
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
-#### Inherited from
+#### Overrides
 
 [LinkedList](LinkedList.md).[insert](LinkedList.md#insert)
 
 #### Defined in
 
-[src/LinkedList.ts:112](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L112)
+[src/LinkedCollection.ts:111](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L111)
 
 ___
 
 ### insertNode
 
-▸ **insertNode**(`node`): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **insertNode**(`node`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
-Inserts Node into the front the list
+Caution: Assumes node already has correct head and tail set
+Adds node to the front of the list
 
 #### Parameters
 
@@ -702,15 +761,15 @@ Inserts Node into the front the list
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
-#### Overrides
+#### Inherited from
 
 [LinkedList](LinkedList.md).[insertNode](LinkedList.md#insertnode)
 
 #### Defined in
 
-[src/SizedLinkedList.ts:36](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L36)
+[src/LinkedList.ts:355](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L355)
 
 ___
 
@@ -742,21 +801,21 @@ ___
 
 ### keys
 
-▸ **keys**(): `IterableIterator`<`T`\>
+▸ **keys**(): `IterableIterator`<`T`[`K`]\>
 
-Alias for values() method
+Iterates through collection keys
 
 #### Returns
 
-`IterableIterator`<`T`\>
+`IterableIterator`<`T`[`K`]\>
 
-#### Inherited from
+#### Overrides
 
 [LinkedList](LinkedList.md).[keys](LinkedList.md#keys)
 
 #### Defined in
 
-[src/LinkedList.ts:191](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L191)
+[src/LinkedCollection.ts:49](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L49)
 
 ___
 
@@ -764,7 +823,7 @@ ___
 
 ▸ **map**<`RT`\>(`cb`): `RT`[]
 
-Maps list items into a new array
+Maps collection items into a new array
 
 #### Type parameters
 
@@ -776,7 +835,7 @@ Maps list items into a new array
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Callback`<`T`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>, `RT`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Callback`<`T`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>, `RT`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 
 #### Returns
 
@@ -788,7 +847,7 @@ Maps list items into a new array
 
 #### Defined in
 
-[src/SizedLinkedList.ts:110](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L110)
+[src/LinkedCollection.ts:163](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L163)
 
 ▸ **map**<`RT`, `This`\>(`cb`, `thisArg`): `RT`[]
 
@@ -803,7 +862,7 @@ Maps list items into a new array
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Callback`<`T`, `This`, `RT`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Callback`<`T`, `This`, `RT`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -816,7 +875,7 @@ Maps list items into a new array
 
 #### Defined in
 
-[src/SizedLinkedList.ts:111](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L111)
+[src/LinkedCollection.ts:164](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L164)
 
 ___
 
@@ -824,7 +883,7 @@ ___
 
 ▸ **pop**(): `undefined` \| `T`
 
-Pops item from end of the list
+Pops item from the end of the collection
 
 #### Returns
 
@@ -836,19 +895,19 @@ Pops item from end of the list
 
 #### Defined in
 
-[src/SizedLinkedList.ts:14](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L14)
+[src/LinkedCollection.ts:28](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L28)
 
 ___
 
 ### recycle
 
-▸ **recycle**(): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **recycle**(): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 Moves element from front of list to the end
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 #### Inherited from
 
@@ -876,7 +935,7 @@ Reduces list into specified value (same signature as Array.prototype.reduce)
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Reducer`<`T`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>, `RT`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Reducer`<`T`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>, `RT`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `initialValue` | `RT` |
 
 #### Returns
@@ -904,7 +963,7 @@ Reduces list into specified value (same signature as Array.prototype.reduce)
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Reducer`<`T`, `This`, `RT`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Reducer`<`T`, `This`, `RT`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `initialValue` | `RT` |
 | `thisArg?` | `This` |
 
@@ -926,7 +985,7 @@ ___
 
 ▸ **reduceRight**<`RT`\>(`cb`, `initialValue`): `RT`
 
-Reduces items from the end of the list to the front
+Reduces items from the end of the collection to the front
 
 #### Type parameters
 
@@ -938,7 +997,7 @@ Reduces items from the end of the list to the front
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Reducer`<`T`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>, `RT`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Reducer`<`T`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>, `RT`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `initialValue` | `RT` |
 
 #### Returns
@@ -947,9 +1006,9 @@ Reduces items from the end of the list to the front
 
 #### Defined in
 
-[src/SizedLinkedList.ts:63](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L63)
+[src/LinkedCollection.ts:136](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L136)
 
-▸ **reduceRight**<`RT`, `This`\>(`cb`, `initialValue`, `thisArg`): `RT`
+▸ **reduceRight**<`RT`, `This`\>(`cb`, `initialValue`, `thisArg?`): `RT`
 
 #### Type parameters
 
@@ -962,9 +1021,9 @@ Reduces items from the end of the list to the front
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Reducer`<`T`, `This`, `RT`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Reducer`<`T`, `This`, `RT`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `initialValue` | `RT` |
-| `thisArg` | `This` |
+| `thisArg?` | `This` |
 
 #### Returns
 
@@ -972,7 +1031,7 @@ Reduces items from the end of the list to the front
 
 #### Defined in
 
-[src/SizedLinkedList.ts:64](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L64)
+[src/LinkedCollection.ts:137](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L137)
 
 ___
 
@@ -1000,7 +1059,7 @@ ___
 
 ▸ **reverseMap**<`RT`\>(`cb`): `RT`[]
 
-Maps list items from the end of the set to the front into a new array
+Maps collection items from the end of the collection to the front into a new array
 
 #### Type parameters
 
@@ -1012,7 +1071,7 @@ Maps list items from the end of the set to the front into a new array
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Callback`<`T`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>, `RT`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Callback`<`T`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>, `RT`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 
 #### Returns
 
@@ -1020,7 +1079,7 @@ Maps list items from the end of the set to the front into a new array
 
 #### Defined in
 
-[src/SizedLinkedList.ts:133](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L133)
+[src/LinkedCollection.ts:171](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L171)
 
 ▸ **reverseMap**<`RT`, `This`\>(`cb`, `thisArg`): `RT`[]
 
@@ -1035,7 +1094,7 @@ Maps list items from the end of the set to the front into a new array
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `Callback`<`T`, `This`, `RT`, [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>\> |
+| `cb` | `Callback`<`T`, `This`, `RT`, [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>\> |
 | `thisArg` | `This` |
 
 #### Returns
@@ -1044,7 +1103,7 @@ Maps list items from the end of the set to the front into a new array
 
 #### Defined in
 
-[src/SizedLinkedList.ts:134](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L134)
+[src/LinkedCollection.ts:172](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L172)
 
 ___
 
@@ -1052,7 +1111,7 @@ ___
 
 ▸ **shift**(): `undefined` \| `T`
 
-Shifts item from the front of the list
+Shifts item off of the front of the collection
 
 #### Returns
 
@@ -1064,13 +1123,13 @@ Shifts item from the front of the list
 
 #### Defined in
 
-[src/SizedLinkedList.ts:25](https://github.com/zimmed/prefab/blob/a5ffdd1/src/SizedLinkedList.ts#L25)
+[src/LinkedCollection.ts:39](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L39)
 
 ___
 
 ### tailNode
 
-▸ **tailNode**(`node`): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **tailNode**(`node`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 Caution: Assumes node is already part of linked list
 Moves node to the end of the list
@@ -1083,7 +1142,7 @@ Moves node to the end of the list
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 #### Inherited from
 
@@ -1135,7 +1194,7 @@ ___
 
 ### unshift
 
-▸ **unshift**(`item`): [`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+▸ **unshift**(`item`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 Alias for insert
 
@@ -1147,7 +1206,7 @@ Alias for insert
 
 #### Returns
 
-[`SizedLinkedList`](SizedLinkedList.md)<`T`, `N`\>
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
 
 #### Inherited from
 
@@ -1156,6 +1215,50 @@ Alias for insert
 #### Defined in
 
 [src/LinkedList.ts:117](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L117)
+
+___
+
+### uppend
+
+▸ **uppend**(`item`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
+
+Append unique item to the end of the collection or update exiting item
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `item` | `T` |
+
+#### Returns
+
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
+
+#### Defined in
+
+[src/LinkedCollection.ts:75](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L75)
+
+___
+
+### upsert
+
+▸ **upsert**(`item`): [`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
+
+Insert unique item to the front of the collection or update exiting item
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `item` | `T` |
+
+#### Returns
+
+[`LinkedCollection`](LinkedCollection.md)<`K`, `T`, `N`\>
+
+#### Defined in
+
+[src/LinkedCollection.ts:88](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedCollection.ts#L88)
 
 ___
 

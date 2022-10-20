@@ -354,14 +354,14 @@ describe('LinkedList instance', () => {
     });
   });
 
-  describe('keys()', () => {
+  describe('values()', () => {
     const arr = ['foo', 'bar', 'baz'];
     const list = new LinkedList(arr);
 
     it('should return a generator that yields each item in the list', () => {
       let i = 0;
 
-      for (const item of list.keys()) {
+      for (const item of list.values()) {
         expect(item).toEqual(arr[i++]);
       }
     });
@@ -380,18 +380,18 @@ describe('LinkedList instance', () => {
     });
   });
 
-  describe('values()', () => {
+  describe('keys()', () => {
     const list = new LinkedList(['foo', 'bar', 'baz']);
-    let keys: jest.SpyInstance;
+    let values: jest.SpyInstance;
 
     beforeEach(() => {
-      keys = jest
-        .spyOn(list, 'keys')
+      values = jest
+        .spyOn(list, 'values')
         .mockReturnValue([] as unknown as Generator<string, void, unknown>);
     });
-    it('should call and return LinkedList.prototype.keys', () => {
-      expect(Array.from(list.values())).toEqual([]);
-      expect(keys).toHaveBeenCalledTimes(1);
+    it('should call and return LinkedList.prototype.values', () => {
+      expect(Array.from(list.keys())).toEqual([]);
+      expect(values).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -620,20 +620,20 @@ describe('LinkedList instance', () => {
 
   describe('[Symbol.iterator]()', () => {
     const list = new LinkedList(['foo', 'bar', 'baz']);
-    let keys: jest.SpyInstance;
+    let values: jest.SpyInstance;
 
     beforeEach(() => {
-      keys = jest.spyOn(list, 'keys');
+      values = jest.spyOn(list, 'values');
     });
 
-    it('should call and return LinkedList.prototype.keys() generator', () => {
+    it('should call and return LinkedList.prototype.values() generator', () => {
       const a = [];
 
       for (const e of list) {
         a.push(e);
       }
 
-      expect(keys).toHaveBeenCalledTimes(1);
+      expect(values).toHaveBeenCalledTimes(1);
       expect(a).toEqual(['foo', 'bar', 'baz']);
     });
   });

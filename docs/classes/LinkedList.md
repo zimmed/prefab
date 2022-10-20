@@ -17,6 +17,8 @@
 
   ↳ [`LinkedSet`](LinkedSet.md)
 
+  ↳ [`LinkedCollection`](LinkedCollection.md)
+
 ## Table of contents
 
 ### Constructors
@@ -72,7 +74,7 @@
 
 ### constructor
 
-• **new LinkedList**<`T`, `N`\>(`iterable?`)
+• **new LinkedList**<`T`, `N`\>(`iterable?`, `init?`)
 
 #### Type parameters
 
@@ -85,11 +87,12 @@
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `iterable?` | `IterableIterator`<`T`\> \| `T`[] \| `Generator`<`T`, `void`, `unknown`\> | Optional iterable with which to initialize the list |
+| `iterable?` | `IterableIterator`<`T`\> \| `T`[] | Optional iterable with which to initialize the list |
+| `init?` | `object` | - |
 
 #### Defined in
 
-[src/LinkedList.ts:59](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L59)
+[src/LinkedList.ts:59](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L59)
 
 ## Properties
 
@@ -99,7 +102,7 @@
 
 #### Defined in
 
-[src/LinkedList.ts:30](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L30)
+[src/LinkedList.ts:30](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L30)
 
 ___
 
@@ -109,7 +112,7 @@ ___
 
 #### Defined in
 
-[src/LinkedList.ts:33](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L33)
+[src/LinkedList.ts:33](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L33)
 
 ## Accessors
 
@@ -125,7 +128,7 @@ Item at head of the list
 
 #### Defined in
 
-[src/LinkedList.ts:36](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L36)
+[src/LinkedList.ts:36](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L36)
 
 ___
 
@@ -141,21 +144,21 @@ Item at tail of the list
 
 #### Defined in
 
-[src/LinkedList.ts:40](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L40)
+[src/LinkedList.ts:40](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L40)
 
 ## Methods
 
 ### [iterator]
 
-▸ **[iterator]**(): `Generator`<`T`, `void`, `unknown`\>
+▸ **[iterator]**(): `IterableIterator`<`T`\>
 
 #### Returns
 
-`Generator`<`T`, `void`, `unknown`\>
+`IterableIterator`<`T`\>
 
 #### Defined in
 
-[src/LinkedList.ts:393](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L393)
+[src/LinkedList.ts:391](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L391)
 
 ___
 
@@ -175,7 +178,7 @@ ___
 
 #### Defined in
 
-[src/LinkedList.ts:397](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L397)
+[src/LinkedList.ts:395](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L395)
 
 ___
 
@@ -197,7 +200,7 @@ Adds item to end of the list
 
 #### Defined in
 
-[src/LinkedList.ts:125](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L125)
+[src/LinkedList.ts:122](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L122)
 
 ___
 
@@ -220,7 +223,7 @@ Adds node to the end of the list
 
 #### Defined in
 
-[src/LinkedList.ts:369](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L369)
+[src/LinkedList.ts:367](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L367)
 
 ___
 
@@ -242,7 +245,7 @@ Adds item to end of the list
 
 #### Defined in
 
-[src/LinkedList.ts:110](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L110)
+[src/LinkedList.ts:107](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L107)
 
 ___
 
@@ -258,7 +261,7 @@ Clears the list
 
 #### Defined in
 
-[src/LinkedList.ts:171](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L171)
+[src/LinkedList.ts:168](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L168)
 
 ___
 
@@ -274,7 +277,7 @@ Moves element from end of list to the front
 
 #### Defined in
 
-[src/LinkedList.ts:130](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L130)
+[src/LinkedList.ts:127](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L127)
 
 ___
 
@@ -296,7 +299,7 @@ Removes item from the list
 
 #### Defined in
 
-[src/LinkedList.ts:177](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L177)
+[src/LinkedList.ts:174](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L174)
 
 ___
 
@@ -318,23 +321,23 @@ Removes specified node from the list
 
 #### Defined in
 
-[src/LinkedList.ts:378](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L378)
+[src/LinkedList.ts:376](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L376)
 
 ___
 
 ### entries
 
-▸ **entries**(): `Generator`<[`T`, `T`], `any`, `unknown`\>
+▸ **entries**(): `IterableIterator`<[`T`, `T`]\>
 
 Kind of pointless, but needed for parity with builtin Set object
 
 #### Returns
 
-`Generator`<[`T`, `T`], `any`, `unknown`\>
+`IterableIterator`<[`T`, `T`]\>
 
 #### Defined in
 
-[src/LinkedList.ts:199](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L199)
+[src/LinkedList.ts:196](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L196)
 
 ___
 
@@ -356,7 +359,7 @@ Uses predicate to return a new array of all matching items (same signature is Ar
 
 #### Defined in
 
-[src/LinkedList.ts:297](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L297)
+[src/LinkedList.ts:295](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L295)
 
 ▸ **filter**<`This`\>(`predicate`, `thisArg`): `T`[]
 
@@ -379,7 +382,7 @@ Uses predicate to return a new array of all matching items (same signature is Ar
 
 #### Defined in
 
-[src/LinkedList.ts:298](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L298)
+[src/LinkedList.ts:296](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L296)
 
 ___
 
@@ -401,7 +404,7 @@ Uses predicate to return first matching item or undefined if no matches (same si
 
 #### Defined in
 
-[src/LinkedList.ts:271](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L271)
+[src/LinkedList.ts:269](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L269)
 
 ▸ **find**<`This`\>(`predicate`, `thisArg`): `undefined` \| `T`
 
@@ -424,7 +427,7 @@ Uses predicate to return first matching item or undefined if no matches (same si
 
 #### Defined in
 
-[src/LinkedList.ts:272](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L272)
+[src/LinkedList.ts:270](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L270)
 
 ___
 
@@ -446,7 +449,7 @@ Operates on each element of the list in a callback method (same signature as Arr
 
 #### Defined in
 
-[src/LinkedList.ts:229](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L229)
+[src/LinkedList.ts:227](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L227)
 
 ▸ **forEach**<`ThisArg`\>(`cb`, `thisArg?`): `void`
 
@@ -469,7 +472,7 @@ Operates on each element of the list in a callback method (same signature as Arr
 
 #### Defined in
 
-[src/LinkedList.ts:230](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L230)
+[src/LinkedList.ts:228](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L228)
 
 ___
 
@@ -492,7 +495,7 @@ Checks to see if item exists in list
 
 #### Defined in
 
-[src/LinkedList.ts:105](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L105)
+[src/LinkedList.ts:102](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L102)
 
 ___
 
@@ -515,7 +518,7 @@ Moves node to the front of the list
 
 #### Defined in
 
-[src/LinkedList.ts:143](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L143)
+[src/LinkedList.ts:140](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L140)
 
 ___
 
@@ -537,7 +540,7 @@ Adds item to front of the list
 
 #### Defined in
 
-[src/LinkedList.ts:115](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L115)
+[src/LinkedList.ts:112](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L112)
 
 ___
 
@@ -560,7 +563,7 @@ Adds node to the front of the list
 
 #### Defined in
 
-[src/LinkedList.ts:357](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L357)
+[src/LinkedList.ts:355](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L355)
 
 ___
 
@@ -582,23 +585,23 @@ Joins list elements into one string (same signature as Array.prototype.join)
 
 #### Defined in
 
-[src/LinkedList.ts:349](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L349)
+[src/LinkedList.ts:347](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L347)
 
 ___
 
 ### keys
 
-▸ **keys**(): `Generator`<`T`, `void`, `unknown`\>
+▸ **keys**(): `IterableIterator`<`T`\>
 
-Iterates through list items
+Alias for values() method
 
 #### Returns
 
-`Generator`<`T`, `void`, `unknown`\>
+`IterableIterator`<`T`\>
 
 #### Defined in
 
-[src/LinkedList.ts:209](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L209)
+[src/LinkedList.ts:191](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L191)
 
 ___
 
@@ -626,7 +629,7 @@ Maps list items into new array (same signature as Array.prototype.map)
 
 #### Defined in
 
-[src/LinkedList.ts:324](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L324)
+[src/LinkedList.ts:322](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L322)
 
 ▸ **map**<`RT`, `This`\>(`cb`, `thisArg`): `RT`[]
 
@@ -650,7 +653,7 @@ Maps list items into new array (same signature as Array.prototype.map)
 
 #### Defined in
 
-[src/LinkedList.ts:325](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L325)
+[src/LinkedList.ts:323](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L323)
 
 ___
 
@@ -666,7 +669,7 @@ Removes and returns the last element of the list (or undefined if list is empty)
 
 #### Defined in
 
-[src/LinkedList.ts:70](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L70)
+[src/LinkedList.ts:67](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L67)
 
 ___
 
@@ -682,7 +685,7 @@ Moves element from front of list to the end
 
 #### Defined in
 
-[src/LinkedList.ts:135](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L135)
+[src/LinkedList.ts:132](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L132)
 
 ___
 
@@ -711,7 +714,7 @@ Reduces list into specified value (same signature as Array.prototype.reduce)
 
 #### Defined in
 
-[src/LinkedList.ts:250](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L250)
+[src/LinkedList.ts:248](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L248)
 
 ▸ **reduce**<`RT`, `This`\>(`cb`, `initialValue`, `thisArg?`): `RT`
 
@@ -736,23 +739,23 @@ Reduces list into specified value (same signature as Array.prototype.reduce)
 
 #### Defined in
 
-[src/LinkedList.ts:251](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L251)
+[src/LinkedList.ts:249](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L249)
 
 ___
 
 ### reverse
 
-▸ **reverse**(): `Generator`<`T`, `void`, `unknown`\>
+▸ **reverse**(): `IterableIterator`<`T`\>
 
 Iterates through list items in reverse
 
 #### Returns
 
-`Generator`<`T`, `void`, `unknown`\>
+`IterableIterator`<`T`\>
 
 #### Defined in
 
-[src/LinkedList.ts:219](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L219)
+[src/LinkedList.ts:217](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L217)
 
 ___
 
@@ -768,7 +771,7 @@ Removes and returns the first element of the list (or undefined if list is empty
 
 #### Defined in
 
-[src/LinkedList.ts:86](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L86)
+[src/LinkedList.ts:83](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L83)
 
 ___
 
@@ -791,7 +794,7 @@ Moves node to the end of the list
 
 #### Defined in
 
-[src/LinkedList.ts:158](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L158)
+[src/LinkedList.ts:155](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L155)
 
 ___
 
@@ -807,7 +810,7 @@ Converts list to native Array
 
 #### Defined in
 
-[src/LinkedList.ts:182](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L182)
+[src/LinkedList.ts:179](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L179)
 
 ___
 
@@ -821,7 +824,7 @@ ___
 
 #### Defined in
 
-[src/LinkedList.ts:389](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L389)
+[src/LinkedList.ts:387](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L387)
 
 ___
 
@@ -843,23 +846,23 @@ Alias for insert
 
 #### Defined in
 
-[src/LinkedList.ts:120](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L120)
+[src/LinkedList.ts:117](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L117)
 
 ___
 
 ### values
 
-▸ **values**(): `Generator`<`T`, `void`, `unknown`\>
+▸ **values**(): `IterableIterator`<`T`\>
 
-Alias for keys() method
+Iterates through list items
 
 #### Returns
 
-`Generator`<`T`, `void`, `unknown`\>
+`IterableIterator`<`T`\>
 
 #### Defined in
 
-[src/LinkedList.ts:194](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L194)
+[src/LinkedList.ts:207](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L207)
 
 ___
 
@@ -887,7 +890,7 @@ Static factory method as alias for class constructor
 
 #### Defined in
 
-[src/LinkedList.ts:20](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L20)
+[src/LinkedList.ts:20](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L20)
 
 ___
 
@@ -915,4 +918,4 @@ Same as LinkedList.create() but requires constructor arg
 
 #### Defined in
 
-[src/LinkedList.ts:25](https://github.com/zimmed/prefab/blob/c08eef0/src/LinkedList.ts#L25)
+[src/LinkedList.ts:25](https://github.com/zimmed/prefab/blob/a5ffdd1/src/LinkedList.ts#L25)
