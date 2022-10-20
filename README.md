@@ -4,6 +4,11 @@ TypeScript library for optimized data structures (prefabs).
 
 > [Typedocs](docs/modules.md)
 
+![Jest Branch Coverage](coverage/badge-branches.svg)
+![Jest Function Coverage](coverage/badge-functions.svg)
+![Jest Line Coverage](coverage/badge-lines.svg)
+![Jest Statement Coverage](coverage/badge-statements.svg)
+
 ## Installation
 
 First, edit existing or create new .npmrc file in your project root, and add:
