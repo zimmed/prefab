@@ -1,9 +1,9 @@
-import { hidden } from './decorators';
+import { forceInit, hidden } from './decorators';
 import LinkedList, { Callback, Reducer, LNode } from './LinkedList';
 
 export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedList<T, N> {
-  @hidden
-  private _size = 0;
+  @forceInit(() => 0, { enumerable: false })
+  protected _size!: number;
 
   /** Current size of list */
   public get size() {
@@ -12,18 +12,24 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
 
   /** Pops item from end of the list */
   public pop() {
-    const item = super.pop();
+    if (this._size) {
+      const item = super.pop();
 
-    if (item) --this._size;
-    return item;
+      --this._size;
+      return item;
+    }
+    return undefined;
   }
 
   /** Shifts item from the front of the list  */
   public shift() {
-    const item = super.shift();
+    if (this._size) {
+      const item = super.shift();
 
-    if (item) --this._size;
-    return item;
+      --this._size;
+      return item;
+    }
+    return undefined;
   }
 
   /** Inserts Node into the front the list */
@@ -54,39 +60,39 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
   }
 
   /** Reduces items from the end of the list to the front */
-  public reduceRight<RT, This>(
-    cb: Reducer<T, This, RT, this>,
+  public reduceRight<RT>(cb: Reducer<T, this, RT, this>, initialValue: RT): RT;
+  public reduceRight<RT, This>(cb: Reducer<T, This, RT, this>, initialValue: RT, thisArg: This): RT;
+  public reduceRight<RT, This = this>(
+    cb: Reducer<T, This | this, RT, this>,
     initialValue: RT,
-    thisArg: This
+    thisArg: This | this = this
   ): RT {
     let cur = this._tail;
     let next = initialValue;
     let i = this.size;
 
     while (cur) {
-      next = (cb as (this: This, accumulator: RT, value: T, index: number, set: this) => RT).call(
-        thisArg,
-        next,
-        cur.body,
-        --i,
-        this
-      );
+      next = (
+        cb as (this: This | this, accumulator: RT, value: T, index: number, set: this) => RT
+      ).call(thisArg, next, cur.body, --i, this);
       cur = cur.head as N | undefined;
     }
     return next;
   }
 
   /** Finds predicate-matching item, with iteration beginning at the end of the list */
-  public findRight<This>(
-    predicate: Callback<T, This, boolean, this>,
-    thisArg: This
+  public findRight(predicate: Callback<T, this, boolean, this>): T | undefined;
+  public findRight<This>(predicate: Callback<T, This, boolean, this>, thisArg: This): T | undefined;
+  public findRight<This = this>(
+    predicate: Callback<T, This | this, boolean, this>,
+    thisArg: This | this = this
   ): T | undefined {
     let cur = this._tail;
     let i = this.size;
 
     while (cur) {
       if (
-        (predicate as (this: This, value: T, index: number, list: this) => boolean).call(
+        (predicate as (this: This | this, value: T, index: number, list: this) => boolean).call(
           thisArg,
           cur.body,
           --i,
@@ -101,13 +107,18 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
   }
 
   /** Maps list items into a new array */
-  public map<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[] {
+  public map<RT>(cb: Callback<T, this, RT, this>): RT[];
+  public map<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[];
+  public map<RT, This = this>(
+    cb: Callback<T, This | this, RT, this>,
+    thisArg: This | this = this
+  ): RT[] {
     let cur = this._head;
     let i = -1;
     const arr = Array<RT>(this.size);
 
     while (cur) {
-      arr[++i] = (cb as (this: This, value: T, index: number, set: this) => RT).call(
+      arr[++i] = (cb as (this: This | this, value: T, index: number, set: this) => RT).call(
         thisArg,
         cur.body,
         i,
@@ -119,14 +130,19 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
   }
 
   /** Maps list items from the end of the set to the front into a new array */
-  public reverseMap<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[] {
+  public reverseMap<RT>(cb: Callback<T, this, RT, this>): RT[];
+  public reverseMap<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[];
+  public reverseMap<RT, This = this>(
+    cb: Callback<T, This | this, RT, this>,
+    thisArg: This | this = this
+  ): RT[] {
     let cur = this._tail;
     let i = this.size;
     let j = -1;
     const arr = Array<RT>(i);
 
     while (cur) {
-      arr[++j] = (cb as (this: This, value: T, index: number, set: this) => RT).call(
+      arr[++j] = (cb as (this: This | this, value: T, index: number, set: this) => RT).call(
         thisArg,
         cur.body,
         --i,

@@ -13,18 +13,23 @@ export class LinkedSet<T, N extends LNode<T> = LNode<T>> extends LinkedList<T, N
 
   /** Pops item from the end of the set */
   public pop() {
-    const item = super.pop();
+    if (this._map.size) {
+      const item = super.pop();
 
-    if (item) this._map.delete(item);
-    return item;
+      this._map.delete(item!);
+      return item;
+    }
+    return undefined;
   }
 
   /** Shifts item off of the front of the set */
   public shift() {
-    const item = super.shift();
+    if (this._map.size) {
+      const item = super.shift();
 
-    if (item) this._map.delete(item);
-    return item;
+      this._map.delete(item!);
+      return item;
+    }
   }
 
   /** Determines if set contains specified item */
@@ -34,12 +39,12 @@ export class LinkedSet<T, N extends LNode<T> = LNode<T>> extends LinkedList<T, N
 
   /** Appends unique item to end of the set */
   public add(item: T) {
-    return !this._map.has(item) ? super.add(item) : this;
+    return this._map.has(item) ? this : super.add(item);
   }
 
   /** Inserts unique item into the front of the set */
   public insert(item: T) {
-    return !this._map.has(item) ? super.insert(item) : this;
+    return this._map.has(item) ? this : super.insert(item);
   }
 
   /** Inserts LinkedList Node into the front of the set */
@@ -62,42 +67,55 @@ export class LinkedSet<T, N extends LNode<T> = LNode<T>> extends LinkedList<T, N
 
   /** Removes specified item from the set */
   public delete(item: T) {
-    const map = this._map;
-
-    if (this.deleteNode(map.get(item))) {
-      map.delete(item);
+    if (this.deleteNode(this._map.get(item))) {
+      this._map.delete(item);
       return true;
     }
     return false;
   }
 
   /** Reduces items from the end of the set to the front */
+  public reduceRight<RT>(cb: Reducer<T, this, RT, this>, initialValue: RT): RT;
   public reduceRight<RT, This>(
     cb: Reducer<T, This, RT, this>,
     initialValue: RT,
-    thisArg: This
+    thisArg?: This
+  ): RT;
+  public reduceRight<RT, This = this>(
+    cb: Reducer<T, This, RT, this>,
+    initialValue: RT,
+    thisArg: This | this = this
   ): RT {
     // @ts-ignore
     return SizedLinkedList.prototype.reduceRight.call(this, cb, initialValue, thisArg) as RT;
   }
 
   /** Finds predicate-matching item, with iteration beginning at the end of the set */
-  public findRight<This>(
+  public findRight(predicate: Callback<T, this, boolean, this>): T | undefined;
+  public findRight<This>(predicate: Callback<T, This, boolean, this>, thisArg: This): T | undefined;
+  public findRight<This = this>(
     predicate: Callback<T, This, boolean, this>,
-    thisArg: This
+    thisArg: This | this = this
   ): T | undefined {
     // @ts-ignore
     return SizedLinkedList.prototype.findRight.call(this, predicate, thisArg) as T | undefined;
   }
 
   /** Maps set items into a new array */
-  public map<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[] {
+  public map<RT>(cb: Callback<T, this, RT, this>): RT[];
+  public map<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[];
+  public map<RT, This = this>(cb: Callback<T, This, RT, this>, thisArg: This | this = this): RT[] {
     // @ts-ignore
     return SizedLinkedList.prototype.map.call(this, cb, thisArg) as RT[];
   }
 
   /** Maps set items from the end of the set to the front into a new array */
-  public reverseMap<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[] {
+  public reverseMap<RT>(cb: Callback<T, this, RT, this>): RT[];
+  public reverseMap<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[];
+  public reverseMap<RT, This = this>(
+    cb: Callback<T, This, RT, this>,
+    thisArg: This | this = this
+  ): RT[] {
     // @ts-ignore
     return SizedLinkedList.prototype.reverseMap.call(this, cb, thisArg) as RT[];
   }

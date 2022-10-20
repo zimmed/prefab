@@ -32,13 +32,13 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   @hidden
   protected _tail?: N;
 
-  /** Head of the list */
+  /** Item at head of the list */
   public get head() {
-    return this._head;
+    return this._head?.body;
   }
-  /** Tail of the list */
+  /** Item at tail of the list */
   public get tail() {
-    return this._tail;
+    return this._tail?.body;
   }
 
   /** @hidden */
@@ -46,7 +46,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     const size = 'size' in this ? (this as unknown as { size: number }).size : '?';
     const type = !this._head
       ? 'Empty'
-      : this._head?.body == null
+      : this._head.body == null
       ? 'unknown'
       : (this._head.body as unknown as object).constructor.name;
 
@@ -116,6 +116,11 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     return this.insertNode({ body: item, tail: this._head } as N);
   }
 
+  /** Alias for insert */
+  public unshift(item: T) {
+    return this.insert(item);
+  }
+
   /** Adds item to end of the list */
   public add(item: T) {
     return this.addNode({ head: this._tail, body: item } as N);
@@ -141,7 +146,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     if (node.head) node.head.tail = node.tail;
     if (node.tail) node.tail.head = node.head;
     node.head = undefined;
-    node.tail = this.head;
+    node.tail = this._head;
     this._head = node;
     return this;
   }
@@ -157,6 +162,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     if (node.tail) node.tail.head = node.head;
     node.tail = undefined;
     node.head = this._tail;
+    if (this._tail) this._tail.tail = node;
     this._tail = node;
     return this;
   }
@@ -174,7 +180,14 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
 
   /** Converts list to native Array */
   public toArray(): T[] {
-    return Array.from(this.keys());
+    const arr = [] as T[];
+    let cur = this._head;
+
+    while (cur) {
+      arr.push(cur.body);
+      cur = cur.tail as N;
+    }
+    return arr;
   }
 
   /** Alias for keys() method */
@@ -213,12 +226,17 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   }
 
   /** Operates on each element of the list in a callback method (same signature as Array.prototype.forEach) */
-  public forEach<ThisArg>(cb: Callback<T, ThisArg, void, this>, thisArg: ThisArg) {
+  public forEach(cb: Callback<T, this, void, this>): void;
+  public forEach<ThisArg>(cb: Callback<T, ThisArg, void, this>, thisArg?: ThisArg): void;
+  public forEach<ThisArg = this>(
+    cb: Callback<T, ThisArg | this, void, this>,
+    thisArg: ThisArg | this = this
+  ) {
     let cur = this._head;
     let i = -1;
 
     while (cur) {
-      (cb as (this: ThisArg, value: T, index: number, list: this) => void).call(
+      (cb as (this: ThisArg | this, value: T, index: number, list: this) => void).call(
         thisArg,
         cur.body,
         ++i,
@@ -229,32 +247,39 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   }
 
   /** Reduces list into specified value (same signature as Array.prototype.reduce) */
-  public reduce<RT, This>(cb: Reducer<T, This, RT, this>, initialValue: RT, thisArg: This): RT {
+  public reduce<RT>(cb: Reducer<T, this, RT, this>, initialValue: RT): RT;
+  public reduce<RT, This>(cb: Reducer<T, This, RT, this>, initialValue: RT, thisArg?: This): RT;
+  public reduce<RT, This = this>(
+    cb: Reducer<T, This | this, RT, this>,
+    initialValue: RT,
+    thisArg: This | this = this
+  ): RT {
     let cur = this._head;
     let i = -1;
     let next = initialValue;
 
     while (cur) {
-      next = (cb as (this: This, accumulator: RT, value: T, index: number, list: this) => RT).call(
-        thisArg,
-        next,
-        cur.body,
-        ++i,
-        this
-      );
+      next = (
+        cb as (this: This | this, accumulator: RT, value: T, index: number, list: this) => RT
+      ).call(thisArg, next, cur.body, ++i, this);
       cur = cur.tail as N | undefined;
     }
     return next;
   }
 
   /** Uses predicate to return first matching item or undefined if no matches (same signature as Array.prototype.find) */
-  public find<This>(predicate: Callback<T, This, boolean, this>, thisArg: This): T | undefined {
+  public find(predicate: Callback<T, this, boolean, this>): T | undefined;
+  public find<This>(predicate: Callback<T, This, boolean, this>, thisArg: This): T | undefined;
+  public find<This = this>(
+    predicate: Callback<T, This | this, boolean, this>,
+    thisArg: This | this = this
+  ): T | undefined {
     let cur = this._head;
     let i = -1;
 
     while (cur) {
       if (
-        (predicate as (this: This, value: T, index: number, list: this) => boolean).call(
+        (predicate as (this: This | this, value: T, index: number, list: this) => boolean).call(
           thisArg,
           cur.body,
           ++i,
@@ -269,14 +294,19 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   }
 
   /** Uses predicate to return a new array of all matching items (same signature is Array.protoype.filter) */
-  public filter<This>(predicate: Callback<T, This, boolean, this>, thisArg: This): T[] {
+  public filter(predicate: Callback<T, this, boolean, this>): T[];
+  public filter<This>(predicate: Callback<T, This, boolean, this>, thisArg: This): T[];
+  public filter<This = this>(
+    predicate: Callback<T, This | this, boolean, this>,
+    thisArg: This | this = this
+  ): T[] {
     let cur = this._head;
     let i = -1;
     const arr = [];
 
     while (cur) {
       if (
-        (predicate as (this: This, value: T, index: number, list: this) => boolean).call(
+        (predicate as (this: This | this, value: T, index: number, list: this) => boolean).call(
           thisArg,
           cur.body,
           ++i,
@@ -291,14 +321,19 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   }
 
   /** Maps list items into new array (same signature as Array.prototype.map) */
-  public map<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[] {
+  public map<RT>(cb: Callback<T, this, RT, this>): RT[];
+  public map<RT, This>(cb: Callback<T, This, RT, this>, thisArg: This): RT[];
+  public map<RT, This = this>(
+    cb: Callback<T, This | this, RT, this>,
+    thisArg: This | this = this
+  ): RT[] {
     let cur = this._head;
     let i = -1;
     const arr = [] as RT[];
 
     while (cur) {
       arr.push(
-        (cb as (this: This, value: T, index: number, set: this) => RT).call(
+        (cb as (this: This | this, value: T, index: number, set: this) => RT).call(
           thisArg,
           cur.body,
           ++i,
@@ -323,7 +358,7 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     const h = (this._head = node as N);
 
     if (h.tail) h.tail.head = h;
-    this._tail ??= h;
+    if (!this._tail) this._tail = h;
     return this;
   }
 
@@ -335,19 +370,17 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     const t = (this._tail = node as N);
 
     if (t.head) t.head.tail = t;
-    this._head ??= t;
+    if (!this._head) this._head = t;
     return this;
   }
 
   /** Removes specified node from the list */
   public deleteNode(cur?: N) {
     if (cur) {
+      if (cur.head) cur.head.tail = cur.tail;
+      if (cur.tail) cur.tail.head = cur.head;
       if (this._head === cur) this._head = cur.tail as N | undefined;
-      else if (this._tail === cur) this._tail = cur.head as N | undefined;
-      else {
-        if (cur.head) cur.head.tail = cur.tail;
-        if (cur.tail) cur.tail.head = cur.head;
-      }
+      if (this._tail === cur) this._tail = cur.head as N | undefined;
       return true;
     }
     return false;

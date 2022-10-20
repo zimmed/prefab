@@ -68,32 +68,28 @@ export class ObjectPool<O extends PoolObject> {
 
   /** Spawns and initializes object from pool, or create new object and increase pool size if full */
   public forceSpawn(...args: InitArgs<O>): O {
-    let node = this._list.tail;
-    let item: O;
+    let item = this._list.tail;
 
-    if (node?.inUse || !node) {
+    if (!item || item?.poolState?.inUse) {
       item = this.create();
       item.onInit(...args);
       item.poolState.inUse = true;
       ++this._max;
       this.insert(item);
     } else {
-      item = node.body;
       item.onInit(...args);
       item.poolState.inUse = true;
-      this._list.headNode(node);
+      this._list.headNode(item.poolState);
     }
     return item;
   }
 
   /** Spawns and initializes object from pool (if any are free) */
   public spawn(...args: InitArgs<O>): O | undefined {
-    const node = this._list.tail;
+    const item = this._list.tail;
 
-    if (node && !node?.inUse) {
-      const item = node?.body;
-
-      this._list.headNode(node);
+    if (item && !item?.poolState?.inUse) {
+      this._list.headNode(item.poolState);
       item.poolState.inUse = true;
       item.onInit(...args);
       return item;
@@ -177,13 +173,13 @@ export class ObjectPool<O extends PoolObject> {
 
   /** Append new object to end of the pool queue */
   protected add(obj: O) {
-    obj.poolState.head = this._list.tail;
+    obj.poolState.head = this._list.tail?.poolState;
     this._list.addNode(obj.poolState);
   }
 
   /** Insert new object into front of the pool queue */
   protected insert(obj: O) {
-    obj.poolState.tail = this._list.head;
+    obj.poolState.tail = this._list.head?.poolState;
     this._list.insertNode(obj.poolState);
   }
 }
