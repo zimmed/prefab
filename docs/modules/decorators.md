@@ -1,6 +1,6 @@
 [@zimmed/prefab](../README.md) / [Exports](../modules.md) / decorators
 
-# Module: decorators
+# Namespace: decorators
 
 ## Table of contents
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[decorators.ts:3](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L3)
+[src/decorators.ts:3](https://github.com/zimmed/prefab/blob/c08eef0/src/decorators.ts#L3)
 
 ___
 
@@ -58,13 +58,13 @@ ___
 
 #### Defined in
 
-[decorators.ts:39](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L39)
+[src/decorators.ts:39](https://github.com/zimmed/prefab/blob/c08eef0/src/decorators.ts#L39)
 
 ___
 
 ### hidden
 
-▸ `Const` **hidden**(`target`, `propertyKey`): `void`
+▸ **hidden**(`target`, `propertyKey`): `void`
 
 #### Parameters
 
@@ -79,9 +79,9 @@ ___
 
 #### Defined in
 
-[decorators.ts:63](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L63)
+node_modules/typescript/lib/lib.es5.d.ts:1494
 
-▸ `Const` **hidden**(`a`): `PropertyDecorator`
+▸ **hidden**(`a`): `PropertyDecorator`
 
 #### Parameters
 
@@ -98,13 +98,13 @@ ___
 
 #### Defined in
 
-[decorators.ts:63](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L63)
+[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/c08eef0/src/decorators.ts#L8)
 
 ___
 
 ### readonly
 
-▸ `Const` **readonly**(`target`, `propertyKey`): `void`
+▸ **readonly**(`target`, `propertyKey`): `void`
 
 #### Parameters
 
@@ -119,9 +119,9 @@ ___
 
 #### Defined in
 
-[decorators.ts:65](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L65)
+node_modules/typescript/lib/lib.es5.d.ts:1494
 
-▸ `Const` **readonly**(`a`): `PropertyDecorator`
+▸ **readonly**(`a`): `PropertyDecorator`
 
 #### Parameters
 
@@ -138,13 +138,13 @@ ___
 
 #### Defined in
 
-[decorators.ts:65](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L65)
+[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/c08eef0/src/decorators.ts#L8)
 
 ___
 
 ### visible
 
-▸ `Const` **visible**(`target`, `propertyKey`): `void`
+▸ **visible**(`target`, `propertyKey`): `void`
 
 #### Parameters
 
@@ -159,9 +159,9 @@ ___
 
 #### Defined in
 
-[decorators.ts:67](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L67)
+node_modules/typescript/lib/lib.es5.d.ts:1494
 
-▸ `Const` **visible**(`a`): `PropertyDecorator`
+▸ **visible**(`a`): `PropertyDecorator`
 
 #### Parameters
 
@@ -178,4 +178,4 @@ ___
 
 #### Defined in
 
-[decorators.ts:67](https://github.com/zimmed/prefab/blob/5b06828/src/decorators.ts#L67)
+[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/c08eef0/src/decorators.ts#L8)

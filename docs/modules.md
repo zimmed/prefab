@@ -4,15 +4,17 @@
 
 ## Table of contents
 
-### Modules
+### Namespaces
 
-- [LinkedList](modules/LinkedList.md)
-- [LinkedSet](modules/LinkedSet.md)
-- [ObjectPool](modules/ObjectPool.md)
-- [PriorityQueue](modules/PriorityQueue.md)
-- [Queue](modules/Queue.md)
-- [SizedLinkedList](modules/SizedLinkedList.md)
-- [SortedSet](modules/SortedSet.md)
-- [UniQueue](modules/UniQueue.md)
 - [decorators](modules/decorators.md)
-- [index](modules/index.md)
+
+### Classes
+
+- [LinkedList](classes/LinkedList.md)
+- [LinkedSet](classes/LinkedSet.md)
+- [ObjectPool](classes/ObjectPool.md)
+- [PriorityQueue](classes/PriorityQueue.md)
+- [Queue](classes/Queue.md)
+- [SizedLinkedList](classes/SizedLinkedList.md)
+- [SortedSet](classes/SortedSet.md)
+- [UniQueue](classes/UniQueue.md)
