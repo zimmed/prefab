@@ -31,14 +31,14 @@ export abstract class PoolObject {
   public abstract onClean(): void;
 }
 
-export class ObjectPool<O extends PoolObject> {
+export class ObjectPool<
+  O extends PoolObject,
+  // Unless the class is extended to pass arguments in the create() method,
+  //  only a no-arg constructor should be provided.
+  Constructor extends new (...args: any) => O = new () => O
+> {
   /** Objects within the pool must inherit from ObjectPool.Object */
   public static Object = PoolObject;
-
-  /** Static factory method as alias for class constructor */
-  public static create<O extends PoolObject>(PoolObjectClass: new () => O, allocSize = 0) {
-    return new this(PoolObjectClass, allocSize);
-  }
 
   @describe({ enumerable: false, writable: false })
   protected readonly _list = new LinkedList<O, PoolState<O>>();
@@ -54,7 +54,7 @@ export class ObjectPool<O extends PoolObject> {
     return this._max;
   }
 
-  public constructor(PoolObjectClass: new () => O, allocSize = 0) {
+  public constructor(PoolObjectClass: Constructor, allocSize = 0) {
     this._Class = PoolObjectClass;
 
     if (allocSize > 0) this.alloc(allocSize);

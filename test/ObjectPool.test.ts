@@ -26,13 +26,6 @@ describe('PoolObject', () => {
   });
 });
 
-describe('ObjectPool.create', () => {
-  it('should alias the constructor', () => {
-    expect(ObjectPool.create(Obj)).toEqual(new ObjectPool(Obj));
-    expect(ObjectPool.create(Obj, 100)).toEqual(new ObjectPool(Obj, 100));
-  });
-});
-
 describe('new ObjectPool()', () => {
   it('should instantiate with an empty pool', () => {
     let pool: ObjectPool<Obj>;
