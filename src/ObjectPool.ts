@@ -44,9 +44,17 @@ export class ObjectPool<O extends PoolObject> {
   @describe({ enumerable: false })
   private _max = 0;
 
+  @describe({ enumerable: false })
+  private _active = 0;
+
   /** The current (max) size of the object pool */
   public get size() {
     return this._max;
+  }
+
+  /** The current count of active objects in the pool */
+  public get count() {
+    return this._active;
   }
 
   public constructor(PoolObjectClass: new () => O, allocSize = 0) {
@@ -81,6 +89,7 @@ export class ObjectPool<O extends PoolObject> {
       item.poolState.inUse = true;
       this._list.headNode(item.poolState);
     }
+    ++this._active;
     return item;
   }
 
@@ -92,6 +101,7 @@ export class ObjectPool<O extends PoolObject> {
       this._list.headNode(item.poolState);
       item.poolState.inUse = true;
       item.onInit(...args);
+      ++this._active;
       return item;
     }
     return undefined;
@@ -186,6 +196,7 @@ export class ObjectPool<O extends PoolObject> {
       obj.poolState.pool = undefined;
       obj.poolState.tail = undefined;
       obj.poolState.head = undefined;
+      --this._active;
       return true;
     }
     return false;

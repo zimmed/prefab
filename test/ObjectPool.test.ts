@@ -32,6 +32,7 @@ describe('new ObjectPool()', () => {
 
     expect(() => (pool = new ObjectPool(Obj))).not.toThrowError();
     expect(pool!.size).toBe(0);
+    expect(pool!.count).toBe(0);
   });
 
   it('should instantiate with a specified pool size', () => {
@@ -39,6 +40,7 @@ describe('new ObjectPool()', () => {
 
     expect(() => (pool = new ObjectPool(Obj, 200))).not.toThrowError();
     expect(pool!.size).toBe(200);
+    expect(pool!.count).toBe(0);
   });
 });
 
@@ -60,8 +62,10 @@ describe('ObjectPool', () => {
       const b = pool.spawn({ foo: 'baz' })!;
       const c = pool.spawn({ foo: 'foobar' })!;
 
+      expect(pool.count).toBe(3);
       expect([...pool.items()]).toEqual([c, b, a]);
       pool.free(b);
+      expect(pool.count).toBe(2);
       expect([...pool.items()]).toEqual([c, a]);
     });
     it('should iterate using the Symbol.iterator', () => {
@@ -74,6 +78,7 @@ describe('ObjectPool', () => {
       for (const e of pool) {
         res.push(e);
       }
+      expect(pool.count).toBe(3);
       expect(res).toEqual([c, b, a]);
     });
   });
@@ -127,6 +132,8 @@ describe('ObjectPool', () => {
       const b = pool.forceSpawn({ foo: 'baz' });
       const c = pool.forceSpawn({ foo: 'foobar' });
 
+      expect(pool.size).toBe(10);
+      expect(pool.count).toBe(3);
       expect(a).toEqual({ foo: 'bar' });
       expect(b).toEqual({ foo: 'baz' });
       expect(c).toEqual({ foo: 'foobar' });
@@ -136,6 +143,7 @@ describe('ObjectPool', () => {
       const pool = new ObjectPool(Obj);
       const a = pool.forceSpawn({ foo: 'bar' });
 
+      expect(pool.count).toBe(1);
       expect(pool.size).toBe(1);
       expect(a).toEqual({ foo: 'bar' });
       expect(a.poolState.inUse).toBe(true);
@@ -145,6 +153,7 @@ describe('ObjectPool', () => {
       const b = pool.forceSpawn({ foo: 'baz' });
 
       expect(pool.size).toBe(2);
+      expect(pool.count).toBe(2);
       expect(b).toEqual({ foo: 'baz' });
       expect([...pool]).toEqual([b, a]);
     });
@@ -155,14 +164,17 @@ describe('ObjectPool', () => {
       pool.spawn({ foo: 'c' });
 
       expect(pool.size).toBe(3);
+      expect(pool.count).toBe(3);
       const a = pool.forceSpawn({ foo: 'bar' });
 
       expect(pool.size).toBe(4);
+      expect(pool.count).toBe(4);
       expect(a).toEqual({ foo: 'bar' });
 
       const b = pool.forceSpawn({ foo: 'baz' });
 
       expect(pool.size).toBe(5);
+      expect(pool.count).toBe(5);
       expect(b).toEqual({ foo: 'baz' });
       expect([...pool]).toEqual([b, a, { foo: 'c' }, { foo: 'b' }, { foo: 'a' }]);
     });
@@ -176,18 +188,22 @@ describe('ObjectPool', () => {
       const c = pool.spawn({ foo: 'c' })!;
 
       expect(pool.size).toBe(5);
+      expect(pool.count).toBe(3);
       expect([...pool]).toEqual([c, b, a]);
       expect(pool.free(b)).toBe(pool);
+      expect(pool.count).toBe(2);
       expect(b).toEqual({ foo: '' });
       expect([...pool]).toEqual([c, a]);
       // @ts-expect-error
       expect(pool._list.tail).toBe(b);
       expect(pool.free(a)).toBe(pool);
+      expect(pool.count).toBe(1);
       expect(a).toEqual(b);
       expect([...pool]).toEqual([c]);
       // @ts-expect-error
       expect(pool._list.tail).toBe(a);
       expect(pool.free(c)).toBe(pool);
+      expect(pool.count).toBe(0);
       expect(c).toEqual(b);
       expect([...pool]).toEqual([]);
       // @ts-expect-error
@@ -235,8 +251,10 @@ describe('ObjectPool', () => {
         .map((_, i) => pool.spawn({ foo: `${i}` }));
 
       expect(pool.size).toBe(10);
+      expect(pool.count).toBe(10);
       expect(pool.reallocUnsafe(5)).toBe(pool);
       expect(pool.size).toBe(5);
+      expect(pool.count).toBe(5);
       expect([...pool]).toEqual([
         { foo: '9' },
         { foo: '8' },
@@ -246,6 +264,7 @@ describe('ObjectPool', () => {
       ]);
       expect(items[4]).toEqual({ foo: '' });
       expect(pool.reallocUnsafe().size).toBe(5);
+      expect(pool.count).toBe(5);
     });
   });
 
@@ -267,10 +286,13 @@ describe('ObjectPool', () => {
         .map((_, i) => pool.spawn({ foo: `${i}` }));
 
       expect(pool.size).toBe(10);
+      expect(pool.count).toBe(10);
       expect(pool.realloc(5)).toBe(pool);
       expect(pool.size).toBe(10);
+      expect(pool.count).toBe(10);
       expect([...pool]).toEqual(items.reverse());
       expect(pool.realloc().size).toBe(10);
+      expect(pool.count).toBe(10);
     });
   });
 
@@ -284,11 +306,14 @@ describe('ObjectPool', () => {
       expect(pool.size).toBe(10);
       expect(pool.dealloc(6)).toBe(pool);
       expect(pool.size).toBe(4);
+      expect(pool.count).toBe(4);
       expect([...pool]).toEqual([{ foo: '9' }, { foo: '8' }, { foo: '7' }, { foo: '6' }]);
       expect(items[5]).toEqual({ foo: '' });
       expect(pool.dealloc().size).toBe(3);
+      expect(pool.count).toBe(3);
       expect([...pool]).toEqual([{ foo: '9' }, { foo: '8' }, { foo: '7' }]);
       expect(pool.dealloc(10).size).toBe(0);
+      expect(pool.count).toBe(0);
       expect([...pool]).toEqual([]);
     });
     it('should do nothing if the specified amount is <= 0', () => {
