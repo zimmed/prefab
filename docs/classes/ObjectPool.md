@@ -42,7 +42,6 @@
 - [reallocUnsafe](ObjectPool.md#reallocunsafe)
 - [spawn](ObjectPool.md#spawn)
 - [toJSON](ObjectPool.md#tojson)
-- [create](ObjectPool.md#create-1)
 
 ## Constructors
 
@@ -65,7 +64,7 @@
 
 #### Defined in
 
-[src/ObjectPool.ts:57](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L57)
+[src/ObjectPool.ts:52](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L52)
 
 ## Properties
 
@@ -79,7 +78,7 @@
 
 #### Defined in
 
-[src/ObjectPool.ts:47](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L47)
+[src/ObjectPool.ts:42](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L42)
 
 ___
 
@@ -89,7 +88,7 @@ ___
 
 #### Defined in
 
-[src/ObjectPool.ts:44](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L44)
+[src/ObjectPool.ts:39](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L39)
 
 ___
 
@@ -99,7 +98,7 @@ ___
 
 #### Defined in
 
-[src/ObjectPool.ts:50](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L50)
+[src/ObjectPool.ts:45](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L45)
 
 ___
 
@@ -111,7 +110,7 @@ Objects within the pool must inherit from ObjectPool.Object
 
 #### Defined in
 
-[src/ObjectPool.ts:36](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L36)
+[src/ObjectPool.ts:36](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L36)
 
 ## Accessors
 
@@ -127,7 +126,7 @@ The current (max) size of the object pool
 
 #### Defined in
 
-[src/ObjectPool.ts:53](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L53)
+[src/ObjectPool.ts:48](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L48)
 
 ## Methods
 
@@ -141,7 +140,7 @@ The current (max) size of the object pool
 
 #### Defined in
 
-[src/ObjectPool.ts:70](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L70)
+[src/ObjectPool.ts:65](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L65)
 
 ___
 
@@ -163,7 +162,7 @@ Append new object to end of the pool queue
 
 #### Defined in
 
-[src/ObjectPool.ts:175](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L175)
+[src/ObjectPool.ts:170](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L170)
 
 ___
 
@@ -185,7 +184,7 @@ Increases pool size and allocates new objects to fill it
 
 #### Defined in
 
-[src/ObjectPool.ts:113](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L113)
+[src/ObjectPool.ts:108](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L108)
 
 ___
 
@@ -201,7 +200,7 @@ Completely clear the pool, freeing all objects from memory
 
 #### Defined in
 
-[src/ObjectPool.ts:150](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L150)
+[src/ObjectPool.ts:145](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L145)
 
 ___
 
@@ -217,7 +216,7 @@ Create and return new PoolObject
 
 #### Defined in
 
-[src/ObjectPool.ts:167](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L167)
+[src/ObjectPool.ts:162](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L162)
 
 ___
 
@@ -239,7 +238,7 @@ Downsize pool by specified amount, deallocating overflowing objects
 
 #### Defined in
 
-[src/ObjectPool.ts:155](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L155)
+[src/ObjectPool.ts:150](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L150)
 
 ___
 
@@ -262,7 +261,7 @@ Cleans and removes object from pool entirely
 
 #### Defined in
 
-[src/ObjectPool.ts:187](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L187)
+[src/ObjectPool.ts:182](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L182)
 
 ___
 
@@ -284,7 +283,7 @@ Spawns and initializes object from pool, or create new object and increase pool 
 
 #### Defined in
 
-[src/ObjectPool.ts:75](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L75)
+[src/ObjectPool.ts:70](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L70)
 
 ___
 
@@ -306,7 +305,7 @@ Returns object back to pool to be re-used later
 
 #### Defined in
 
-[src/ObjectPool.ts:106](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L106)
+[src/ObjectPool.ts:101](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L101)
 
 ___
 
@@ -328,7 +327,7 @@ Insert new object into front of the pool queue
 
 #### Defined in
 
-[src/ObjectPool.ts:181](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L181)
+[src/ObjectPool.ts:176](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L176)
 
 ___
 
@@ -342,7 +341,7 @@ ___
 
 #### Defined in
 
-[src/ObjectPool.ts:63](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L63)
+[src/ObjectPool.ts:58](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L58)
 
 ___
 
@@ -364,7 +363,7 @@ Sets max pool size, but ignores call if provided size is smaller than current ma
 
 #### Defined in
 
-[src/ObjectPool.ts:139](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L139)
+[src/ObjectPool.ts:134](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L134)
 
 ___
 
@@ -386,7 +385,7 @@ Overrides max pool size, deallocating any overflowing objects
 
 #### Defined in
 
-[src/ObjectPool.ts:124](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L124)
+[src/ObjectPool.ts:119](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L119)
 
 ___
 
@@ -408,7 +407,7 @@ Spawns and initializes object from pool (if any are free)
 
 #### Defined in
 
-[src/ObjectPool.ts:93](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L93)
+[src/ObjectPool.ts:88](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L88)
 
 ___
 
@@ -422,33 +421,4 @@ ___
 
 #### Defined in
 
-[src/ObjectPool.ts:204](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L204)
-
-___
-
-### create
-
-▸ `Static` **create**<`O`\>(`PoolObjectClass`, `allocSize?`): [`ObjectPool`](ObjectPool.md)<`O`\>
-
-Static factory method as alias for class constructor
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `O` | extends [`PoolObject`](PoolObject.md)<`O`\> |
-
-#### Parameters
-
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `PoolObjectClass` | () => `O` | `undefined` |
-| `allocSize` | `number` | `0` |
-
-#### Returns
-
-[`ObjectPool`](ObjectPool.md)<`O`\>
-
-#### Defined in
-
-[src/ObjectPool.ts:39](https://github.com/zimmed/prefab/blob/83cd828/src/ObjectPool.ts#L39)
+[src/ObjectPool.ts:199](https://github.com/zimmed/prefab/blob/cecae0e/src/ObjectPool.ts#L199)
