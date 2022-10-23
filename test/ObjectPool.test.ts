@@ -42,6 +42,13 @@ describe('new ObjectPool()', () => {
     expect(pool!.size).toBe(200);
     expect(pool!.count).toBe(0);
   });
+
+  it('should instantiate with overriding properties', () => {
+    let pool: ObjectPool<Obj>;
+
+    expect(() => (pool = new ObjectPool(Obj, 0, { foo: 'bar' }))).not.toThrowError();
+    expect((pool! as unknown as { foo: string }).foo).toBe('bar');
+  });
 });
 
 describe('ObjectPool', () => {

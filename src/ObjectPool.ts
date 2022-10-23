@@ -57,9 +57,15 @@ export class ObjectPool<O extends PoolObject> {
     return this._active;
   }
 
-  public constructor(PoolObjectClass: new () => O, allocSize = 0) {
+  public constructor(
+    PoolObjectClass: new () => O,
+    allocSize = 0,
+    /** @hidden **/
+    additionalProps?: Record<any, any>
+  ) {
     this._Class = PoolObjectClass;
 
+    if (additionalProps) Object.assign(this, additionalProps);
     if (allocSize > 0) this.alloc(allocSize);
   }
 

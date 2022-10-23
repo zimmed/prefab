@@ -1,6 +1,6 @@
 {
   "name": "@zimmed/prefab",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "TypeScript library for optimized data structures.",
   "keywords": [],
   "main": "dist/prefab.umd.js",
@@ -85,9 +85,8 @@
     ]
   },
   "exports": {
-    ".": "./dist/bench.js",
-    "./node": "./dist/node.js",
-    "./web": "./dist/web.js"
+    ".": "./dist/prefab.js",
+    "./lib": "./dist/lib.index.js"
   },
   "commitlint": {
     "extends": [

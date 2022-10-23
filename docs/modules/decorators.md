@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/decorators.ts:3](https://github.com/zimmed/prefab/blob/efb6ece/src/decorators.ts#L3)
+[src/decorators.ts:3](https://github.com/zimmed/prefab/blob/bcf9898/src/decorators.ts#L3)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[src/decorators.ts:38](https://github.com/zimmed/prefab/blob/efb6ece/src/decorators.ts#L38)
+[src/decorators.ts:38](https://github.com/zimmed/prefab/blob/bcf9898/src/decorators.ts#L38)
 
 ___
 
@@ -98,7 +98,7 @@ node_modules/typescript/lib/lib.es5.d.ts:1494
 
 #### Defined in
 
-[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/efb6ece/src/decorators.ts#L8)
+[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/bcf9898/src/decorators.ts#L8)
 
 ___
 
@@ -138,7 +138,7 @@ node_modules/typescript/lib/lib.es5.d.ts:1494
 
 #### Defined in
 
-[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/efb6ece/src/decorators.ts#L8)
+[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/bcf9898/src/decorators.ts#L8)
 
 ___
 
@@ -178,4 +178,4 @@ node_modules/typescript/lib/lib.es5.d.ts:1494
 
 #### Defined in
 
-[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/efb6ece/src/decorators.ts#L8)
+[src/decorators.ts:8](https://github.com/zimmed/prefab/blob/bcf9898/src/decorators.ts#L8)
