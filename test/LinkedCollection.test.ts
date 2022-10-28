@@ -246,25 +246,67 @@ describe('LinkedCollection instance', () => {
     });
   });
 
-  describe('uppend()', () => {
+  describe('update()', () => {
     const a = new Obj(0);
+    const foo = new Obj(17);
     let list: LinkedCollection<'id', Obj & { data?: any }>;
     let addNode: jest.SpyInstance;
+    let resolve: jest.Func;
 
     beforeEach(() => {
       list = new LinkedCollection('id', [{ id: 3 }, { id: 5 }, { id: 7 }, { id: 9 }, a]);
       addNode = jest.spyOn(list, 'addNode');
+      resolve = jest.fn(() => foo);
+    });
+
+    it('should return undefined if item doesnt exist', () => {
+      expect(list.update(17, { data: 'data' })).toBeUndefined();
+      expect(list.update(17, { data: 'data' }, resolve)).toBeUndefined();
+      expect(list.update({ id: 17, data: 'data' })).toBeUndefined();
+      expect(list.update({ id: 17, data: 'data' }, resolve)).toBeUndefined();
+      expect(resolve).not.toHaveBeenCalled();
+    });
+
+    it('should return the updated item when it exists', () => {
+      expect(list.update(5, { data: 'foo' })).toEqual({ id: 5, data: 'foo' });
+      expect(list.select(5)).toEqual({ id: 5, data: 'foo' });
+      expect(list.update({ id: 5, data: 17 })).toEqual({ id: 5, data: 17 });
+      expect(list.select(5)).toEqual({ id: 5, data: 17 });
+      expect(resolve).not.toHaveBeenCalled();
+      expect(list.update(5, { data: 'foo' }, resolve)).toBe(foo);
+      expect(list.select(5)).toBe(foo);
+      expect(resolve).toHaveBeenCalledTimes(1);
+      expect(resolve).toHaveBeenCalledWith({ id: 5, data: 17 }, { data: 'foo' });
+      expect(list.update({ id: 9, data: 'foo' }, resolve)).toBe(foo);
+      expect(list.select(9)).toBe(foo);
+      expect(resolve).toHaveBeenCalledTimes(2);
+      expect(resolve).toHaveBeenCalledWith({ id: 9 }, { id: 9, data: 'foo' });
+    });
+  });
+
+  describe('apsert()', () => {
+    const a = new Obj(0);
+    const foo = new Obj(17);
+    let list: LinkedCollection<'id', Obj & { data?: any }>;
+    let addNode: jest.SpyInstance;
+    let resolve: jest.Func;
+
+    beforeEach(() => {
+      list = new LinkedCollection('id', [{ id: 3 }, { id: 5 }, { id: 7 }, { id: 9 }, a]);
+      addNode = jest.spyOn(list, 'addNode');
+      resolve = jest.fn(() => foo);
     });
 
     it('should append new elements', () => {
       expect(list.size).toBe(5);
       expect(addNode).not.toHaveBeenCalled();
       expect(list.tail).toEqual(a);
-      expect(list.uppend({ id: -1 })).toBe(list);
+      expect(list.apsert({ id: -1 }, resolve)).toBe(list);
+      expect(resolve).not.toHaveBeenCalled();
       expect(addNode).toHaveBeenCalledTimes(1);
       expect(addNode).toHaveBeenCalledWith(expect.objectContaining({ body: { id: -1 } }));
       expect(list.tail).toEqual({ id: -1 });
-      expect(list.uppend({ id: 17 })).toBe(list);
+      expect(list.apsert({ id: 17 })).toBe(list);
       expect(addNode).toHaveBeenCalledTimes(2);
       expect(addNode).toHaveBeenCalledWith(expect.objectContaining({ body: { id: 17 } }));
       expect(list.tail).toEqual({ id: 17 });
@@ -275,33 +317,45 @@ describe('LinkedCollection instance', () => {
       expect(list.size).toBe(5);
       expect(addNode).not.toHaveBeenCalled();
       expect(list.tail).toBe(a);
-      expect(list.uppend({ ...a, data: 'bar' })).toBe(list);
+      expect(list.apsert({ ...a, data: 'bar' })).toBe(list);
       expect(addNode).not.toHaveBeenCalled();
       expect(list.tail).not.toBe(a);
       expect(list.tail).not.toEqual(a);
       expect(list.tail).toEqual({ id: a.id, data: 'bar' });
-      expect(list.uppend({ id: 5, data: 'foo' })).toBe(list);
+      expect(list.apsert({ id: 5, data: 'foo' })).toBe(list);
       expect(addNode).not.toHaveBeenCalled();
       expect(list.select(5)).toHaveProperty('data', 'foo');
       expect(list.size).toBe(5);
+    });
+
+    it('should update existing element with specified resolve fn', () => {
+      expect(resolve).not.toHaveBeenCalled();
+      expect(list.apsert({ ...a, data: 'bar' }, resolve)).toBe(list);
+      expect(addNode).not.toHaveBeenCalled();
+      expect(resolve).toHaveBeenCalledWith(a, { ...a, data: 'bar' });
+      expect(list.tail).toBe(foo);
     });
   });
 
   describe('upsert()', () => {
     const a = new Obj(0);
+    const foo = new Obj(17);
     let list: LinkedCollection<'id', Obj & { data?: any }>;
     let insertNode: jest.SpyInstance;
+    let resolve: jest.Func;
 
     beforeEach(() => {
       list = new LinkedCollection('id', [{ id: 3 }, { id: 5 }, { id: 7 }, { id: 9 }, a]);
       insertNode = jest.spyOn(list, 'insertNode');
+      resolve = jest.fn(() => foo);
     });
 
     it('should append new elements', () => {
       expect(list.size).toBe(5);
       expect(insertNode).not.toHaveBeenCalled();
       expect(list.head).toEqual({ id: 3 });
-      expect(list.upsert({ id: -1 })).toBe(list);
+      expect(list.upsert({ id: -1 }, resolve)).toBe(list);
+      expect(resolve).not.toHaveBeenCalled();
       expect(insertNode).toHaveBeenCalledTimes(1);
       expect(insertNode).toHaveBeenCalledWith(expect.objectContaining({ body: { id: -1 } }));
       expect(list.head).toEqual({ id: -1 });
@@ -325,6 +379,14 @@ describe('LinkedCollection instance', () => {
       expect(insertNode).not.toHaveBeenCalled();
       // expect(list.get(5)).toHaveProperty('data', 'foo');
       expect(list.size).toBe(5);
+    });
+
+    it('should update existing element with specified resolve fn', () => {
+      expect(resolve).not.toHaveBeenCalled();
+      expect(list.upsert({ ...a, data: 'bar' }, resolve)).toBe(list);
+      expect(insertNode).not.toHaveBeenCalled();
+      expect(resolve).toHaveBeenCalledWith(a, { ...a, data: 'bar' });
+      expect(list.tail).toBe(foo);
     });
   });
 

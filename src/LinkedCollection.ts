@@ -1,6 +1,7 @@
 import LinkedList, { Callback, Reducer, LNode } from './LinkedList';
 import SizedLinkedList from './SizedLinkedList';
 import { forceInit } from './decorators';
+import { resolveSoa } from 'dns';
 
 export class LinkedCollection<
   K extends string | number | symbol,
@@ -71,12 +72,39 @@ export class LinkedCollection<
     return this._map.get(key)?.body;
   }
 
+  /** Update an existing item by key (default resolver mutates original item) */
+  public update(
+    item: Partial<T> & { readonly [k in K]: T[K] },
+    resolve?: (existing: T, update: Partial<T>) => T
+  ): T;
+  public update(key: T[K], item: Partial<T>, resolve?: (existing: T, update: Partial<T>) => T): T;
+  public update(
+    itemOrKey: T[K] | (Partial<T> & { readonly [k in K]: T[K] }),
+    itemOrResolve?: Partial<T> | ((existing: T, update: Partial<T>) => T),
+    resolve: (existing: T, update: Partial<T>) => T = (x, y) => Object.assign(x, y)
+  ) {
+    const update = (typeof itemOrResolve === 'object' ? itemOrResolve : itemOrKey) as Partial<T>;
+    const k = (
+      typeof itemOrResolve === 'object'
+        ? itemOrKey
+        : (itemOrKey as unknown as { readonly [k in K]: T[K] })[this.keyBy]
+    ) as T[K];
+    const fn = typeof itemOrResolve === 'function' ? itemOrResolve : resolve;
+    const node = this._map.get(k);
+
+    if (node) {
+      node.body = fn(node.body, update);
+      return node.body;
+    }
+    return undefined;
+  }
+
   /** Append unique item to the end of the collection or update exiting item */
-  public uppend(item: T) {
+  public apsert(item: T, resolve: (existing: T, update: T) => T = (_, x) => x) {
     let node = this._map.get(item[this.keyBy]);
 
     if (node) {
-      node.body = item;
+      node.body = resolve(node.body, item);
       return this;
     }
     node = { body: item, head: this._tail } as N;
@@ -85,11 +113,11 @@ export class LinkedCollection<
   }
 
   /** Insert unique item to the front of the collection or update exiting item */
-  public upsert(item: T) {
+  public upsert(item: T, resolve: (existing: T, update: T) => T = (_, x) => x) {
     let node = this._map.get(item[this.keyBy]);
 
     if (node) {
-      node.body = item;
+      node.body = resolve(node.body, item);
       return this;
     }
     node = { body: item, tail: this._head } as N;
