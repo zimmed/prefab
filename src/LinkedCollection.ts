@@ -72,6 +72,18 @@ export class LinkedCollection<
     return this._map.get(key)?.body;
   }
 
+  /** Get an existing item in the collection or add the provided one */
+  public default(defaultItem: T): T {
+    const existing = this._map.get(defaultItem[this.keyBy]);
+
+    if (!existing) {
+      this.add(defaultItem);
+      return defaultItem;
+    }
+
+    return existing.body;
+  }
+
   /** Update an existing item by key (default resolver mutates original item) */
   public update(
     item: Partial<T> & { readonly [k in K]: T[K] },

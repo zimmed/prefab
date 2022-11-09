@@ -52,6 +52,27 @@ describe('LinkedCollection instance', () => {
     });
   });
 
+  describe('default()', () => {
+    const list = new LinkedCollection('id', [
+      { id: 3, foo: 'baz' },
+      { id: 5 },
+      { id: 7, foo: 'bar' },
+      { id: 9 },
+    ]);
+
+    it('should retrieve a collection item by key', () => {
+      expect(list.default({ id: 7, foo: 'foo' })).toEqual({ id: 7, foo: 'bar' });
+      expect(list.default({ id: 3 })).toEqual({ id: 3, foo: 'baz' });
+    });
+
+    it('should add and return the provided item if no existing entry', () => {
+      expect(list.default({ id: 10, foo: 'foobar' })).toEqual({ id: 10, foo: 'foobar' });
+      expect(list.select(10)).toEqual({ id: 10, foo: 'foobar' });
+      expect(list.default({ id: 10, foo: 'baz' })).toEqual({ id: 10, foo: 'foobar' });
+      expect(list.select(10)).toEqual({ id: 10, foo: 'foobar' });
+    });
+  });
+
   describe('keys()', () => {
     const list = new LinkedCollection('id', [{ id: 3 }, { id: 5 }, { id: 7 }, { id: 9 }]);
 
