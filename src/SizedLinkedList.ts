@@ -59,6 +59,58 @@ export class SizedLinkedList<T, N extends LNode<T> = LNode<T>> extends LinkedLis
     return false;
   }
 
+  /** appends the specified list directly onto the tail of the second list */
+  public concatUnsafe(list: typeof this) {
+    const r = super.concatUnsafe(list);
+
+    if (r === this) {
+      r._size += list._size;
+    }
+    return r;
+  }
+
+  /** Creates a new slice of the linked list */
+  public slice(start: number = 0, end: number = this.size): typeof this {
+    const s = start < 0 ? this.size + start : start;
+    const e = end < 0 ? this.size + end : end;
+
+    return super.slice(s < 0 ? 0 : s, e < 0 ? 0 : e);
+  }
+
+  /** Converts list to an array slice */
+  public toArraySlice(start: number = 0, end: number = this.size): T[] {
+    let s = start < 0 ? this.size + start : start;
+    let e = end < 0 ? this.size + end : end;
+    if (s < 0) s = 0;
+    if (e < 0) e = 0;
+    else if (e > this.size) e = this.size;
+    const arr = Array(e - s) as T[];
+    let cur = this._head as N;
+    let i = -1;
+    let j = -1;
+
+    while (cur && ++i < s) cur = cur.tail as N;
+    while (cur && i++ < e) {
+      arr[++j] = cur.body;
+      cur = cur.tail as N;
+    }
+    return arr;
+  }
+
+  /** Converts list to native Array */
+  public toArray(): T[] {
+    // Faster to preallocate array when size is known than to use push()
+    const arr = Array(this.size) as T[];
+    let cur = this._head;
+    let i = -1;
+
+    while (cur) {
+      arr[++i] = cur.body;
+      cur = cur.tail as N;
+    }
+    return arr;
+  }
+
   /** Reduces items from the end of the list to the front */
   public reduceRight<RT>(cb: Reducer<T, this, RT, this>, initialValue: RT): RT;
   public reduceRight<RT, This>(cb: Reducer<T, This, RT, this>, initialValue: RT, thisArg: This): RT;

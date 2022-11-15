@@ -297,4 +297,114 @@ describe('SizedLinkedList instance', () => {
       expect(i).toEqual(0);
     });
   });
+
+  describe('concatUnsafe()', () => {
+    let list = new SizedLinkedList(['foo', 'bar', 'baz']);
+    let list2 = new SizedLinkedList(['eggs', 'spam']);
+
+    beforeEach(() => {
+      list = new SizedLinkedList(['foo', 'bar', 'baz']);
+      list2 = new SizedLinkedList(['eggs', 'spam']);
+    });
+
+    it('should append the second list directly to the tail of the first', () => {
+      const r = list.concatUnsafe(list2);
+
+      expect(r).toBe(list);
+      expect(r.size).toBe(5);
+      expect(list.tail).toBe(list2.tail);
+      expect(list.toArray()).toEqual(['foo', 'bar', 'baz', 'eggs', 'spam']);
+      expect(list2.toArray()).toEqual(['eggs', 'spam']);
+    });
+  });
+
+  describe('toArray()', () => {
+    const list = new SizedLinkedList(['foo', 'bar', 'baz']);
+
+    it('should return an array representation of the list', () => {
+      expect(list.toArray().constructor).toBe([].constructor);
+      expect(list.toArray()).toEqual(['foo', 'bar', 'baz']);
+      list.cycle();
+      expect(list.toArray()).toEqual(['baz', 'foo', 'bar']);
+      list.clear();
+      expect(list.toArray()).toEqual([]);
+    });
+  });
+
+  describe('toArraySlice()', () => {
+    let list = new SizedLinkedList(['foo', 'bar', 'baz']);
+
+    beforeEach(() => {
+      list = new SizedLinkedList(['foo', 'bar', 'baz']);
+    });
+
+    it('should create a new slice of the original list', () => {
+      let slice = list.toArraySlice();
+
+      expect(list.toArray()).toEqual(slice);
+      slice = list.toArraySlice(1, 1);
+      expect(slice).toEqual([]);
+      slice = list.toArraySlice(0, 1);
+      expect(slice).toEqual(['foo']);
+      slice = list.toArraySlice(1);
+      expect(slice).toEqual(['bar', 'baz']);
+      slice = list.toArraySlice(-1);
+      expect(slice).toEqual(['baz']);
+      slice = list.toArraySlice(-1, -1);
+      expect(slice).toEqual([]);
+      slice = list.toArraySlice(-2, -1);
+      expect(slice).toEqual(['bar']);
+      slice = list.toArraySlice(0, -1);
+      expect(slice).toEqual(['foo', 'bar']);
+      slice = list.toArraySlice(-10, 10);
+      expect(slice).toEqual(['foo', 'bar', 'baz']);
+      slice = list.toArraySlice(0, -10);
+      expect(slice).toEqual([]);
+    });
+  });
+
+  describe('slice()', () => {
+    let list = new SizedLinkedList(['foo', 'bar', 'baz']);
+    let slice: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new SizedLinkedList(['foo', 'bar', 'baz']);
+      slice = jest.spyOn(LinkedList.prototype, 'slice');
+    });
+
+    it('should call super.slice accounting for negative values', () => {
+      let next = list.slice();
+
+      expect(slice).toHaveBeenCalledTimes(1);
+      expect(slice).toHaveBeenCalledWith(0, 3);
+      expect(next).not.toBe(list);
+      expect(next.toArray()).toEqual(list.toArray());
+      expect(list.size).toBe(next.size);
+      slice.mockClear();
+      next = list.slice(1, 2);
+      expect(slice).toHaveBeenCalledTimes(1);
+      expect(slice).toHaveBeenCalledWith(1, 2);
+      expect(next.size).toBe(1);
+      slice.mockClear();
+      next = list.slice(-1);
+      expect(slice).toHaveBeenCalledTimes(1);
+      expect(slice).toHaveBeenCalledWith(2, 3);
+      expect(next.size).toBe(1);
+      slice.mockClear();
+      next = list.slice(0, -1);
+      expect(slice).toHaveBeenCalledTimes(1);
+      expect(slice).toHaveBeenCalledWith(0, 2);
+      expect(next.size).toBe(2);
+      slice.mockClear();
+      next = list.slice(-10);
+      expect(slice).toHaveBeenCalledTimes(1);
+      expect(slice).toHaveBeenCalledWith(0, 3);
+      expect(next.size).toBe(3);
+      slice.mockClear();
+      next = list.slice(0, -10);
+      expect(slice).toHaveBeenCalledTimes(1);
+      expect(slice).toHaveBeenCalledWith(0, 0);
+      expect(next.size).toBe(0);
+    });
+  });
 });

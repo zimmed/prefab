@@ -27,7 +27,7 @@ Constructor must take no arguments
 
 #### Defined in
 
-[src/ObjectPool.ts:25](https://github.com/zimmed/prefab/blob/f2a6e20/src/ObjectPool.ts#L25)
+[src/ObjectPool.ts:25](https://github.com/zimmed/prefab/blob/2efd938/src/ObjectPool.ts#L25)
 
 ## Properties
 
@@ -37,7 +37,7 @@ Constructor must take no arguments
 
 #### Defined in
 
-[src/ObjectPool.ts:16](https://github.com/zimmed/prefab/blob/f2a6e20/src/ObjectPool.ts#L16)
+[src/ObjectPool.ts:16](https://github.com/zimmed/prefab/blob/2efd938/src/ObjectPool.ts#L16)
 
 ## Methods
 
@@ -53,7 +53,7 @@ Deinitializer called when object is put back into the pool or freed from memory
 
 #### Defined in
 
-[src/ObjectPool.ts:31](https://github.com/zimmed/prefab/blob/f2a6e20/src/ObjectPool.ts#L31)
+[src/ObjectPool.ts:31](https://github.com/zimmed/prefab/blob/2efd938/src/ObjectPool.ts#L31)
 
 ___
 
@@ -75,4 +75,4 @@ Initializer for when object is spawned by the pool
 
 #### Defined in
 
-[src/ObjectPool.ts:28](https://github.com/zimmed/prefab/blob/f2a6e20/src/ObjectPool.ts#L28)
+[src/ObjectPool.ts:28](https://github.com/zimmed/prefab/blob/2efd938/src/ObjectPool.ts#L28)

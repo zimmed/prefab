@@ -2,6 +2,7 @@ import LinkedList, { Callback, Reducer, LNode } from './LinkedList';
 import SizedLinkedList from './SizedLinkedList';
 import { forceInit } from './decorators';
 import { resolveSoa } from 'dns';
+import LinkedSet from './LinkedSet';
 
 export class LinkedCollection<
   K extends string | number | symbol,
@@ -23,6 +24,10 @@ export class LinkedCollection<
     /** @hidden **/ init?: object
   ) {
     super(iterable, { ...init, keyBy });
+  }
+
+  public new(iterable?: IterableIterator<T> | Array<T> | Generator<T, void, unknown>): typeof this {
+    return new (this.constructor as typeof LinkedCollection)(this.keyBy, iterable) as typeof this;
   }
 
   /** Pops item from the end of the collection */
@@ -111,6 +116,18 @@ export class LinkedCollection<
     return undefined;
   }
 
+  /** Concatenates the head of the provided list to the tail of the list */
+  public concatUnsafe(list: typeof this): typeof this {
+    if (!this._head) return list;
+    let cur = list._head;
+
+    while (cur) {
+      this.add(cur.body);
+      cur = cur.tail as N;
+    }
+    return this;
+  }
+
   /** Append unique item to the end of the collection or update exiting item */
   public apsert(item: T, resolve: (existing: T, update: T) => T = (_, x) => x) {
     let node = this._map.get(item[this.keyBy]);
@@ -170,6 +187,21 @@ export class LinkedCollection<
   public clear() {
     super.clear();
     this._map.clear();
+  }
+
+  /** Converts list to native Array */
+  public slice(start?: number, end?: number): typeof this {
+    return SizedLinkedList.prototype.slice.call(this, start, end) as unknown as typeof this;
+  }
+
+  /** Converts list to native Array */
+  public toArraySlice(start?: number, end?: number): T[] {
+    return SizedLinkedList.prototype.toArraySlice.call(this, start, end);
+  }
+
+  /** Converts list to native Array */
+  public toArray(): T[] {
+    return SizedLinkedList.prototype.toArray.call(this);
   }
 
   /** Reduces items from the end of the collection to the front */

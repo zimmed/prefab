@@ -53,6 +53,10 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
     }
   }
 
+  public new(iterable?: IterableIterator<T> | Array<T>): typeof this {
+    return new (this.constructor as typeof LinkedList)(iterable) as typeof this;
+  }
+
   /** Removes and returns the last element of the list (or undefined if list is empty) */
   public pop() {
     let item;
@@ -164,6 +168,84 @@ export class LinkedList<T, N extends LNode<T> = LNode<T>> {
   /** Removes item from the list */
   public delete(item: T) {
     return this.deleteNode(this._findNode(item));
+  }
+
+  /** Concatenates the the lists into a new list */
+  public concat(...lists: readonly (LinkedList<T, N> | T[] | T)[]): typeof this {
+    const next = this.new();
+    const l = lists.length;
+    let i = -1;
+    let e: LinkedList<T, N> | undefined | null | T[] | T;
+
+    let cur = this._head;
+
+    while (cur) {
+      next.add(cur.body);
+      cur = cur.tail as N;
+    }
+
+    while (++i < l) {
+      e = lists[i];
+
+      if (e instanceof LinkedList) {
+        cur = e._head;
+
+        while (cur) {
+          next.add(cur.body);
+          cur = cur.tail as N;
+        }
+      } else if (Array.isArray(e)) {
+        if (e.length) for (const t of e) next.add(t);
+      } else {
+        next.add(e as T);
+      }
+    }
+
+    return next;
+  }
+
+  /** appends the specified list directly onto the tail of the second list */
+  public concatUnsafe(list: typeof this): typeof this {
+    if (!this._head) return list;
+    if (!list._head || list === this) return this;
+    list._head.head = this._tail;
+    this._tail!.tail = list._head;
+    this._tail = list._tail;
+    return this;
+  }
+
+  /** Creates a new slice of the linked list */
+  public slice(start: number = 0, end: number = Infinity): typeof this {
+    if (start < 0) throw new RangeError('Tried to slice LinkedList with a negative starting index');
+    if (end < 0) throw new RangeError('Tried to slice LinkedList with a negative ending index');
+    const next = this.new();
+    let cur = this._head as N;
+    let i = -1;
+
+    while (cur && ++i < start) cur = cur.tail as N;
+    while (cur && i < end) {
+      next.add(cur.body);
+      cur = cur.tail as N;
+      ++i;
+    }
+    return next;
+  }
+
+  /** Converts list to an array slice */
+  public toArraySlice(start: number = 0, end: number = Infinity): T[] {
+    if (start < 0) throw new RangeError('Tried to slice LinkedList with a negative starting index');
+    if (end < 0) throw new RangeError('Tried to slice LinkedList with a negative ending index');
+    const arr = [];
+    let cur = this._head as N;
+    let i = -1;
+
+    while (cur && ++i < start) cur = cur.tail as N;
+    while (cur && i < end) {
+      arr.push(cur.body);
+      cur = cur.tail as N;
+      ++i;
+    }
+    return arr;
   }
 
   /** Converts list to native Array */

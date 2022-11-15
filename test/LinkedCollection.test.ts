@@ -1,4 +1,4 @@
-import { SizedLinkedList, LinkedList, LinkedCollection } from '../src';
+import { SizedLinkedList, LinkedList, LinkedCollection, LinkedSet } from '../src';
 
 let count = 0;
 
@@ -611,6 +611,145 @@ describe('LinkedCollection instance', () => {
         d: { x: 'd', cat: 17 },
         e: { x: 'e', cat: 3 },
       });
+    });
+  });
+
+  describe('toArray()', () => {
+    interface I {
+      x: string;
+    }
+    let list: LinkedCollection<'x', I>;
+    let toArray: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new LinkedCollection('x', [{ x: 'foo' }, { x: 'bar' }, { x: 'baz' }]);
+      toArray = jest.spyOn(SizedLinkedList.prototype, 'toArray');
+    });
+
+    it('should call SizedLinkedList.prototype.toArray', () => {
+      expect(list.toArray()).toEqual([{ x: 'foo' }, { x: 'bar' }, { x: 'baz' }]);
+      expect(toArray).toHaveBeenCalledTimes(1);
+      expect(toArray).toHaveBeenCalledWith();
+    });
+  });
+
+  describe('concatUnsafe()', () => {
+    interface I {
+      x: string;
+    }
+    let list: LinkedCollection<'x', I>;
+    let list2: LinkedCollection<'x', I>;
+    let add: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new LinkedCollection('x', [{ x: 'foo' }, { x: 'bar' }, { x: 'baz' }]);
+      list2 = new LinkedCollection('x', [{ x: 'spam' }, { x: 'bar' }, { x: 'eggs' }]);
+      add = jest.spyOn(list, 'add');
+    });
+
+    it('should append the second list directly to the tail of the first', () => {
+      const r = list.concatUnsafe(list2);
+
+      expect(r).toBe(list);
+      expect(list2.tail).toBe(r.tail);
+      expect(r.size).toBe(5);
+      expect(add).toHaveBeenCalledTimes(3);
+      expect(add).toHaveBeenCalledWith({ x: 'eggs' });
+      expect(add).toHaveBeenCalledWith({ x: 'bar' });
+      expect(add).toHaveBeenCalledWith({ x: 'eggs' });
+      expect(r.toArray()).toEqual([
+        { x: 'foo' },
+        { x: 'bar' },
+        { x: 'baz' },
+        { x: 'spam' },
+        { x: 'eggs' },
+      ]);
+      expect(list2.toArray()).toEqual([{ x: 'spam' }, { x: 'bar' }, { x: 'eggs' }]);
+    });
+
+    it('should return the second list if the first is empty', () => {
+      list.clear();
+      const r = list.concatUnsafe(list2);
+
+      expect(r).toBe(list2);
+      expect(r).not.toBe(list);
+      expect(add).not.toHaveBeenCalled();
+      expect(r.toArray()).toEqual([{ x: 'spam' }, { x: 'bar' }, { x: 'eggs' }]);
+      expect(list.toArray()).toEqual([]);
+    });
+  });
+
+  describe('toArraySlice()', () => {
+    interface I {
+      x: string;
+    }
+    let list: LinkedCollection<'x', I>;
+    let toArraySlice: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new LinkedCollection('x', [{ x: 'foo' }, { x: 'bar' }, { x: 'baz' }]);
+      toArraySlice = jest.spyOn(SizedLinkedList.prototype, 'toArraySlice');
+    });
+
+    it('should call SizedLinkedList.prototype.toArraySlice', () => {
+      expect(list.toArraySlice()).toEqual([{ x: 'foo' }, { x: 'bar' }, { x: 'baz' }]);
+      expect(toArraySlice).toHaveBeenCalledTimes(1);
+      expect(toArraySlice).toHaveBeenCalledWith(undefined, undefined);
+      expect(list.toArraySlice(1)).toEqual([{ x: 'bar' }, { x: 'baz' }]);
+      expect(toArraySlice).toHaveBeenCalledTimes(2);
+      expect(toArraySlice).toHaveBeenCalledWith(1, undefined);
+      expect(list.toArraySlice(0, -1)).toEqual([{ x: 'foo' }, { x: 'bar' }]);
+      expect(toArraySlice).toHaveBeenCalledTimes(3);
+      expect(toArraySlice).toHaveBeenCalledWith(0, -1);
+      expect(list.toArraySlice(undefined, -10)).toEqual([]);
+      expect(toArraySlice).toHaveBeenCalledTimes(4);
+      expect(toArraySlice).toHaveBeenCalledWith(undefined, -10);
+    });
+  });
+
+  describe('slice()', () => {
+    interface I {
+      x: string;
+    }
+    let list: LinkedCollection<'x', I>;
+    let slice: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new LinkedCollection('x', [{ x: 'foo' }, { x: 'bar' }, { x: 'baz' }]);
+      slice = jest.spyOn(SizedLinkedList.prototype, 'slice');
+    });
+
+    it('should call SizedLinkedList.prototype.slice', () => {
+      expect(list.slice()).toEqual(list);
+      expect(list.slice()).not.toBe(list);
+      expect(slice).toHaveBeenCalledTimes(2);
+      expect(slice).toHaveBeenCalledWith(undefined, undefined);
+      expect(list.slice(1).size).toEqual(2);
+      expect(slice).toHaveBeenCalledTimes(3);
+      expect(slice).toHaveBeenCalledWith(1, undefined);
+      expect(list.slice(0, -1).size).toEqual(2);
+      expect(slice).toHaveBeenCalledTimes(4);
+      expect(slice).toHaveBeenCalledWith(0, -1);
+      expect(list.slice(undefined, -10).size).toEqual(0);
+      expect(slice).toHaveBeenCalledTimes(5);
+      expect(slice).toHaveBeenCalledWith(undefined, -10);
+    });
+  });
+
+  describe('new()', () => {
+    it('should return a new empty collection of the same type', () => {
+      const list = new LinkedCollection('x', [{ x: 'foo' }, { x: 'bar' }]);
+      let list2 = list.new();
+
+      expect(list).not.toBe(list2);
+      expect(list.toArray()).toEqual([{ x: 'foo' }, { x: 'bar' }]);
+      expect(list2.toArray()).toEqual([]);
+      // @ts-expect-error
+      expect(list2.keyBy).toBe(list.keyBy);
+      let list3 = list2.new([{ x: 'barfoo' }]);
+      expect(list3).not.toBe(list2);
+      expect(list2.toArray()).toEqual([]);
+      expect(list3.toArray()).toEqual([{ x: 'barfoo' }]);
     });
   });
 });

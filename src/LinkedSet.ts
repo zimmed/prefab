@@ -72,6 +72,33 @@ export class LinkedSet<T, N extends LNode<T> = LNode<T>> extends LinkedList<T, N
     this._map.clear();
   }
 
+  /** Concatenates the head of the provided list to the tail of the list */
+  public concatUnsafe(list: typeof this): typeof this {
+    if (!this._head) return list;
+    let cur = list._head;
+
+    while (cur) {
+      this.add(cur.body);
+      cur = cur.tail as N;
+    }
+    return this;
+  }
+
+  /** Converts list to native Array */
+  public slice(start?: number, end?: number): typeof this {
+    return SizedLinkedList.prototype.slice.call(this, start, end) as unknown as typeof this;
+  }
+
+  /** Converts list to native Array */
+  public toArraySlice(start?: number, end?: number): T[] {
+    return SizedLinkedList.prototype.toArraySlice.call(this, start, end);
+  }
+
+  /** Converts list to native Array */
+  public toArray(): T[] {
+    return SizedLinkedList.prototype.toArray.call(this);
+  }
+
   /** Reduces items from the end of the set to the front */
   public reduceRight<RT>(cb: Reducer<T, this, RT, this>, initialValue: RT): RT;
   public reduceRight<RT, This>(

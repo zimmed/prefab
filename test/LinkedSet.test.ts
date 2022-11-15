@@ -310,4 +310,108 @@ describe('LinkedSet instance', () => {
       expect(findRight).toHaveBeenCalledWith(arrow, foo);
     });
   });
+
+  describe('toArray()', () => {
+    let list: LinkedSet<string>;
+    let toArray: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new LinkedSet(['foo', 'bar', 'baz']);
+      toArray = jest.spyOn(SizedLinkedList.prototype, 'toArray');
+    });
+
+    it('should call SizedLinkedList.prototype.toArray', () => {
+      expect(list.toArray()).toEqual(['foo', 'bar', 'baz']);
+      expect(toArray).toHaveBeenCalledTimes(1);
+      expect(toArray).toHaveBeenCalledWith();
+    });
+  });
+
+  describe('toArraySlice()', () => {
+    let list: LinkedSet<string>;
+    let toArraySlice: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new LinkedSet(['foo', 'bar', 'baz']);
+      toArraySlice = jest.spyOn(SizedLinkedList.prototype, 'toArraySlice');
+    });
+
+    it('should call SizedLinkedList.prototype.toArraySlice', () => {
+      expect(list.toArraySlice()).toEqual(['foo', 'bar', 'baz']);
+      expect(toArraySlice).toHaveBeenCalledTimes(1);
+      expect(toArraySlice).toHaveBeenCalledWith(undefined, undefined);
+      expect(list.toArraySlice(1)).toEqual(['bar', 'baz']);
+      expect(toArraySlice).toHaveBeenCalledTimes(2);
+      expect(toArraySlice).toHaveBeenCalledWith(1, undefined);
+      expect(list.toArraySlice(0, -1)).toEqual(['foo', 'bar']);
+      expect(toArraySlice).toHaveBeenCalledTimes(3);
+      expect(toArraySlice).toHaveBeenCalledWith(0, -1);
+      expect(list.toArraySlice(undefined, -10)).toEqual([]);
+      expect(toArraySlice).toHaveBeenCalledTimes(4);
+      expect(toArraySlice).toHaveBeenCalledWith(undefined, -10);
+    });
+  });
+
+  describe('slice()', () => {
+    let list: LinkedSet<string>;
+    let slice: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new LinkedSet(['foo', 'bar', 'baz']);
+      slice = jest.spyOn(SizedLinkedList.prototype, 'slice');
+    });
+
+    it('should call SizedLinkedList.prototype.slice', () => {
+      expect(list.slice()).toEqual(list);
+      expect(list.slice()).not.toBe(list);
+      expect(slice).toHaveBeenCalledTimes(2);
+      expect(slice).toHaveBeenCalledWith(undefined, undefined);
+      expect(list.slice(1).size).toEqual(2);
+      expect(slice).toHaveBeenCalledTimes(3);
+      expect(slice).toHaveBeenCalledWith(1, undefined);
+      expect(list.slice(0, -1).size).toEqual(2);
+      expect(slice).toHaveBeenCalledTimes(4);
+      expect(slice).toHaveBeenCalledWith(0, -1);
+      expect(list.slice(undefined, -10).size).toEqual(0);
+      expect(slice).toHaveBeenCalledTimes(5);
+      expect(slice).toHaveBeenCalledWith(undefined, -10);
+    });
+  });
+
+  describe('concatUnsafe()', () => {
+    let list = new LinkedSet(['foo', 'bar', 'baz']);
+    let list2 = new LinkedSet(['eggs', 'spam']);
+    let add: jest.SpyInstance;
+
+    beforeEach(() => {
+      list = new LinkedSet(['foo', 'bar', 'baz']);
+      list2 = new LinkedSet(['eggs', 'bar', 'spam']);
+      add = jest.spyOn(list, 'add');
+    });
+
+    it('should append the second list directly to the tail of the first', () => {
+      const r = list.concatUnsafe(list2);
+
+      expect(r).toBe(list);
+      expect(list2.tail).toBe(r.tail);
+      expect(r.size).toBe(5);
+      expect(add).toHaveBeenCalledTimes(3);
+      expect(add).toHaveBeenCalledWith('eggs');
+      expect(add).toHaveBeenCalledWith('bar');
+      expect(add).toHaveBeenCalledWith('spam');
+      expect(r.toArray()).toEqual(['foo', 'bar', 'baz', 'eggs', 'spam']);
+      expect(list2.toArray()).toEqual(['eggs', 'bar', 'spam']);
+    });
+
+    it('should return the second list if the first is empty', () => {
+      list.clear();
+      const r = list.concatUnsafe(list2);
+
+      expect(r).toBe(list2);
+      expect(r).not.toBe(list);
+      expect(add).not.toHaveBeenCalled();
+      expect(r.toArray()).toEqual(['eggs', 'bar', 'spam']);
+      expect(list.toArray()).toEqual([]);
+    });
+  });
 });
